@@ -10,6 +10,7 @@ echo "=== PROBE: jar $J"
 [ -z "$J" ] && exit 0
 unzip -Z1 "$J" | grep '\.class$' | grep -v '\$[0-9]' | sed 's/\.class$//; s#/#.#g' > /tmp/classes.txt
 echo "=== PROBE: $(wc -l < /tmp/classes.txt) classes"
+if [ -f .quasar/dump-classes ]; then echo "=== CLASSLIST BEGIN"; cat /tmp/classes.txt; echo "=== CLASSLIST END"; fi
 if [ -f .quasar/grep.txt ]; then
   while IFS= read -r pat; do
     [ -z "$pat" ] && continue
