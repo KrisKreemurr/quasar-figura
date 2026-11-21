@@ -22,11 +22,13 @@ public class ModelMixin implements FiguraSubmitCallBackExtension {
     @Override
     public void figura$addPreRenderingCallback(BiFunction<FiguraBufferSource, PoseStack, Boolean> callback) {
         this.figura$preRenderingCallback.add(callback);
+        org.figuramc.figura.model.rendering.nodeRenderer.FiguraCallbackFrame.touch(this);
     }
 
     @Override
     public void figura$addPostRenderingCallback(Runnable callback) {
         this.figura$postRenderingCallback.add(callback);
+        org.figuramc.figura.model.rendering.nodeRenderer.FiguraCallbackFrame.touch(this);
     }
 
     @Override
