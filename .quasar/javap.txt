@@ -1,5 +1,2 @@
-net.minecraft.client.renderer.Projection
-net.minecraft.client.resources.model.ModelManager
 net.minecraft.client.resources.model.sprite.Material$Baked
-net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer
-com.mojang.blaze3d.systems.RenderSystem
+net.minecraft.client.resources.model.geometry.BakedQuad

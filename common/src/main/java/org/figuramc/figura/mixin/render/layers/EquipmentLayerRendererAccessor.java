@@ -16,12 +16,6 @@ public interface EquipmentLayerRendererAccessor {
     @Accessor("equipmentAssets")
     EquipmentAssetManager figura$getAssetsManager();
 
-    @Accessor("layerTextureLookup")
-    Function<EquipmentLayerRenderer.LayerTextureKey, Identifier> layerTextureLookup();
-
-    @Accessor("trimSpriteLookup")
-    Function<EquipmentLayerRenderer.TrimSpriteKey, TextureAtlasSprite> trimSpriteLookup();
-
     @Invoker("getColorForLayer")
     static int getColorForLayer(EquipmentClientInfo.Layer layer, int i) {
         throw new AssertionError();
