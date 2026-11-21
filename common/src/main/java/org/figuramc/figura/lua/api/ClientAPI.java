@@ -390,10 +390,21 @@ public class ClientAPI {
         return HAS_IRIS || OPTIFINE_LOADED.get();
     }
 
+    // Quasar MC: reflection instead of a compile-time Iris dependency
+    private static boolean irisShaderPackInUse() {
+        try {
+            Class<?> api = Class.forName("net.irisshaders.iris.api.v0.IrisApi");
+            Object instance = api.getMethod("getInstance").invoke(null);
+            return (boolean) api.getMethod("isShaderPackInUse").invoke(instance);
+        } catch (Exception ignored) {
+            return false;
+        }
+    }
+
     @LuaWhitelist
     @LuaMethodDoc("client.has_shader_pack")
     public static boolean hasShaderPack() {
-        return HAS_IRIS && net.irisshaders.iris.api.v0.IrisApi.getInstance().isShaderPackInUse() || OPTIFINE_LOADED.get() && hasOptifineShader();
+        return HAS_IRIS && irisShaderPackInUse() || OPTIFINE_LOADED.get() && hasOptifineShader();
     }
 
     @LuaWhitelist
@@ -413,7 +424,9 @@ public class ClientAPI {
         } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException |
                  InvocationTargetException | NoSuchMethodException ignored) {
            try {
-               return net.irisshaders.iris.Iris.getCurrentPackName();
+               // Quasar MC: reflection instead of a compile-time Iris dependency
+               Object name = Class.forName("net.irisshaders.iris.Iris").getMethod("getCurrentPackName").invoke(null);
+               return String.valueOf(name);
            }catch (Exception ignored1) {
            }
         }

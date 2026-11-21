@@ -1,6 +1,5 @@
 package org.figuramc.figura.utils;
 
-import dev.architectury.injectables.annotations.ExpectPlatform;
 
 public abstract class FiguraModMetadata {
     private final String modId;
@@ -18,8 +17,8 @@ public abstract class FiguraModMetadata {
     public String getModId() {
         return this.modId;
     }
-    @ExpectPlatform
+    // Quasar MC: NeoForge-only build, so call the NeoForge implementation directly.
     public static FiguraModMetadata getMetadataForMod(String modID) {
-        throw new AssertionError();
+        return org.figuramc.figura.utils.neoforge.FiguraModMetadataImpl.getMetadataForMod(modID);
     }
 }

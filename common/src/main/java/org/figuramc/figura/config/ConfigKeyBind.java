@@ -1,7 +1,6 @@
 package org.figuramc.figura.config;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Options;
@@ -35,6 +34,8 @@ public class ConfigKeyBind extends KeyMapping {
         KeyMapping.resetMapping();
     }
 
-    @ExpectPlatform
-    public static void addKeyBind(ConfigKeyBind keyBind) {}
+    // Quasar MC: NeoForge-only build, so call the NeoForge implementation directly.
+    public static void addKeyBind(ConfigKeyBind keyBind) {
+        org.figuramc.figura.config.neoforge.ConfigKeyBindImpl.addKeyBind(keyBind);
+    }
 }

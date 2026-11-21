@@ -1,7 +1,6 @@
 package org.figuramc.figura.utils;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.Model;
@@ -149,9 +148,9 @@ public class RenderUtils {
         return true;
     }
 
-    @ExpectPlatform
+    // Quasar MC: NeoForge-only build, so call the NeoForge implementation directly.
     public static Identifier getPlayerSkinTexture(WingsLayer<?, ?> wingsLayer, HumanoidRenderState renderState) {
-        throw new AssertionError();
+        return org.figuramc.figura.utils.neoforge.RenderUtilsImpl.getPlayerSkinTexture(wingsLayer, renderState);
     }
 
     static final ItemStackRenderState itemStackRenderState = new ItemStackRenderState();

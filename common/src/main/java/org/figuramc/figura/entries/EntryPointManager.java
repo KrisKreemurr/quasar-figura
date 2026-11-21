@@ -1,6 +1,5 @@
 package org.figuramc.figura.entries;
 
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import org.figuramc.figura.gui.widgets.PanelSelectorWidget;
 import org.figuramc.figura.lua.FiguraAPIManager;
 import org.figuramc.figura.lua.api.event.EventsAPI;
@@ -29,8 +28,8 @@ public class EntryPointManager {
         PermissionManager.initEntryPoints(load("figura_permissions", FiguraPermissions.class));
     }
 
-    @ExpectPlatform
+    // Quasar MC: NeoForge-only build, so call the NeoForge implementation directly.
     private static <T> Set<T> load(String name, Class<T> clazz) {
-        throw new AssertionError();
+        return org.figuramc.figura.entries.neoforge.EntryPointManagerImpl.load(name, clazz);
     }
 }

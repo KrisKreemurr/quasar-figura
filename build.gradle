@@ -1,71 +1,105 @@
+// Quasar MC build of Figura for NeoForge 26.3.
+// Replaces upstream's Architectury multi-loader build with a single ModDevGradle project.
+
 plugins {
-	id "architectury-plugin" version "3.4-SNAPSHOT"
-	id "dev.architectury.loom" version "1.13-SNAPSHOT" apply false
+    id 'java-library'
+    id 'idea'
+    id 'net.neoforged.moddev' version '2.0.148'
 }
 
-architectury {
-	minecraft = rootProject.minecraft_version
+tasks.named('wrapper', Wrapper).configure {
+    distributionType = Wrapper.DistributionType.BIN
 }
 
-subprojects {
-	apply plugin: "dev.architectury.loom"
+version = "${mod_version}+${minecraft_version}-quasar"
+group = maven_group
+base.archivesName = 'figura-quasar'
 
-	loom {
-		silentMojangMappingsLicense()
-	}
+// Minecraft 26.x requires Java 25.
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
-	repositories {
-		maven { url 'https://maven.terraformersmc.com/releases/' }
-		maven { url 'https://api.modrinth.com/maven' }
-		maven { url 'https://maven.quiltmc.org/repository/release/' }
-		maven { url 'https://maven.neoforged.net/releases/' }
-		maven {
-			name = 'GeckoLib'
-			url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
-			content {
-				includeGroupByRegex("software\\.bernie.*")
-				includeGroup("com.eliotlash.mclib")
-			}
-		}
-	}
-
-	dependencies {
-		minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
-	}
+// Compile upstream's common/ code and the neoforge/ glue together as one mod.
+sourceSets.main {
+    java.srcDirs = ['common/src/main/java', 'neoforge/src/main/java']
+    resources.srcDirs = ['common/src/main/resources', 'neoforge/src/main/resources']
+    resources.exclude 'figura.accesswidener', 'architectury.common.json', 'fabric.mod.json'
+    // GeckoLib armor integration needs GeckoLib at compile time; left out until GeckoLib has a 26.3 build.
+    java.exclude '**/mixin/compat/Geckolib*', '**/ducks/GeckolibGeoArmorAccessor.java'
 }
 
-allprojects {
-	apply plugin: "java"
-	apply plugin: "architectury-plugin"
-	apply plugin: "maven-publish"
+repositories {
+    maven {
+        name = 'JitPack'
+        url = 'https://jitpack.io'
+        content { includeGroup 'com.github.FiguraMC.luaj' }
+    }
+    mavenCentral()
+}
 
-	java_version = rootProject.java_version
-	archivesBaseName = rootProject.archives_base_name
-	version = rootProject.mod_version + "+" + rootProject.minecraft_version
-	group = rootProject.maven_group
-	if (project.hasProperty("release")) {
-		jarVersion = version
-	} else {
-		jarVersion = version + "-" + 'git rev-parse --short HEAD'.execute().getText().trim()
-	}
+neoForge {
+    version = project.neo_version
 
-	repositories {
-		// Add repositories to retrieve artifacts from in here.
-		// You should only use this when depending on other mods because
-		// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-		// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-		// for more information about repositories.
-		maven { url 'https://jitpack.io' }
-	}
+    // Converted from upstream's Fabric access widener (common/src/main/resources/figura.accesswidener).
+    accessTransformers = files('neoforge/src/main/resources/META-INF/accesstransformer.cfg')
 
-	tasks.withType(JavaCompile) {
-		options.encoding = "UTF-8"
-		options.release = Integer.valueOf(java_version)
-	}
+    runs {
+        client {
+            client()
+            gameDirectory = file('run')
+        }
+    }
 
-	java {
-		sourceCompatibility = JavaVersion.VERSION_17
-		targetCompatibility = JavaVersion.VERSION_17
-		withSourcesJar()
-	}
+    mods {
+        figura {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+dependencies {
+    // Libraries bundled inside the Figura jar (jar-in-jar).
+    jarJar(implementation("com.github.FiguraMC.luaj:luaj-core:${luaj}-figura"))
+    jarJar(implementation("com.github.FiguraMC.luaj:luaj-jse:${luaj}-figura"))
+    jarJar(implementation("com.neovisionaries:nv-websocket-client:${nv_websocket}"))
+
+    // Same libraries on the classpath when running the game from the IDE.
+    additionalRuntimeClasspath "com.github.FiguraMC.luaj:luaj-core:${luaj}-figura"
+    additionalRuntimeClasspath "com.github.FiguraMC.luaj:luaj-jse:${luaj}-figura"
+    additionalRuntimeClasspath "com.neovisionaries:nv-websocket-client:${nv_websocket}"
+
+    // MixinExtras ships with NeoForge at runtime; this is only for compiling.
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0"))
+}
+
+tasks.named('processResources', ProcessResources) {
+    def props = [
+            version          : project.version.toString(),
+            minecraft_version: project.minecraft_version,
+            assets_version   : project.assets_version,
+            java_version     : '25',
+    ]
+    inputs.properties props
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand props
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+// After every build, copy the jar into the MultiMC test instance (quasarmc_test_mods_dir).
+def installJar = tasks.register('installToTestInstance', Copy) {
+    def target = providers.gradleProperty('quasarmc_test_mods_dir')
+    onlyIf { target.isPresent() && new File(target.get()).isAbsolute() && new File(target.get()).exists() }
+    from tasks.named('jar')
+    into target.orElse(layout.buildDirectory.dir('no-test-dir').get().asFile.path)
+}
+tasks.named('build') { finalizedBy installJar }
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
 }

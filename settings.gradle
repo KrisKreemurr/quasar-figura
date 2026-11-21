@@ -1,16 +1,14 @@
 pluginManagement {
     repositories {
-        maven { url 'https://maven.fabricmc.net/' }
-        maven { url "https://maven.architectury.dev/" }
-        maven { url "https://maven.minecraftforge.net/" }
         gradlePluginPortal()
     }
 }
 
-include("common")
-include("common:mojmap")
-//include("forge")
-include("fabric")
-//include("neoforge")
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
 
-rootProject.name = "Figura"
+// Quasar MC: single NeoForge project. Sources still live in common/ and neoforge/
+// (same layout as upstream, so upstream changes merge cleanly); build.gradle compiles both.
+// The fabric/, forge/ and common/mojmap/ folders are not part of this build.
+rootProject.name = 'quasar-figura'

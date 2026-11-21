@@ -1,6 +1,5 @@
 package org.figuramc.figura.utils;
 
-import dev.architectury.injectables.annotations.ExpectPlatform;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -8,29 +7,29 @@ import java.nio.file.Path;
 
 public class PlatformUtils {
 
-    @ExpectPlatform
+    // Quasar MC: NeoForge-only build, so call the NeoForge implementation directly.
     public static Path getGameDir() {
-        throw new AssertionError();
+        return org.figuramc.figura.utils.neoforge.PlatformUtilsImpl.getGameDir();
     }
 
-    @ExpectPlatform
-    public static String getFiguraModVersionString(){
-        throw new AssertionError();
+    // Quasar MC: NeoForge-only build, so call the NeoForge implementation directly.
+    public static String getFiguraModVersionString() {
+        return org.figuramc.figura.utils.neoforge.PlatformUtilsImpl.getFiguraModVersionString();
     }
 
-    @ExpectPlatform
+    // Quasar MC: NeoForge-only build, so call the NeoForge implementation directly.
     public static Path getConfigDir() {
-        throw new AssertionError();
+        return org.figuramc.figura.utils.neoforge.PlatformUtilsImpl.getConfigDir();
     }
 
-    @ExpectPlatform
+    // Quasar MC: NeoForge-only build, so call the NeoForge implementation directly.
     public static boolean isModLoaded(String modId) {
-        throw new AssertionError();
+        return org.figuramc.figura.utils.neoforge.PlatformUtilsImpl.isModLoaded(modId);
     }
 
-    @ExpectPlatform
+    // Quasar MC: NeoForge-only build, so call the NeoForge implementation directly.
     public static String getModVersion(String modId) {
-        throw new AssertionError();
+        return org.figuramc.figura.utils.neoforge.PlatformUtilsImpl.getModVersion(modId);
     }
 
     public static int compareVersionTo(String v1, String v2) {
@@ -57,13 +56,13 @@ public class PlatformUtils {
         FABRIC
     }
 
-    @ExpectPlatform
-    public static ModLoader getModLoader(){
-        throw new AssertionError();
+    // Quasar MC: NeoForge-only build, so call the NeoForge implementation directly.
+    public static ModLoader getModLoader() {
+        return org.figuramc.figura.utils.neoforge.PlatformUtilsImpl.getModLoader();
     }
 
-    @ExpectPlatform
+    // Quasar MC: NeoForge-only build, so call the NeoForge implementation directly.
     public static InputStream loadFileFromRoot(String file) throws FileNotFoundException {
-        throw new AssertionError();
+        return org.figuramc.figura.utils.neoforge.PlatformUtilsImpl.loadFileFromRoot(file);
     }
 }

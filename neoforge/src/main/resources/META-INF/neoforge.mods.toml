@@ -7,12 +7,14 @@ displayURL = "https://github.com/FiguraMC/Figura"
 [[mods]]
 modId = "figura"
 version = "${version}"
-displayName = "Figura"
+displayName = "Figura (Quasar MC)"
 logoFile="icon.png"
 authors = "skyrina, lumelia, UnlikePaladin, omoflop"
 credits = "TooManyLimits, Lexize, KitCat962, Manuel-3, superpowers04, auriafoxgirl, applejuiceyy"
 description = '''
 Extensive customization of the Player model
+
+Quasar MC build for NeoForge 26.3 (unofficial). Based on Figura by the FiguraMC team.
 '''
 
 [modproperties.figura]
@@ -21,7 +23,7 @@ assets_version="${assets_version}"
 [[dependencies.figura]]
 modId = "neoforge"
 mandatory = true
-versionRange = "[21.3,)"
+versionRange = "[26.3,)"
 ordering = "NONE"
 side = "CLIENT"
 

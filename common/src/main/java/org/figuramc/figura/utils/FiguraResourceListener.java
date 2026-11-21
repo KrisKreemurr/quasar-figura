@@ -1,6 +1,5 @@
 package org.figuramc.figura.utils;
 
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.server.packs.resources.ResourceManager;
 
 import java.util.Objects;
@@ -14,9 +13,9 @@ public class FiguraResourceListener {
         this.reloadConsumer = reloadConsumer;
     }
 
-    @ExpectPlatform
+    // Quasar MC: NeoForge-only build, so call the NeoForge implementation directly.
     public static FiguraResourceListener createResourceListener(String id, Consumer<ResourceManager> reloadConsumer) {
-        throw new AssertionError();
+        return org.figuramc.figura.utils.neoforge.FiguraResourceListenerImpl.createResourceListener(id, reloadConsumer);
     }
 
     public String id() {
