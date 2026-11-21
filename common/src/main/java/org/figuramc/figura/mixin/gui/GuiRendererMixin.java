@@ -42,10 +42,10 @@ public class GuiRendererMixin {
     }
 
     @Inject(method = "preparePictureInPictureState", at = @At("HEAD"), cancellable = true)
-    private <T extends PictureInPictureRenderState> void renderPaperDoll(T pictureInPictureRenderState, int i, boolean flag, CallbackInfo ci) {
+    private <T extends PictureInPictureRenderState> void renderPaperDoll(T pictureInPictureRenderState, int i, boolean flag, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<Boolean> cir) {
         if (pictureInPictureRenderState instanceof GuiEntityRenderStateExtension extension && (extension.getRenderMode() != null && extension.getRenderMode() == EntityRenderMode.PAPERDOLL)) {
             figura$paperDollRenderer.prepare((GuiEntityRenderState) pictureInPictureRenderState, this.renderState, Minecraft.getInstance().gameRenderer.featureRenderDispatcher(), i);
-            ci.cancel();
+            cir.setReturnValue(true); // Quasar MC (26.3): method now returns whether it prepared a PIP
         }
     }
 
