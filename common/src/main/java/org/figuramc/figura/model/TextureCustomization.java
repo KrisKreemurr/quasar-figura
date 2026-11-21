@@ -62,7 +62,7 @@ public class TextureCustomization {
             CommandEncoder encoder = RenderSystem.getDevice().createCommandEncoder();
             GpuBuffer gpuBuffer = RenderSystem.getDevice().createBuffer(() -> "Atlas Read Buffer", 9, width * height * atlasGpuTexture.getFormat().blockSize());
             encoder.copyTextureToBuffer(atlasGpuTexture, gpuBuffer, 0, () -> {
-                try (com.mojang.renderpearl.api.buffers.GpuBufferSlice.MappedView readView = encoder.mapBuffer(gpuBuffer, true, false)) {
+                try (com.mojang.renderpearl.api.buffers.GpuBufferSlice.MappedView readView = gpuBuffer.map(true, false)) {
                     for (int k = 0; k < height; k++) {
                         for (int l = 0; l < width; l++) {
                             int m = readView.data().getInt((l + k * width) * atlasGpuTexture.getFormat().blockSize());

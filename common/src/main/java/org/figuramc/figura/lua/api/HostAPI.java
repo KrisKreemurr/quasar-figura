@@ -520,7 +520,7 @@ public class HostAPI {
                 .createBuffer(() -> "Figura Screenshot buffer", 9, width * height * gpuTexture.getFormat().blockSize());
         CommandEncoder commandEncoder = RenderSystem.getDevice().createCommandEncoder();
         RenderSystem.getDevice().createCommandEncoder().copyTextureToBuffer(gpuTexture, gpuBuffer, 0, () -> {
-            try (com.mojang.renderpearl.api.buffers.GpuBufferSlice.MappedView readView = commandEncoder.mapBuffer(gpuBuffer, true, false)) {
+            try (com.mojang.renderpearl.api.buffers.GpuBufferSlice.MappedView readView = gpuBuffer.map(true, false)) {
                 for (int k = 0; k < height; k++) {
                     for (int l = 0; l < width; l++) {
                         int m = readView.data().getInt((l + k * width) * gpuTexture.getFormat().blockSize());
