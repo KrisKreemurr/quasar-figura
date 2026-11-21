@@ -44,7 +44,7 @@ public abstract class EntityRendererMixin<T extends Entity, S extends EntityRend
             CameraRenderState replacement = new CameraRenderState();
             replacement.pos = cameraRenderState.pos;
             replacement.blockPos = cameraRenderState.blockPos;
-            replacement.entityPos = cameraRenderState.entityPos;
+            replacement.pos = cameraRenderState.pos;
             replacement.initialized = cameraRenderState.initialized;
             replacement.orientation = cameraRenderState.orientation;
 

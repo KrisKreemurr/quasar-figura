@@ -65,7 +65,7 @@ public class EntityTask extends RenderTask {
                 cameraRenderState.initialized = minecraft.gameRenderer.mainCamera().isInitialized();
                 cameraRenderState.pos = minecraft.gameRenderer.mainCamera().position();
                 cameraRenderState.blockPos = minecraft.gameRenderer.mainCamera().blockPosition();
-                cameraRenderState.entityPos = minecraft.gameRenderer.mainCamera().entity().getPosition(tickDelta);
+                cameraRenderState.pos = minecraft.gameRenderer.mainCamera().entity().getPosition(tickDelta);
                 cameraRenderState.orientation = new Quaternionf(minecraft.gameRenderer.mainCamera().rotation());
 
                 EntityRenderState state = dispatcher.extractEntity(entity, tickDelta);

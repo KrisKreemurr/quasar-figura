@@ -58,6 +58,12 @@ public class FiguraModClientNeoForge extends FiguraMod {
         }
     }
 
+    // Quasar MC (26.3): Figura's avatar portrait GUI renderer
+    @SubscribeEvent
+    public static void registerPictureInPicture(net.neoforged.neoforge.client.event.RegisterPictureInPictureRenderersEvent event) {
+        event.register(org.figuramc.figura.gui.FiguraPortraitRenderState.class, org.figuramc.figura.gui.FiguraPortraitRenderer::new);
+    }
+
     @SubscribeEvent
     public static void registerKeyBinding(RegisterKeyMappingsEvent event) {
         // Config has to be initialized here, so that the keybinds exist on time

@@ -163,19 +163,19 @@ public class ClientAPI {
     @LuaWhitelist
     @LuaMethodDoc("client.get_chunk_statistics")
     public static String getChunkStatistics() {
-        return Minecraft.getInstance().levelRenderer.getSectionStatistics();
+        return ""; // TODO(quasar): 26.3 removed LevelRenderer.getSectionStatistics
     }
 
     @LuaWhitelist
     @LuaMethodDoc("client.get_entity_statistics")
     public static String getEntityStatistics() {
-        return Minecraft.getInstance().levelRenderer.getEntityStatistics();
+        return ""; // TODO(quasar): 26.3 removed LevelRenderer.getEntityStatistics
     }
 
     @LuaWhitelist
     @LuaMethodDoc("client.get_sound_statistics")
     public static String getSoundStatistics() {
-        return Minecraft.getInstance().getSoundManager().getDebugString();
+        return Minecraft.getInstance().getSoundManager().getChannelDebugString();
     }
 
     @LuaWhitelist
@@ -641,9 +641,10 @@ public class ClientAPI {
         assert Minecraft.getInstance().player != null;
         PlayerTeam playerTeam = scoreboard.getPlayersTeam(Minecraft.getInstance().player.getScoreboardName());
         if (playerTeam != null) {
-            int id = playerTeam.getColor().getId();
+            // Quasar MC (26.3): team colors are an Optional<TeamColor> enum now
+            int id = playerTeam.getColor().map(Enum::ordinal).orElse(-1);
             if (id >= 0) {
-                objectives.put("sidebar_team_" + playerTeam.getColor().getName(), scoreboard.getDisplayObjective(DisplaySlot.BY_ID.apply(3 + id)));
+                objectives.put("sidebar_team_" + playerTeam.getColor().get().getSerializedName(), scoreboard.getDisplayObjective(DisplaySlot.BY_ID.apply(3 + id)));
             }
         }
 

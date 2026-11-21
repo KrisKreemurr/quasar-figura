@@ -301,7 +301,7 @@ public class HostAPI {
             messages.remove(index);
         else {
             GuiMessage old = messages.get(index);
-            GuiMessage neww = new GuiMessage(this.minecraft.gui.hud.getGuiTicks(), TextUtils.tryParseJson(newMessage), null, GuiMessageTag.chatModified(old.content().getString()));
+            GuiMessage neww = new GuiMessage(this.minecraft.gui.hud.getGuiTicks(), TextUtils.tryParseJson(newMessage), null, old.source(), GuiMessageTag.chatModified(old.content().getString()));
             messages.set(index, neww);
             ((GuiMessageAccessor) (Object) neww).figura$setColor(backgroundColor != null ? ColorUtils.rgbToInt(backgroundColor) : ((GuiMessageAccessor) (Object) old).figura$getColor());
         }
@@ -323,7 +323,7 @@ public class HostAPI {
     )
     public HostAPI swingArm(boolean offhand) {
         if (isHost() && this.minecraft.player != null)
-            this.minecraft.player.swing(offhand ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);
+            this.minecraft.player.swing(offhand ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND, net.minecraft.world.item.component.SwingAnimation.DEFAULT, false);
         return this;
     }
 
@@ -520,7 +520,7 @@ public class HostAPI {
                 .createBuffer(() -> "Figura Screenshot buffer", 9, width * height * gpuTexture.getFormat().blockSize());
         CommandEncoder commandEncoder = RenderSystem.getDevice().createCommandEncoder();
         RenderSystem.getDevice().createCommandEncoder().copyTextureToBuffer(gpuTexture, gpuBuffer, 0, () -> {
-            try (GpuBuffer.MappedView readView = commandEncoder.mapBuffer(gpuBuffer, true, false)) {
+            try (com.mojang.renderpearl.api.buffers.GpuBufferSlice.MappedView readView = commandEncoder.mapBuffer(gpuBuffer, true, false)) {
                 for (int k = 0; k < height; k++) {
                     for (int l = 0; l < width; l++) {
                         int m = readView.data().getInt((l + k * width) * gpuTexture.getFormat().blockSize());

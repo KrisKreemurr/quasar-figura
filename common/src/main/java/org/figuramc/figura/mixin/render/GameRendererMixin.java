@@ -214,14 +214,7 @@ public abstract class GameRendererMixin implements GameRendererAccessor {
         return stack;
     }
 
-    @ModifyArg(method = "<init>", index = 4,
-            at = @At(value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/render/GuiRenderer;<init>(Lnet/minecraft/client/gui/render/state/GuiRenderState;Lnet/minecraft/client/renderer/FiguraBufferSource$BufferSource;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/feature/FeatureRenderDispatcher;Ljava/util/List;)V"))
-    private List<PictureInPictureRenderer<?>> addPortraitRenderer(List<PictureInPictureRenderer<?>> list, @Local FiguraBufferSource source) {
-        List<PictureInPictureRenderer<?>> newList = new ArrayList<>(list);
-        newList.add(new FiguraPortraitRenderer(source));
-        return newList;
-    }
+    // Quasar MC (26.3): the portrait PIP renderer is registered through NeoForge's RegisterPictureInPictureRenderersEvent.
 
     @WrapOperation(method = "renderLevel",
             at = @At(value = "INVOKE",
