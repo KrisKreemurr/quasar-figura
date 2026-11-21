@@ -40,7 +40,10 @@ public abstract class SkullBlockRendererMixin implements BlockEntityRenderer<Sku
     private static SkullBlockRenderState block;
 
     @Inject(at = @At("HEAD"), method = "submitSkull", cancellable = true)
-    private static void renderSkull(Direction direction, float yaw, float animationProgress, PoseStack stack, SubmitNodeCollector submitNodeCollector, int light, SkullModelBase model, RenderType renderLayer, int outlineColor, ModelFeatureRenderer.CrumblingOverlay crumblingOverlay, CallbackInfo ci) {
+    private static void renderSkull(float animationProgress, PoseStack stack, SubmitNodeCollector submitNodeCollector, int light, SkullModelBase model, RenderType renderLayer, int outlineColor, ModelFeatureRenderer.CrumblingOverlay crumblingOverlay, CallbackInfo ci) {
+        // Quasar MC (26.3): submitSkull no longer receives facing/yaw (baked into the pose). TODO(quasar): recover them for skull events.
+        Direction direction = null;
+        float yaw = 0f;
         Avatar localAvatar = SkullBlockRendererHelper.getAvatar();
         SkullBlockRendererHelper.setAvatar(null);
 

@@ -72,7 +72,7 @@ public class MouseHandlerMixin {
     }
 
     @Inject(method = "onMove", at = @At("HEAD"), cancellable = true)
-    private void onMove(long window, double x, double y, CallbackInfo ci) {
+    private void onMove(long window, double x, double y, double deltaX, double deltaY, CallbackInfo ci) {
         Avatar avatar = AvatarManager.getAvatarForPlayer(FiguraMod.getLocalPlayerUUID());
         if (avatar != null && avatar.mouseMoveEvent(x - this.xpos, y - this.ypos) && (this.mouseGrabbed || this.minecraft.gui.screen() == null)) {
             this.xpos = x;

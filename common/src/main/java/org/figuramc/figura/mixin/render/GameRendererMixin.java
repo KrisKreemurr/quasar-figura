@@ -132,7 +132,7 @@ public abstract class GameRendererMixin implements GameRendererAccessor {
     }
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/LevelRenderer;doEntityOutline()V", shift = At.Shift.AFTER))
-    private void render(DeltaTracker deltaTracker, boolean tick, CallbackInfo ci) {
+    private void render(CallbackInfo ci) {
         Entity entity = this.minecraft.getCameraEntity();
         Avatar avatar = AvatarManager.getAvatar(entity);
         if (!RenderUtils.vanillaModelAndScript(avatar)) {
@@ -196,7 +196,7 @@ public abstract class GameRendererMixin implements GameRendererAccessor {
 
     // bobbing fix courtesy of Iris; https://github.com/IrisShaders/Iris/blob/1.20.1/src/main/java/net/irisshaders/iris/mixin/MixinModelViewBobbing.java
     @Inject(method = "renderLevel", at = @At("HEAD"))
-    private void onRenderLevel(DeltaTracker deltaTracker, CallbackInfo ci) {
+    private void onRenderLevel(CallbackInfo ci) {
         hasShaders = ClientAPI.hasShaderPack();
     }
 
