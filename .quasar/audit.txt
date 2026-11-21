@@ -16,6 +16,7 @@ net.minecraft.client.gui.ActiveTextCollector
 net.minecraft.client.gui.Font
 net.minecraft.client.gui.Gui
 net.minecraft.client.gui.GuiGraphicsExtractor
+net.minecraft.client.gui.Hud
 net.minecraft.client.gui.components.ChatComponent
 net.minecraft.client.gui.components.ChatComponent$ChatGraphicsAccess
 net.minecraft.client.gui.components.CommandSuggestions
@@ -89,6 +90,7 @@ net.minecraft.client.renderer.entity.player.AvatarRenderer
 net.minecraft.client.renderer.entity.state.ArrowRenderState
 net.minecraft.client.renderer.entity.state.EntityRenderState
 net.minecraft.client.renderer.entity.state.ThrownTridentRenderState
+net.minecraft.client.renderer.feature.ModelFeatureRenderer
 net.minecraft.client.renderer.item.ItemModelResolver
 net.minecraft.client.renderer.item.ItemStackRenderState
 net.minecraft.client.renderer.item.ItemStackRenderState$LayerRenderState
@@ -102,6 +104,7 @@ net.minecraft.client.renderer.texture.TextureManager
 net.minecraft.client.resources.SplashManager
 net.minecraft.client.resources.model.sprite.AtlasManager
 net.minecraft.client.sounds.ChannelAccess$ChannelHandle
+net.minecraft.client.sounds.SoundEngine
 net.minecraft.client.sounds.SoundManager
 net.minecraft.commands.CommandSourceStack
 net.minecraft.commands.SharedSuggestionProvider
@@ -120,5 +123,3 @@ net.minecraft.world.item.component.Consumable
 net.minecraft.world.level.biome.Biome
 net.minecraft.world.level.block.state.BlockBehaviour
 net.minecraft.world.phys.AABB
-net.minecraft.client.gui.Hud
-net.minecraft.client.sounds.SoundEngine

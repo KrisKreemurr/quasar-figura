@@ -1,3 +1,0 @@
-c:net.minecraft.client.renderer.feature.RenderTypeFeatureRenderer$Group
-g:net.minecraft.client.renderer.entity.LivingEntityRenderer|submitModel|submitModelPart
-g:net.minecraft.client.renderer.SubmitNodeCollection|ModelFeatureRenderer\$Submit."<init>"
