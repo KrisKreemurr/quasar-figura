@@ -153,16 +153,19 @@ public class RenderUtils {
         return org.figuramc.figura.utils.neoforge.RenderUtilsImpl.getPlayerSkinTexture(wingsLayer, renderState);
     }
 
+    /** Quasar MC (26.3): the collector of the submit pass currently running (null outside it). */
+    public static net.minecraft.client.renderer.SubmitNodeCollector currentCollector;
+
     static final ItemStackRenderState itemStackRenderState = new ItemStackRenderState();
     public static void renderStatic(LivingEntity entity, ItemStack item, ItemDisplayContext displayMode, PoseStack poseStack, int newLight, int newOverlay) {
         Minecraft client = Minecraft.getInstance();
-        FeatureRenderDispatcher featureRenderDispatcher = client.gameRenderer.featureRenderDispatcher();
-        SubmitNodeStorage submitNodeStorage = featureRenderDispatcher.getSubmitNodeStorage();
+        // Quasar MC (26.3): items must be submitted during the submit pass
+        if (currentCollector == null) return;
         if (entity != null)
             client.getItemModelResolver().updateForLiving(itemStackRenderState, item, displayMode, entity);
         else
             client.getItemModelResolver().updateForTopItem(itemStackRenderState, item, displayMode, client.level, null, 0);
-        itemStackRenderState.submit(poseStack, submitNodeStorage, newLight, newOverlay, 0);
+        itemStackRenderState.submit(poseStack, currentCollector, newLight, newOverlay, 0);
     }
 
 
@@ -173,13 +176,13 @@ public class RenderUtils {
         assert (selection.size() >= 3);
 
 
-        AvatarRenderer<AbstractClientPlayer> avatarRenderer = Minecraft.getInstance().getEntityRenderDispatcher().getPlayerRenderer(Minecraft.getInstance().player);
+        @SuppressWarnings("unchecked") AvatarRenderer<AbstractClientPlayer> avatarRenderer = (AvatarRenderer<AbstractClientPlayer>) Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(Minecraft.getInstance().player);
 
         if (selection.get(1)) {
             PlayerModel playerModel = avatarRenderer.getModel();
             ((FiguraSubmitCallBackExtension) playerModel).figura$addPreRenderingCallback(preRender);
             ((FiguraSubmitCallBackExtension) playerModel).figura$addPostRenderingCallback(postRender);
-            submitNodeStorage.submitModel(playerModel, null, dummyPoseStack, RenderTypes.LINES, 0, 0, 0, null);
+            submitNodeStorage.submitModel(playerModel, (net.minecraft.client.renderer.entity.state.AvatarRenderState) null, dummyPoseStack, RenderTypes.LINES, 0, 0, 0);
         }
 
         if (selection.get(2)) {

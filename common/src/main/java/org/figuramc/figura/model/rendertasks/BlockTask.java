@@ -37,7 +37,7 @@ public class BlockTask extends RenderTask {
         int newLight = this.customization.light != null ? this.customization.light : light;
         int newOverlay = this.customization.overlay != null ? this.customization.overlay : overlay;
 
-        Minecraft.getInstance().getBlockRenderer().renderSingleBlock(block, poseStack, buffer, newLight, newOverlay);
+        // TODO(quasar): 26.3 block rendering goes through SubmitNodeCollector.submitBlockModel; render tasks need a submit-phase hook.
     }
 
     @Override
@@ -73,10 +73,12 @@ public class BlockTask extends RenderTask {
         Minecraft client = Minecraft.getInstance();
         RandomSource random = client.level != null ? client.level.getRandom() : RandomSource.create();
 
-        BlockStateModel blockModel = client.getBlockRenderer().getBlockModel(this.block);
-        cachedComplexity = blockModel.collectParts(random).stream().mapToInt(p -> p.getQuads(null).size()).sum();
+        BlockStateModel blockModel = client.getModelManager().getBlockStateModelSet().get(this.block);
+        java.util.List<net.minecraft.client.renderer.block.dispatch.BlockStateModelPart> parts = new java.util.ArrayList<>();
+        blockModel.collectParts(random, parts);
+        cachedComplexity = parts.stream().mapToInt(p -> p.getQuads(null).size()).sum();
         for (Direction dir : Direction.values())
-            cachedComplexity += blockModel.collectParts(random).stream().mapToInt(p -> p.getQuads(dir).size()).sum();
+            cachedComplexity += parts.stream().mapToInt(p -> p.getQuads(dir).size()).sum();
 
         return this;
     }

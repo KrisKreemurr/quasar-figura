@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 
 public class FiguraGuiEntityRenderer extends GuiEntityRenderer {
 
-    public FiguraGuiEntityRenderer(FiguraBufferSource bufferSource, EntityRenderDispatcher entityRenderDispatcher) {
+    public FiguraGuiEntityRenderer(EntityRenderDispatcher entityRenderDispatcher) {
         super(entityRenderDispatcher);
     }
 

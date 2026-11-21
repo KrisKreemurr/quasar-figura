@@ -70,11 +70,10 @@ public abstract class LevelRendererMixin {
 
         collectorExt.submitFiguraModel(av, entityRenderState, ((avatar, entityState, multiBufferSource) -> {
 
-            if (multiBufferSource instanceof OutlineBufferSource outline && RenderUtils.vanillaModelAndScript(avatar) && avatar.luaRuntime.renderer.outlineColor != null) {
+            if (false) { // TODO(quasar): 26.3 removed OutlineBufferSource; outline color is per-submit (outlineColor) now
+                Object outline = null;
                 int i = ColorUtils.rgbToInt(avatar.luaRuntime.renderer.outlineColor);
-                outline.setColor(
-                        i
-                );
+                // outline.setColor(i);
             }
 
             FiguraMod.pushProfiler(FiguraMod.MOD_ID);

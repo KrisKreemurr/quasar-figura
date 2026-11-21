@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import org.figuramc.figura.utils.RenderUtils;
 import org.figuramc.figura.utils.FiguraBufferSource;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.network.chat.Component;
@@ -73,7 +74,7 @@ public class TextTask extends RenderTask {
             int offset = alignment.apply(cacheWidth);
             float x1 = -1 - offset;
             float x2 = cacheWidth - offset;
-            VertexConsumer vertexConsumer = buffer.getBuffer(seeThrough ? RenderTypes.textBackgroundSeeThrough() : RenderTypes.textBackground());
+            VertexConsumer vertexConsumer = buffer.getBuffer(RenderTypes.debugQuads()); // TODO(quasar): 26.3 has no textBackground render type; find the GUI/text background pipeline
             vertexConsumer.addVertex(matrix, x1, -1f, vertexOffset).setColor(bg).setLight(l);
             vertexConsumer.addVertex(matrix, x1, cacheHeight, vertexOffset).setColor(bg).setLight(l);
             vertexConsumer.addVertex(matrix, x2, cacheHeight, vertexOffset).setColor(bg).setLight(l);
@@ -85,12 +86,12 @@ public class TextTask extends RenderTask {
             Component text = this.text.get(i);
             int x = -alignment.apply(font, text);
 
-            if (outline) {
-                font.drawInBatch8xOutline(text.getVisualOrderText(), x, j, -1, out, matrix, buffer, l);
-                if (seeThrough)
-                    font.drawInBatch(text, x, j, op, shadow, matrix, buffer, displayMode, 0, l);
-            } else {
-                font.drawInBatch(text, x, j, op, shadow, matrix, buffer, displayMode, 0, l);
+            // TODO(quasar): 26.3 Font no longer draws into buffers. Text tasks must submit through
+            // SubmitNodeCollector.submitText during the submit phase. Parked until render tasks get that hook.
+            if (RenderUtils.currentCollector != null) {
+                PoseStack textPose = new PoseStack();
+                textPose.last().pose().set(matrix);
+                RenderUtils.currentCollector.submitText(textPose, x, j, text.getVisualOrderText(), shadow, displayMode, l, op, bg, outline ? out : 0);
             }
         }
     }

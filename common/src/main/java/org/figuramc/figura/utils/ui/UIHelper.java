@@ -152,7 +152,7 @@ public final class UIHelper {
             return;
 
         GpuDevice gpuDevice = RenderSystem.getDevice();
-        int paddedSize = Mth.roundToward(Lighting.UBO_SIZE, gpuDevice.getUniformOffsetAlignment());
+        int paddedSize = Mth.roundToward(Lighting.UBO_SIZE, 256) /* TODO(quasar): query device alignment */;
         buffer = gpuDevice.createBuffer(() -> "Figura Lighting UBO", 136, paddedSize);
         Vector3f lighting0 = Util.make(new Vector3f(-0.2f, -1f, 1f), Vector3f::normalize);
         Vector3f lighting1 = Util.make(new Vector3f(-0.2f, 0.4f, 0.3f), Vector3f::normalize);
@@ -502,7 +502,7 @@ public final class UIHelper {
     public static void renderOutlineText(GuiGraphicsExtractor gui, Font textRenderer, Component text, int x, int y, int color, int outline) {
         color = adjustColor(color);
         outline = adjustColor(outline);
-        ((GuiGraphicsAccessor)gui).figura$getRenderState().submitText(new OutlinedGuiTextRenderState(textRenderer, text.getVisualOrderText(), new Matrix3x2f(gui.pose()), x, y, color, outline, ((GuiGraphicsAccessor)gui).figura$getScissorStack().peek()));
+        ((GuiGraphicsAccessor)gui).figura$getRenderState().addText(new OutlinedGuiTextRenderState(textRenderer, text.getVisualOrderText(), new Matrix3x2f(gui.pose()), x, y, color, outline, ((GuiGraphicsAccessor)gui).figura$getScissorStack().peek()));
         gui.text(textRenderer, text, x, y, color, false);
     }
 

@@ -134,7 +134,7 @@ public class BlockStateAPI {
     @LuaWhitelist
     @LuaMethodDoc("blockstate.get_opacity")
     public int getOpacity() {
-        return blockState.getLightBlock();
+        return blockState.getLightDampening();
     }
 
     @LuaWhitelist
@@ -158,7 +158,7 @@ public class BlockStateAPI {
     @LuaWhitelist
     @LuaMethodDoc("blockstate.has_emissive_lighting")
     public boolean hasEmissiveLighting() {
-        return blockState.emissiveRendering(WorldAPI.getCurrentWorld(), getBlockPos());
+        return blockState.emissiveRendering();
     }
 
     @LuaWhitelist
@@ -283,7 +283,7 @@ public class BlockStateAPI {
     @LuaMethodDoc("blockstate.get_fluid_tags")
     public List<String> getFluidTags() {
         List<String> list = new ArrayList<>();
-        for (TagKey<Fluid> fluidTagKey : blockState.getFluidState().getTags().toList())
+        for (TagKey<Fluid> fluidTagKey : blockState.getFluidState().typeHolder().tags().toList())
             list.add(fluidTagKey.location().toString());
         return list;
     }

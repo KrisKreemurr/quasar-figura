@@ -6,6 +6,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.debug.DebugScreenEntries;
 import net.minecraft.client.gui.components.debug.DebugScreenEntryStatus;
+import org.figuramc.figura.utils.RenderUtils;
 import org.figuramc.figura.utils.FiguraBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;
@@ -70,7 +71,8 @@ public class EntityTask extends RenderTask {
 
                 EntityRenderState state = dispatcher.extractEntity(entity, tickDelta);
                 state.lightCoords = this.customization.light != null ? this.customization.light : light;
-                dispatcher.submit(state, cameraRenderState, 0, 0, 0, stack, minecraft.gameRenderer.getSubmitNodeStorage());
+                // TODO(quasar): needs a SubmitNodeCollector from the submit phase
+                if (RenderUtils.currentCollector != null) dispatcher.submit(state, cameraRenderState, 0, 0, 0, stack, RenderUtils.currentCollector);
             }
             finally {
                 LivingEntityRendererAccessor.overrideOverlay = prev;
@@ -128,7 +130,7 @@ public class EntityTask extends RenderTask {
             }
 
             assert Minecraft.getInstance().level != null;
-            entity = EntityType.loadEntityRecursive(finalNbt, Minecraft.getInstance().level, EntitySpawnReason.SPAWN_ITEM_USE, EntityProcessor.NOP);
+            entity = EntityType.loadEntityRecursive(finalNbt, Minecraft.getInstance().level, new net.minecraft.world.entity.EntitySpawnRequest(EntitySpawnReason.SPAWN_ITEM_USE, false), EntityProcessor.NOP);
             if (entity == null) {
                 throw new LuaError("Could not create entity");
             }

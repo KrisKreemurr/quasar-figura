@@ -31,8 +31,8 @@ public abstract class GuiEntityRendererMixin extends PictureInPictureRenderer<Gu
 
     @Shadow @Final private EntityRenderDispatcher entityRenderDispatcher;
 
-    protected GuiEntityRendererMixin(FiguraBufferSource bufferSource) {
-        super(bufferSource);
+    protected GuiEntityRendererMixin() {
+        super();
     }
 
     @WrapOperation(method = "renderToTexture(Lnet/minecraft/client/gui/render/state/pip/GuiEntityRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/EntityRenderDispatcher;submit(Lnet/minecraft/client/renderer/entity/state/EntityRenderState;Lnet/minecraft/client/renderer/state/CameraRenderState;DDDLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;)V"))
