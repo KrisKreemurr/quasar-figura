@@ -1,3 +1,4 @@
-c:net.minecraft.client.renderer.feature.RenderTypeFeatureRenderer
-net.minecraft.client.renderer.feature.FeatureRenderer
-net.minecraft.client.renderer.feature.FeatureFrameContext
+c:net.minecraft.client.renderer.feature.ModelFeatureRenderer
+net.minecraft.client.renderer.feature.ModelFeatureRenderer$Submit
+g:net.minecraft.client.renderer.SubmitNodeCollection|ModelFeatureRenderer\$Submit|ItemFeatureRenderer\$Submit|Model\$Simple
+net.minecraft.client.model.Model

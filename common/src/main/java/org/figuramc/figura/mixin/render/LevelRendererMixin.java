@@ -94,14 +94,18 @@ public abstract class LevelRendererMixin {
     // TODO: Neo does not boot, complains method must be static but it won't compile if it is, the hell?
     // method_62214 for Fabric, lambda$addMainPass$2 for Neo and lambda$addMainPass$1 for Lex
 
-    @Inject(method = "renderLevel", at = @At("HEAD"))
-    private void onRenderLevel(GraphicsResourceAllocator graphicsResourceAllocator, DeltaTracker deltaTracker, boolean bl, Camera camera, Matrix4f matrix4f, Matrix4f matrix4f2, Matrix4f matrix4f3, GpuBufferSlice gpuBufferSlice, Vector4f vector4f, boolean bl2, CallbackInfo ci) {
-        AvatarManager.executeAll("worldRender", avatar -> avatar.render(deltaTracker.getGameTimeDeltaPartialTick(false)));
+    // Quasar MC (26.3): renderLevel is gone; LevelRenderer.render(...) is the per-frame entry point.
+    // This is where each avatar's per-frame budgets (complexity, render instructions) get reset.
+    @Inject(method = "render", at = @At("HEAD"))
+    private void onRenderLevel(CallbackInfo ci) {
+        float delta = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        AvatarManager.executeAll("worldRender", avatar -> avatar.render(delta));
     }
 
-    @Inject(method = "renderLevel", at = @At("RETURN"))
-    private void afterRenderLevel(GraphicsResourceAllocator graphicsResourceAllocator, DeltaTracker deltaTracker, boolean bl, Camera camera, Matrix4f matrix4f, Matrix4f matrix4f2, Matrix4f matrix4f3, GpuBufferSlice gpuBufferSlice, Vector4f vector4f, boolean bl2, CallbackInfo ci) {
-        AvatarManager.executeAll("postWorldRender", avatar -> avatar.postWorldRenderEvent(deltaTracker.getGameTimeDeltaPartialTick(false)));
+    @Inject(method = "render", at = @At("RETURN"))
+    private void afterRenderLevel(CallbackInfo ci) {
+        float delta = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        AvatarManager.executeAll("postWorldRender", avatar -> avatar.postWorldRenderEvent(delta));
     }
 
     @ModifyArg(method = "renderHitOutline", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/ShapeRenderer;renderShape(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/shapes/VoxelShape;DDDIF)V"), index = 6)
