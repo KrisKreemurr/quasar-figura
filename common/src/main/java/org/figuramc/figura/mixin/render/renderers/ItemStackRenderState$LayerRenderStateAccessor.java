@@ -12,8 +12,8 @@ import java.util.List;
 public interface ItemStackRenderState$LayerRenderStateAccessor {
 
     @Accessor("quads")
-    List<BakedQuad> figura$getQuads();
+    net.minecraft.client.resources.model.geometry.ItemQuads figura$getQuads();
 
-    @Accessor("transform")
+    @Accessor("itemTransform")
     ItemTransform figura$getTransform();
 }
