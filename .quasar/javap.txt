@@ -1,3 +1,0 @@
-com.mojang.renderpearl.api.buffers.GpuBuffer
-com.mojang.renderpearl.api.buffers.GpuBufferSlice
-net.minecraft.sounds.SoundEvents

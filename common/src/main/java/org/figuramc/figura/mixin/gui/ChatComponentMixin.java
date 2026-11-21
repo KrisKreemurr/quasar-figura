@@ -44,7 +44,7 @@ public class ChatComponentMixin {
     @Unique private Integer color;
     @Unique private static int currColor;
 
-    @Inject(method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/client/GuiMessageTag;)V", at = @At(value = "HEAD"), locals = LocalCapture.CAPTURE_FAILSOFT, cancellable = true)
+    @Inject(method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/client/multiplayer/chat/GuiMessageTag;)V", at = @At(value = "HEAD"), locals = LocalCapture.CAPTURE_FAILSOFT, cancellable = true)
     private void injectAddMessage(Component message, MessageSignature signature, GuiMessageTag tag, CallbackInfo ci, @Local(argsOnly = true) LocalRef<Component> localMessageRef) {
         Component modifiedMessage = modifyMessage(message);
         if (modifiedMessage == null) {
@@ -191,7 +191,7 @@ public class ChatComponentMixin {
         return color + currColor;
     }
 
-    @ModifyVariable(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/ChatComponent;addMessageToDisplayQueue(Lnet/minecraft/client/GuiMessage;)V"), method = "refreshTrimmedMessages")
+    @ModifyVariable(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/ChatComponent;addMessageToDisplayQueue(Lnet/minecraft/client/multiplayer/chat/GuiMessage;)V"), method = "refreshTrimmedMessages")
     private GuiMessage refreshMessages(GuiMessage message) {
         color = ((GuiMessageAccessor) (Object) message).figura$getColor();
         return message;

@@ -27,6 +27,13 @@ if [ -f .quasar/javap.txt ]; then
     esac
   done < .quasar/javap.txt
 fi
+if [ -f .quasar/audit.txt ]; then
+  while IFS= read -r cls; do
+    [ -z "$cls" ] && continue
+    echo "=== AUDIT $cls"
+    javap -s -p -cp "$J" "$cls" 2>&1 | awk '/descriptor:/ {d=$2; n=prev; sub(/\(.*/,"",n); k=split(n,a," "); nm=a[k]; if (index(prev,"(")) print "M " nm d; else print "F " nm " " d; next} {prev=$0}'
+  done < .quasar/audit.txt
+fi
 NEOJAR=$(find ~/.gradle/caches -name "neoforge-*-universal.jar" 2>/dev/null | head -1)
 echo "=== PROBE: neoforge jar $NEOJAR"
 if [ -n "$NEOJAR" ] && [ -f .quasar/neogrep.txt ]; then
