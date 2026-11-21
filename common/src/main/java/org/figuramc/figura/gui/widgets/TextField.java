@@ -21,8 +21,8 @@ import java.util.function.Consumer;
 public class TextField extends AbstractContainerElement {
 
     public static final Identifier BACKGROUND = new FiguraIdentifier("textures/gui/text_field.png");
-    public static final int ENABLED_COLOR = ChatFormatting.WHITE.getColor();
-    public static final int DISABLED_COLOR = ChatFormatting.DARK_GRAY.getColor();
+    public static final int ENABLED_COLOR = net.minecraft.network.chat.TextColor.fromLegacyFormat(ChatFormatting.WHITE).getValue();
+    public static final int DISABLED_COLOR = net.minecraft.network.chat.TextColor.fromLegacyFormat(ChatFormatting.DARK_GRAY).getValue();
 
     private final HintType hint;
     private final EditBox field;

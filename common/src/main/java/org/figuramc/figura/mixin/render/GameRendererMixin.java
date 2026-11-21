@@ -104,7 +104,7 @@ public abstract class GameRendererMixin implements GameRendererAccessor {
         PoseStack stack = new PoseStack();
         stack.last().pose().set(instance);
 
-        float tickDelta = this.mainCamera.getPartialTickTime();
+        float tickDelta = this.mainCamera.getCameraEntityPartialTicks(net.minecraft.client.Minecraft.getInstance().getDeltaTracker());
         this.bobHurt(stack, tickDelta);
         if (this.minecraft.options.bobView().get()) {
             this.bobView(stack, tickDelta);
@@ -161,7 +161,7 @@ public abstract class GameRendererMixin implements GameRendererAccessor {
             if (this.postEffectId == null || !this.postEffectId.equals(resource)) {
                 PostChain postchain = this.minecraft.getShaderManager().getPostChain(resource, LevelTargetBundle.MAIN_TARGETS);
                 if (postchain != null)
-                    postchain.process(this.minecraft.getMainRenderTarget(), this.resourcePool);
+                    postchain.process(this.minecraft.gameRenderer.mainRenderTarget(), this.resourcePool);
             }
         } catch (Exception ignored) {
             this.effectActive = false;

@@ -195,7 +195,7 @@ public abstract class FiguraRenderer {
      */
     public static FiguraMat4 worldToViewMatrix() {
         Minecraft client = Minecraft.getInstance();
-        Camera camera = client.gameRenderer.getMainCamera();
+        Camera camera = client.gameRenderer.mainCamera();
         Quaternionf rot = new Quaternionf(camera.rotation());
         rot.x *= -1;
         rot.z *= -1;
@@ -214,7 +214,7 @@ public abstract class FiguraRenderer {
      */
     public static FiguraMat4 worldToCameraPosMatrix() {
         Minecraft client = Minecraft.getInstance();
-        Camera camera = client.gameRenderer.getMainCamera();
+        Camera camera = client.gameRenderer.mainCamera();
         FiguraMat4 result = FiguraMat4.of();
         Vec3 cameraPos = camera.position().scale(-1);
         result.translate(cameraPos.x, cameraPos.y, cameraPos.z);

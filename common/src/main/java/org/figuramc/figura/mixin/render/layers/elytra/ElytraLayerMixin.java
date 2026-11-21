@@ -155,8 +155,8 @@ public abstract class ElytraLayerMixin<T extends LivingEntity, S extends Humanoi
                 boolean leftWing = figura$Avatar.pivotPartRender(ParentType.LeftElytraPivot, stack -> {
                         stack.pushPose();
                         stack.scale(16, 16, 16);
-                        stack.mulPose(Axis.XP.rotationDegrees(180f));
-                        stack.mulPose(Axis.YP.rotationDegrees(180f));
+                        stack.rotate(Axis.XP.rotationDegrees(180f));
+                        stack.rotate(Axis.YP.rotationDegrees(180f));
                         stack.translate(0.0f, 0.0f, 0.125f);
                         figura$submitElytraPart(elytraModel, state, ((ElytraModelAccessor)elytraModel).getLeftWing(), stack, nodeCollector, light, state.outlineColor, itemStack, playerTexture);
                         stack.popPose();
@@ -172,8 +172,8 @@ public abstract class ElytraLayerMixin<T extends LivingEntity, S extends Humanoi
                 boolean rightWing = figura$Avatar.pivotPartRender(ParentType.RightElytraPivot, stack -> {
                     stack.pushPose();
                     stack.scale(16, 16, 16);
-                    stack.mulPose(Axis.XP.rotationDegrees(180f));
-                    stack.mulPose(Axis.YP.rotationDegrees(180f));
+                    stack.rotate(Axis.XP.rotationDegrees(180f));
+                    stack.rotate(Axis.YP.rotationDegrees(180f));
                     stack.translate(0.0f, 0.0f, 0.125f);
                     figura$submitElytraPart(elytraModel, state, ((ElytraModelAccessor)elytraModel).getRightWing(), stack, nodeCollector, light, state.outlineColor, itemStack, playerTexture);
                     stack.popPose();

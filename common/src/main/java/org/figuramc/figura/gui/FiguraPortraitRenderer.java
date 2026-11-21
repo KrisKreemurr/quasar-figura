@@ -45,7 +45,7 @@ public class FiguraPortraitRenderer extends PictureInPictureRenderer<FiguraPortr
 
     @Override
     protected void renderToTexture(FiguraPortraitRenderState portraitState, PoseStack poseStack) {
-        Minecraft.getInstance().gameRenderer.getLighting().setupFor(Lighting.Entry.ITEMS_FLAT);
+        Minecraft.getInstance().gameRenderer.lighting().setupFor(Lighting.Entry.ITEMS_FLAT);
 
         Avatar avatar = portraitState.avatar();
         if (avatar != null) {
@@ -115,7 +115,7 @@ public class FiguraPortraitRenderer extends PictureInPictureRenderer<FiguraPortr
         if (!renderSkin){
             TextureEntry entry = avatarToTexture.get(pictureInPictureRenderState.avatar());
 
-            guiRenderState.submitBlitToCurrentLayer(
+            guiRenderState.addBlitToCurrentLayer(
                     new BlitRenderState(
                             RenderPipelines.GUI_TEXTURED_PREMULTIPLIED_ALPHA,
                             TextureSetup.singleTexture(entry.textureView, entry.sampler),
@@ -143,7 +143,7 @@ public class FiguraPortraitRenderer extends PictureInPictureRenderer<FiguraPortr
             GpuTextureView gpuTextureView = Minecraft.getInstance().getTextureManager().getTexture(texture).getTextureView();
             GpuSampler sampler = Minecraft.getInstance().getTextureManager().getTexture(texture).getSampler();
 
-            guiRenderState.submitBlitToCurrentLayer(
+            guiRenderState.addBlitToCurrentLayer(
                     new BlitRenderState(
                             RenderPipelines.GUI_TEXTURED_PREMULTIPLIED_ALPHA,
                             TextureSetup.singleTexture(gpuTextureView, sampler),
@@ -164,7 +164,7 @@ public class FiguraPortraitRenderer extends PictureInPictureRenderer<FiguraPortr
 
             // hat
             GlStateManager._enableBlend();
-            guiRenderState.submitBlitToCurrentLayer(
+            guiRenderState.addBlitToCurrentLayer(
                     new BlitRenderState(
                             RenderPipelines.GUI_TEXTURED_PREMULTIPLIED_ALPHA,
                             TextureSetup.singleTexture(gpuTextureView, sampler),
@@ -186,7 +186,7 @@ public class FiguraPortraitRenderer extends PictureInPictureRenderer<FiguraPortr
         } else {
             GpuTextureView gpuTextureView = Minecraft.getInstance().getTextureManager().getTexture(PlayerPermPackElement.UNKNOWN).getTextureView();
             GpuSampler sampler = Minecraft.getInstance().getTextureManager().getTexture(PlayerPermPackElement.UNKNOWN).getSampler();
-            guiRenderState.submitBlitToCurrentLayer(
+            guiRenderState.addBlitToCurrentLayer(
                     new BlitRenderState(
                             RenderPipelines.GUI_TEXTURED_PREMULTIPLIED_ALPHA,
                             TextureSetup.singleTexture(gpuTextureView, sampler),

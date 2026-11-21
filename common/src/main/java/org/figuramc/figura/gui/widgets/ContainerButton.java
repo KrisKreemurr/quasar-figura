@@ -53,6 +53,6 @@ public class ContainerButton extends SwitchButton {
 
     @Override
     protected int getTextColor() {
-        return !this.isToggled() ? ChatFormatting.DARK_GRAY.getColor() : super.getTextColor();
+        return !this.isToggled() ? net.minecraft.network.chat.TextColor.fromLegacyFormat(ChatFormatting.DARK_GRAY).getValue() : super.getTextColor();
     }
 }

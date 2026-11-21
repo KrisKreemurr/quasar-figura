@@ -59,7 +59,7 @@ public class AvatarWidget extends AbstractAvatarWidget {
 
                 // description
                 Component parsedDescription = TextUtils.trimToWidthEllipsis(font, description, width, TextUtils.ELLIPSIS.copy().withStyle(description.getStyle()));
-                gui.text(font, parsedDescription, x + 22, y + font.lineHeight + 1, UIHelper.adjustColor(ChatFormatting.GRAY.getColor()));
+                gui.text(font, parsedDescription, x + 22, y + font.lineHeight + 1, UIHelper.adjustColor(net.minecraft.network.chat.TextColor.fromLegacyFormat(ChatFormatting.GRAY).getValue()));
 
                 // tooltip
                 if (parsedName != getMessage() || parsedDescription != description) {

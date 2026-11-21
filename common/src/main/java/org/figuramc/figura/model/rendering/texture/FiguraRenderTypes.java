@@ -86,7 +86,7 @@ public enum FiguraRenderTypes {
 
         public static final RenderType SOLID = create(
                 "figura_solid",
-                RenderSetup.builder(FiguraRenderPipelines.FIGURA_SOLID).bufferSize(256)
+                RenderSetup.builder(FiguraRenderPipelines.FIGURA_SOLID)
                         .setLayeringTransform(LayeringTransform.VIEW_OFFSET_Z_LAYERING)
                         .setOutputTarget(OutputTarget.ITEM_ENTITY_TARGET)
                         .setOutline(RenderSetup.OutlineProperty.NONE)
@@ -97,7 +97,6 @@ public enum FiguraRenderTypes {
                 (texture, affectsOutline) ->
                         create("figura_cutout_emissive_solid",
                                 RenderSetup.builder(RenderPipelines.BEACON_BEAM_TRANSLUCENT)
-                                        .bufferSize(256)
                                         .withTexture("Sampler0", texture)
                                         .affectsCrumbling()
                                         .sortOnUpload()
@@ -112,7 +111,6 @@ public enum FiguraRenderTypes {
                 texture -> create(
                         "figura_textured_portal",
                         RenderSetup.builder(RenderPipelines.END_GATEWAY)
-                                .bufferSize(256)
                                 .withTexture("Sampler0", texture)
                                 .withTexture("Sampler1", texture)
                                 .setOutline(RenderSetup.OutlineProperty.NONE)
@@ -124,7 +122,6 @@ public enum FiguraRenderTypes {
                 texture -> create(
                         "figura_blurry",
                         RenderSetup.builder(RenderPipelines.ENTITY_TRANSLUCENT)
-                                .bufferSize(256)
                                 .affectsCrumbling()
                                 .sortOnUpload()
                                 .useLightmap()
@@ -145,7 +142,6 @@ public enum FiguraRenderTypes {
                 texture -> create(
                         "figura_textured_glint_direct",
                         RenderSetup.builder(RenderPipelines.GLINT)
-                                .bufferSize(256)
                                 .withTexture("Sampler0", texture)
                                 .setTextureTransform(TextureTransform.ENTITY_GLINT_TEXTURING)
                                 .createRenderSetup()

@@ -14,7 +14,7 @@ abstract class ClientCommandSourceMixinNeoForge implements FiguraClientCommandSo
 
     @Override
     public void figura$sendFeedback(Component message) {
-        Minecraft.getInstance().gui.getChat().addMessage(message);
+        Minecraft.getInstance().gui.hud.getChat().addMessage(message);
         Minecraft.getInstance().getNarrator().sayNow(message);
     }
 

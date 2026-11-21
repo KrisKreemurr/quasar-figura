@@ -121,7 +121,7 @@ public final class UIHelper {
         GlStateManager._clear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT | GL30.GL_STENCIL_BUFFER_BIT);
 
         Matrix4f mf = RenderSystem.getProjectionMatrix();
-        Minecraft.getInstance().getMainRenderTarget().blitToScreen(width, height);
+        Minecraft.getInstance().gameRenderer.mainRenderTarget().blitToScreen(width, height);
         RenderSystem.setProjectionMatrix(mf, ProjectionType.ORTHOGRAPHIC);
     }
 
@@ -198,7 +198,7 @@ public final class UIHelper {
                 }
 
                 // lightning
-                Minecraft.getInstance().gameRenderer.getLighting().setupFor(Lighting.Entry.ENTITY_IN_UI);
+                Minecraft.getInstance().gameRenderer.lighting().setupFor(Lighting.Entry.ENTITY_IN_UI);
 
                 // invisibility
                 if (Configs.PAPERDOLL_INVISIBLE.value)
@@ -233,7 +233,7 @@ public final class UIHelper {
                 entity.yHeadRot = -yaw + bodyY;
 
                 // lightning
-                Minecraft.getInstance().gameRenderer.getLighting().setupFor(Lighting.Entry.ENTITY_IN_UI);
+                Minecraft.getInstance().gameRenderer.lighting().setupFor(Lighting.Entry.ENTITY_IN_UI);
             }
         }
 
@@ -283,7 +283,7 @@ public final class UIHelper {
         ((GuiEntityRenderStateExtension)(Object)state).setXPos(xPos);
         ((GuiEntityRenderStateExtension)(Object)state).setYPos(yPos);
 
-        ((GuiGraphicsAccessor)gui).figura$getRenderState().submitPicturesInPictureState(state);
+        ((GuiGraphicsAccessor)gui).figura$getRenderState().addPicturesInPictureState(state);
 
         // restore entity rendering data
         entryList.setStatus(DebugScreenEntries.ENTITY_HITBOXES, renderHitboxes);
@@ -291,7 +291,7 @@ public final class UIHelper {
 
         // pop matrix
         pose.popMatrix();
-        Minecraft.getInstance().gameRenderer.getLighting().setupFor(Lighting.Entry.ITEMS_3D);
+        Minecraft.getInstance().gameRenderer.lighting().setupFor(Lighting.Entry.ITEMS_3D);
 
         // restore entity data
         entity.setXRot(headX);
@@ -420,7 +420,7 @@ public final class UIHelper {
         } else {
             setup = TextureSetup.noTexture();
         }
-        ((GuiGraphicsAccessor)gui).figura$getRenderState().submitBlitToCurrentLayer(new BlitRenderState(RenderPipelines.GUI_TEXTURED, setup, pose, (int) x, (int) y, (int) x1, (int) y1, u0, u1, v0, v1, -1, ((GuiGraphicsAccessor)gui).figura$getScissorStack().peek()));
+        ((GuiGraphicsAccessor)gui).figura$getRenderState().addBlitToCurrentLayer(new BlitRenderState(RenderPipelines.GUI_TEXTURED, setup, pose, (int) x, (int) y, (int) x1, (int) y1, u0, u1, v0, v1, -1, ((GuiGraphicsAccessor)gui).figura$getScissorStack().peek()));
     }
 
     public static void renderWithoutScissors(GuiGraphicsExtractor gui, Consumer<GuiGraphicsExtractor> toRun) {
@@ -434,7 +434,7 @@ public final class UIHelper {
     public static void highlight(GuiGraphicsExtractor gui, FiguraWidget widget, Component text) {
         // screen
         int screenW, screenH;
-        if (Minecraft.getInstance().screen instanceof AbstractPanelScreen panel) {
+        if (Minecraft.getInstance().gui.screen() instanceof AbstractPanelScreen panel) {
             screenW = panel.width;
             screenH = panel.height;
         } else {
@@ -618,9 +618,9 @@ public final class UIHelper {
 
     public static Runnable openURL(String url) {
         Minecraft minecraft = Minecraft.getInstance();
-        return () -> minecraft.setScreen(new FiguraConfirmScreen.FiguraConfirmLinkScreen((bl) -> {
+        return () -> minecraft.gui.setScreen(new FiguraConfirmScreen.FiguraConfirmLinkScreen((bl) -> {
             if (bl) Util.getPlatform().openUri(url);
-        }, url, minecraft.screen));
+        }, url, minecraft.gui.screen()));
     }
 
     public static void renderLoading(GuiGraphicsExtractor gui, int x, int y) {
@@ -630,18 +630,18 @@ public final class UIHelper {
     }
 
     public static void setContext(ContextMenu context) {
-        if (Minecraft.getInstance().screen instanceof AbstractPanelScreen panelScreen)
+        if (Minecraft.getInstance().gui.screen() instanceof AbstractPanelScreen panelScreen)
             panelScreen.contextMenu = context;
     }
 
     public static ContextMenu getContext() {
-        if (Minecraft.getInstance().screen instanceof AbstractPanelScreen panelScreen)
+        if (Minecraft.getInstance().gui.screen() instanceof AbstractPanelScreen panelScreen)
             return panelScreen.contextMenu;
         return null;
     }
 
     public static void setTooltip(Component text) {
-        if (Minecraft.getInstance().screen instanceof AbstractPanelScreen panelScreen)
+        if (Minecraft.getInstance().gui.screen() instanceof AbstractPanelScreen panelScreen)
             panelScreen.tooltip = text;
     }
 

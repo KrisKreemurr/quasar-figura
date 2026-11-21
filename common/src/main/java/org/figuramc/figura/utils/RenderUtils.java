@@ -156,7 +156,7 @@ public class RenderUtils {
     static final ItemStackRenderState itemStackRenderState = new ItemStackRenderState();
     public static void renderStatic(LivingEntity entity, ItemStack item, ItemDisplayContext displayMode, PoseStack poseStack, int newLight, int newOverlay) {
         Minecraft client = Minecraft.getInstance();
-        FeatureRenderDispatcher featureRenderDispatcher = client.gameRenderer.getFeatureRenderDispatcher();
+        FeatureRenderDispatcher featureRenderDispatcher = client.gameRenderer.featureRenderDispatcher();
         SubmitNodeStorage submitNodeStorage = featureRenderDispatcher.getSubmitNodeStorage();
         if (entity != null)
             client.getItemModelResolver().updateForLiving(itemStackRenderState, item, displayMode, entity);

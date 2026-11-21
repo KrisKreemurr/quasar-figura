@@ -150,8 +150,8 @@ public class Avatar {
     private Avatar(UUID owner, EntityType<?> type, String name) {
         this.owner = owner;
         this.entityType = type;
-        this.isHost = type == EntityType.PLAYER && FiguraMod.isLocal(owner);
-        this.permissions = type == EntityType.PLAYER ? PermissionManager.get(owner) : PermissionManager.getMobPermissions(owner);
+        this.isHost = type == net.minecraft.world.entity.EntityTypes.PLAYER && FiguraMod.isLocal(owner);
+        this.permissions = type == net.minecraft.world.entity.EntityTypes.PLAYER ? PermissionManager.get(owner) : PermissionManager.getMobPermissions(owner);
         this.complexity = new Instructions(permissions.get(Permissions.COMPLEXITY));
         this.init = new Instructions(permissions.get(Permissions.INIT_INST));
         this.render = new Instructions(permissions.get(Permissions.RENDER_INST));
@@ -171,7 +171,7 @@ public class Avatar {
     }
 
     public Avatar(UUID owner) {
-        this(owner, EntityType.PLAYER, EntityUtils.getNameForUUID(owner));
+        this(owner, net.minecraft.world.entity.EntityTypes.PLAYER, EntityUtils.getNameForUUID(owner));
     }
 
     public Avatar(Entity entity) {
@@ -669,9 +669,9 @@ public class Avatar {
 
         stack.pushPose();
         if (!config) {
-            stack.mulPose(Axis.ZP.rotation(arm.zRot));
-            stack.mulPose(Axis.YP.rotation(arm.yRot));
-            stack.mulPose(Axis.XP.rotation(arm.xRot));
+            stack.rotate(Axis.ZP.rotation(arm.zRot));
+            stack.rotate(Axis.YP.rotation(arm.yRot));
+            stack.rotate(Axis.XP.rotation(arm.xRot));
         }
         render(player, 0f, tickDelta, 1f, stack, bufferSource, light, OverlayTexture.NO_OVERLAY, playerModel, filter, false, false);
         stack.popPose();
@@ -693,7 +693,7 @@ public class Avatar {
         stack.last().pose().scale(16, 16, -16);
         stack.last().normal().scale(1, 1, -1);
 
-        Minecraft.getInstance().gameRenderer.getLighting().setupFor(Lighting.Entry.ITEMS_FLAT);
+        Minecraft.getInstance().gameRenderer.lighting().setupFor(Lighting.Entry.ITEMS_FLAT);
         GlStateManager._disableDepthTest();
 
         renderer.entity = entity;
@@ -708,7 +708,7 @@ public class Avatar {
             ((FiguraBufferSource) renderer.bufferSource).endBatch();
 
         GlStateManager._enableDepthTest();
-        Minecraft.getInstance().gameRenderer.getLighting().setupFor(Lighting.Entry.ITEMS_3D);
+        Minecraft.getInstance().gameRenderer.lighting().setupFor(Lighting.Entry.ITEMS_3D);
         stack.popPose();
 
         FiguraMod.popProfiler(2);
@@ -726,7 +726,7 @@ public class Avatar {
             stack.translate((0.5d - direction.getStepX() * 0.25d), 0.25d, (0.5d - direction.getStepZ() * 0.25d));
 
         stack.scale(-1f, -1f, 1f);
-        stack.mulPose(Axis.YP.rotationDegrees(yaw));
+        stack.rotate(Axis.YP.rotationDegrees(yaw));
 
         renderer.allowPivotParts = false;
 
@@ -808,7 +808,7 @@ public class Avatar {
 
         FiguraPortraitRenderState state = new FiguraPortraitRenderState(this, fallback, modelScale, upsideDown, x1, y1, x2, y2, size, ((GuiGraphicsAccessor)gui).figura$getScissorStack().peek());
         gui.fill(x1, y1, x2, y2, -1);
-        ((GuiGraphicsAccessor)gui).figura$getRenderState().submitPicturesInPictureState(state);
+        ((GuiGraphicsAccessor)gui).figura$getRenderState().addPicturesInPictureState(state);
         gui.pose().popMatrix();
 
         gui.disableScissor();
@@ -855,7 +855,7 @@ public class Avatar {
         Quaternionf quaternionf = Axis.XP.rotationDegrees(135f);
         Quaternionf quaternionf2 = Axis.YP.rotationDegrees(-90f);
         quaternionf.mul(quaternionf2);
-        stack.mulPose(quaternionf);
+        stack.rotate(quaternionf);
 
         renderer.setupRenderer(
                 PartFilterScheme.ARROW, bufferSource, stack,
@@ -877,7 +877,7 @@ public class Avatar {
         Quaternionf quaternionf = Axis.ZP.rotationDegrees(90f);
         Quaternionf quaternionf2 = Axis.YP.rotationDegrees(90f);
         quaternionf.mul(quaternionf2);
-        stack.mulPose(quaternionf);
+        stack.rotate(quaternionf);
 
         renderer.setupRenderer(
                 PartFilterScheme.TRIDENT, bufferSource, stack,
@@ -900,7 +900,7 @@ public class Avatar {
             return false;
 
         stack.pushPose();
-        stack.mulPose(Axis.ZP.rotationDegrees(180f));
+        stack.rotate(Axis.ZP.rotationDegrees(180f));
 
         renderer.setupRenderer(
                 PartFilterScheme.ITEM, bufferSource, stack,

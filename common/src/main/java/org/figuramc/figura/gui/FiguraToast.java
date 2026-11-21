@@ -144,7 +144,7 @@ public class FiguraToast implements Toast {
                 type = ToastType.CHEESE;
         }
 
-        ToastManager toasts = Minecraft.getInstance().getToastManager();
+        ToastManager toasts = Minecraft.getInstance().gui.toastManager();
         FiguraToast toast = toasts.getToast(FiguraToast.class, type);
 
         FiguraMod.debug("Sent toast: \"{}\", \"{}\" of type: \"{}\"", text.getString(), text2.getString(), type.name());
