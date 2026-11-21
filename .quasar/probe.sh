@@ -25,4 +25,13 @@ if [ -f .quasar/javap.txt ]; then
     javap -protected -cp "$J" "$cls" 2>&1 | head -150
   done < .quasar/javap.txt
 fi
+NEOJAR=$(find ~/.gradle/caches -name "neoforge-*-universal.jar" 2>/dev/null | head -1)
+echo "=== PROBE: neoforge jar $NEOJAR"
+if [ -n "$NEOJAR" ] && [ -f .quasar/neogrep.txt ]; then
+  unzip -Z1 "$NEOJAR" | grep '\.class$' | grep -v '\$[0-9]' | sed 's/\.class$//; s#/#.#g' > /tmp/neoclasses.txt
+  while IFS= read -r pat; do [ -z "$pat" ] && continue; echo "=== NEOGREP $pat"; grep -E "$pat" /tmp/neoclasses.txt | head -40; done < .quasar/neogrep.txt
+fi
+if [ -n "$NEOJAR" ] && [ -f .quasar/neojavap.txt ]; then
+  while IFS= read -r cls; do [ -z "$cls" ] && continue; echo "=== NEOJAVAP $cls"; javap -protected -cp "$NEOJAR:$J" "$cls" 2>&1 | head -80; done < .quasar/neojavap.txt
+fi
 echo "=== PROBE END"

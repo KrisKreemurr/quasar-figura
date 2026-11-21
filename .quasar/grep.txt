@@ -1,9 +1,8 @@
-Outline
-Fog(Parameters|Data|RenderState)?$
-ProjectionMatrix
-ItemInHand
-TrimSprite
-\.feature\.submit\.
-GuiLayer|GuiOverlay|HudLayer
-ItemModelResolver|ItemStackRenderState$
-BlockRenderer|BlockModelRenderer|BlockStateModelPart$
+FeatureRendererDispatcher|FeatureDispatcher|FeatureFrameContext|FeatureRenderers?$
+NameTag
+renderpearl.*Format
+GuiRenderer$|GuiEntityRenderer|PictureInPictureRenderer
+HandRenderer
+Equipment.*Renderer
+BlockModelResolver|ItemModelResolver
+\.Minecraft$
