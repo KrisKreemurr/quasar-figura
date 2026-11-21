@@ -13,6 +13,8 @@ public interface LivingEntityAccessor {
     boolean isJumping();
 
     @Intrinsic
+    @Invoker("getModifiedSwingDuration")
+    int figura$getModifiedSwingDuration(net.minecraft.world.item.component.SwingAnimation animation);
 
     @Intrinsic
     @Invoker("updateWalkAnimation")

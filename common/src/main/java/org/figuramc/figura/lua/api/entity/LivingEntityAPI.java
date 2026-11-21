@@ -167,7 +167,7 @@ public class LivingEntityAPI<T extends LivingEntity> extends EntityAPI<T> {
     @LuaMethodDoc("living_entity.get_swing_duration")
     public int getSwingDuration() {
       checkEntity();
-      return entity.getModifiedSwingDuration(net.minecraft.world.item.component.SwingAnimation.DEFAULT);
+      return ((LivingEntityAccessor) entity).figura$getModifiedSwingDuration(net.minecraft.world.item.component.SwingAnimation.DEFAULT);
     }
 
     @LuaWhitelist

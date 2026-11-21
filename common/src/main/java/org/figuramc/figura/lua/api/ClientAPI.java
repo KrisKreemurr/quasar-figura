@@ -609,21 +609,21 @@ public class ClientAPI {
     @LuaWhitelist
     @LuaMethodDoc("client.get_actionbar")
     public static Component getActionbar() {
-        Gui gui = Minecraft.getInstance().gui;
+        Object gui = Minecraft.getInstance().gui.hud;
         return ((GuiAccessor) gui).getActionbarTime() > 0 ? ((GuiAccessor) gui).getActionbar() : null;
     }
 
     @LuaWhitelist
     @LuaMethodDoc("client.get_title")
     public static Component getTitle() {
-        Gui gui = Minecraft.getInstance().gui;
+        Object gui = Minecraft.getInstance().gui.hud;
         return ((GuiAccessor) gui).getTime() > 0 ? ((GuiAccessor) gui).getTitle() : null;
     }
 
     @LuaWhitelist
     @LuaMethodDoc("client.get_subtitle")
     public static Component getSubtitle() {
-        Gui gui = Minecraft.getInstance().gui;
+        Object gui = Minecraft.getInstance().gui.hud;
         return ((GuiAccessor) gui).getTime() > 0 ? ((GuiAccessor) gui).getSubtitle() : null;
     }
 
