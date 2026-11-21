@@ -56,7 +56,7 @@ public class Button extends net.minecraft.client.gui.components.Button implement
     }
 
     @Override
-    public void renderContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    protected void extractContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         if (!this.isVisible())
             return;
 
@@ -111,7 +111,7 @@ public class Button extends net.minecraft.client.gui.components.Button implement
     protected void renderVanillaBackground(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         Component message = getMessage();
         setMessage(Component.empty());
-        super.renderDefaultSprite(gui);
+        super.extractDefaultSprite(gui);
         setMessage(message);
     }
 
@@ -129,7 +129,7 @@ public class Button extends net.minecraft.client.gui.components.Button implement
     }
 
     protected int getTextColor() {
-        return (!this.isActive() ? ChatFormatting.DARK_GRAY : ChatFormatting.WHITE).getColor();
+        return net.minecraft.network.chat.TextColor.fromLegacyFormat(!this.isActive() ? ChatFormatting.DARK_GRAY : ChatFormatting.WHITE).getValue();
     }
 
     public void setTooltip(Component tooltip) {

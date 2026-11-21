@@ -238,7 +238,7 @@ public abstract class AbstractPanelScreen extends Screen {
 
     // No blur in our screens!
     @Override
-    protected void renderBlurredBackground(GuiGraphicsExtractor guiGraphics) {
+    protected void extractBlurredBackground(GuiGraphicsExtractor guiGraphics) {
 
     }
 }

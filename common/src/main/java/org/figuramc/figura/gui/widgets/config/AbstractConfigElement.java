@@ -59,7 +59,7 @@ public abstract class AbstractConfigElement extends AbstractContainerElement {
     }
 
     public void renderTitle(GuiGraphicsExtractor gui, Font font, int y) {
-        gui.text(font, config.name, getX() + 16, y, UIHelper.adjustColor((config.disabled ? ChatFormatting.DARK_GRAY : ChatFormatting.WHITE).getColor()));
+        gui.text(font, config.name, getX() + 16, y, UIHelper.adjustColornet.minecraft.network.chat.TextColor.fromLegacyFormat((config.disabled ? ChatFormatting.DARK_GRAY : ChatFormatting.WHITE).getValue()));
     }
 
     @Override

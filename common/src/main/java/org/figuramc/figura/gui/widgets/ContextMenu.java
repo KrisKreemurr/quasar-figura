@@ -57,7 +57,7 @@ public class ContextMenu extends AbstractContainerElement {
             UIHelper.blitSliced(gui, getX() + 1, y, getWidth() - 2, height, i % 2 == 1 ? 32f : 16f, 0f, 16, 16, 48, 16, BACKGROUND);
 
             // button
-            entries.get(i).render(gui, mouseX, mouseY, delta);
+            entries.get(i).extractRenderState(gui, mouseX, mouseY, delta);
 
             y += height;
         }

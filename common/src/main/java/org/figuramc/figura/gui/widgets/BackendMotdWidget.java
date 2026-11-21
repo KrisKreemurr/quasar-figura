@@ -2,6 +2,7 @@ package org.figuramc.figura.gui.widgets;
 
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.AbstractTextAreaWidget;
 import net.minecraft.client.gui.narration.NarratedElementType;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
@@ -20,7 +21,7 @@ public class BackendMotdWidget extends AbstractTextAreaWidget {
     private int maxWidth;
 
     public BackendMotdWidget(int i, int j, int k, int l, Component text, Font font) {
-        super(i, j, k, l, text);
+        super(i, j, k, l, text, AbstractScrollArea.defaultSettings(10));
         this.font = font;
         this.textHelper = new ClickableTextHelper();
         this.maxWidth = this.getWidth() - this.totalInnerPadding();
@@ -51,7 +52,7 @@ public class BackendMotdWidget extends AbstractTextAreaWidget {
     }
 
     @Override
-    protected void renderBorder(GuiGraphicsExtractor graphics, int x, int y, int width, int height) {
+    protected void extractBorder(GuiGraphicsExtractor graphics, int x, int y, int width, int height) {
         UIHelper.blitSliced(graphics, this.getX() - this.innerPadding(), this.getY() - this.innerPadding(), this.getWidth() + this.totalInnerPadding(), this.getHeight() + this.totalInnerPadding(), UIHelper.OUTLINE_FILL);
     }
 
@@ -62,16 +63,16 @@ public class BackendMotdWidget extends AbstractTextAreaWidget {
 
     public void extractWidgetRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
         if (this.visible) {
-            if (!scrollbarVisible()) {
-                renderBackground(graphics);
-                renderContents(graphics, mouseX, mouseY, delta);
+            if (!scrollable()) {
+                extractBackground(graphics);
+                extractContents(graphics, mouseX, mouseY, delta);
             } else {
                 super.extractWidgetRenderState(graphics, mouseX, mouseY, delta);
             }
         }
     }
 
-    protected void renderContents(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
+    protected void extractContents(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
         int xx = this.getX() + this.innerPadding();
         int yy = this.getY() + this.innerPadding();
 

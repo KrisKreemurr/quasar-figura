@@ -458,7 +458,7 @@ public class HostAPI {
     @LuaWhitelist
     @LuaMethodDoc("host.get_screen")
     public String getScreen() {
-        if (!isHost() || this.minecraft.screen == null)
+        if (!isHost() || this.minecraft.gui.screen() == null)
             return null;
         return this.minecraft.gui.screen().getClass().getName();
     }

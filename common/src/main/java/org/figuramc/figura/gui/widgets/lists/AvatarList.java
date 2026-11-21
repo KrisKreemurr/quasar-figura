@@ -77,7 +77,7 @@ public class AvatarList extends AbstractList {
                 new FiguraIdentifier("textures/gui/folder.png"),
                 60, 20,
                 FiguraText.of("gui.wardrobe.folder.tooltip"),
-                button -> Util.getPlatform().openUri(LocalAvatarFetcher.getLocalAvatarDirectory().toUri()))
+                button -> org.figuramc.figura.utils.QuasarPlatform.openUri(LocalAvatarFetcher.getLocalAvatarDirectory().toUri()))
         );
 
         // scrollbar

@@ -235,7 +235,7 @@ public class ClientAPI {
     @LuaWhitelist
     @LuaMethodDoc("client.is_hud_enabled")
     public static boolean isHudEnabled() {
-        return Minecraft.renderNames();
+        return !minecraft.options.hideGui;
     }
 
     @LuaWhitelist

@@ -119,7 +119,7 @@ public class AvatarWizard {
                 .write("avatar.png", iconTexture);
 
         //open file manager
-        Util.getPlatform().openUri(folder.toUri());
+        org.figuramc.figura.utils.QuasarPlatform.openUri(folder.toUri());
     }
 
     private byte[] buildMetadata(String name) {

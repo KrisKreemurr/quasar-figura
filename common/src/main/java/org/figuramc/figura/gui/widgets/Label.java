@@ -83,7 +83,7 @@ public class Label implements FiguraWidget, GuiEventListener, NarratableEntry {
         if (!isVisible())
             return;
 
-        renderBackground(gui);
+        extractBackground(gui);
         renderText(gui, mouseX, mouseY, delta);
     }
 

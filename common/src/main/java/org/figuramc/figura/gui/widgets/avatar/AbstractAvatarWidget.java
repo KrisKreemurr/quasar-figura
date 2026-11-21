@@ -54,10 +54,10 @@ public abstract class AbstractAvatarWidget extends AbstractContainerElement impl
         });
         context.addAction(FiguraText.of("gui.context.open_folder"), null, button -> {
             try {
-                Util.getPlatform().openUri(avatar.getFSPath().toUri());
+                org.figuramc.figura.utils.QuasarPlatform.openUri(avatar.getFSPath().toUri());
             } catch (Exception e) {
                 FiguraMod.debug("failed to open avatar folder: ", e.getMessage());
-                Util.getPlatform().openUri(LocalAvatarFetcher.getLocalAvatarDirectory().toUri());
+                org.figuramc.figura.utils.QuasarPlatform.openUri(LocalAvatarFetcher.getLocalAvatarDirectory().toUri());
             }
         });
         context.addAction(FiguraText.of("gui.context.copy_path"), null, button -> {

@@ -619,7 +619,7 @@ public final class UIHelper {
     public static Runnable openURL(String url) {
         Minecraft minecraft = Minecraft.getInstance();
         return () -> minecraft.gui.setScreen(new FiguraConfirmScreen.FiguraConfirmLinkScreen((bl) -> {
-            if (bl) Util.getPlatform().openUri(url);
+            if (bl) org.figuramc.figura.utils.QuasarPlatform.openUri(url);
         }, url, minecraft.gui.screen()));
     }
 

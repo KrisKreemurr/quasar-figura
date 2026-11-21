@@ -166,7 +166,7 @@ public class ActionWheel {
             FiguraVec3 color = action == null ? null : action.getColor(selected == i);
 
             // render background texture
-            OverlayTexture.values()[type - 1].data[relativeIndex].render(gui, color, left);
+            OverlayTexture.values()[type - 1].data[relativeIndex].extractRenderState(gui, color, left);
 
             // no icon for null action
             if (action == null)
