@@ -23,6 +23,10 @@ jobs:
       - name: Build
         run: ./gradlew build --stacktrace
 
+      - name: Porting probe (class names / signatures)
+        if: always()
+        run: bash .quasar/probe.sh
+
       - name: Upload jar
         if: success()
         uses: actions/upload-artifact@v4

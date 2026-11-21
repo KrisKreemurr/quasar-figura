@@ -81,6 +81,8 @@ tasks.named('processResources', ProcessResources) {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+    // Show every compile error, not just the first 100 (useful while porting).
+    options.compilerArgs += ['-Xmaxerrs', '5000']
 }
 
 // After every build, copy the jar into the MultiMC test instance (quasarmc_test_mods_dir).
