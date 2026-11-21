@@ -1,9 +1,2 @@
-net.minecraft.client.renderer.feature.FeatureFrameContext
-net.minecraft.client.renderer.feature.phase.FeatureRenderPhase
-net.minecraft.client.renderer.feature.phase.SimpleFeatureRenderPhase
-net.minecraft.client.renderer.feature.submit.BatchableSubmit
-net.minecraft.client.renderer.feature.submit.TranslucentSubmit
-net.minecraft.client.renderer.feature.CustomFeatureRenderer$Submit
-net.minecraft.client.model.geom.ModelPart
-net.minecraft.client.renderer.ProjectionMatrixBuffer
-net.minecraft.client.renderer.fog.FogData
+c:net.minecraft.client.renderer.SubmitNodeCollection
+net.minecraft.client.renderer.feature.FeatureRenderDispatcher

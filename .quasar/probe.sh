@@ -21,8 +21,10 @@ fi
 if [ -f .quasar/javap.txt ]; then
   while IFS= read -r cls; do
     [ -z "$cls" ] && continue
-    echo "=== JAVAP $cls"
-    javap -protected -cp "$J" "$cls" 2>&1 | head -150
+    case "$cls" in
+      c:*) cls="${cls#c:}"; echo "=== JAVAPC $cls"; javap -c -p -cp "$J" "$cls" 2>&1 | head -700;;
+      *) echo "=== JAVAP $cls"; javap -protected -cp "$J" "$cls" 2>&1 | head -150;;
+    esac
   done < .quasar/javap.txt
 fi
 NEOJAR=$(find ~/.gradle/caches -name "neoforge-*-universal.jar" 2>/dev/null | head -1)
