@@ -35,9 +35,7 @@ public abstract class MinecraftMixin {
     @Shadow @Final public MouseHandler mouseHandler;
     @Shadow @Final public Options options;
     @Shadow public LocalPlayer player;
-    @Shadow public Entity cameraEntity;
 
-    @Shadow public abstract void setScreen(@Nullable Screen screen);
 
     @Unique
     private boolean scriptMouseUnlock = false;
@@ -56,7 +54,7 @@ public abstract class MinecraftMixin {
 
         // reload avatar button
         if (Configs.WARDROBE_BUTTON.keyBind.consumeClick())
-            this.setScreen(new WardrobeScreen(null));
+            ((Minecraft) (Object) this).gui.setScreen(new WardrobeScreen(null));
 
         // action wheel button
         Boolean wheel = null;
@@ -89,7 +87,7 @@ public abstract class MinecraftMixin {
                 if (this.player != null && target instanceof Player && !target.isInvisibleTo(this.player)) {
                     PopupMenu.setEntity(target);
                 } else if (!this.options.getCameraType().isFirstPerson()) {
-                    PopupMenu.setEntity(this.cameraEntity);
+                    PopupMenu.setEntity(((Minecraft) (Object) this).getCameraEntity());
                 }
             }
         } else if (PopupMenu.isEnabled()) {

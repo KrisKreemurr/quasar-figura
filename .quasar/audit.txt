@@ -120,3 +120,4 @@ net.minecraft.world.item.component.Consumable
 net.minecraft.world.level.biome.Biome
 net.minecraft.world.level.block.state.BlockBehaviour
 net.minecraft.world.phys.AABB
+net.minecraft.client.gui.Hud

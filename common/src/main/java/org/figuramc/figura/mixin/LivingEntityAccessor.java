@@ -13,8 +13,6 @@ public interface LivingEntityAccessor {
     boolean isJumping();
 
     @Intrinsic
-    @Invoker("getCurrentSwingDuration")
-    int getSwingDuration();
 
     @Intrinsic
     @Invoker("updateWalkAnimation")

@@ -47,27 +47,25 @@ public abstract class GameRendererMixin implements GameRendererAccessor {
     @Shadow @Final
     private Minecraft minecraft;
 
-    @Shadow private boolean effectActive;
+    // Quasar MC (26.3): these moved out of GameRenderer (FOV/spin -> Camera, post effects -> requested list).
+    // Kept as local placeholders so the mixin applies. TODO(quasar): rewire.
+    @Unique private boolean effectActive;
 
-    @Shadow protected abstract float getFov(Camera camera, float tickDelta, boolean changingFov);
 
     @Shadow public abstract void checkEntityPostEffect(Entity entity);
 
-    @Shadow protected abstract void bobHurt(PoseStack poseStack, float f);
 
-    @Shadow protected abstract void bobView(PoseStack poseStack, float f);
 
-    @Shadow public abstract Minecraft getMinecraft();
 
 
     @Shadow @Final private Camera mainCamera;
-    @Shadow @Nullable
+    @Unique @Nullable
     private Identifier postEffectId;
 
     @Shadow @Final private CrossFrameResourcePool resourcePool;
-    @Shadow private float fovModifier;
-    @Shadow private float spinningEffectTime;
-    @Shadow private float spinningEffectSpeed;
+    @Unique private float fovModifier;
+    @Unique private float spinningEffectTime;
+    @Unique private float spinningEffectSpeed;
     @Shadow @Final private GuiRenderer guiRenderer;
     @Unique
     private boolean avatarPostShader = false;
@@ -105,9 +103,8 @@ public abstract class GameRendererMixin implements GameRendererAccessor {
         stack.last().pose().set(instance);
 
         float tickDelta = this.mainCamera.getCameraEntityPartialTicks(net.minecraft.client.Minecraft.getInstance().getDeltaTracker());
-        this.bobHurt(stack, tickDelta);
-        if (this.minecraft.options.bobView().get()) {
-            this.bobView(stack, tickDelta);
+        // TODO(quasar): bobHurt/bobView now take a CameraRenderState
+        if (false) {
         }
 
         instance.set(stack.last().pose());
@@ -194,7 +191,7 @@ public abstract class GameRendererMixin implements GameRendererAccessor {
 
     @Override @Intrinsic
     public double figura$getFov(Camera camera, float tickDelta, boolean changingFov) {
-        return this.getFov(camera, tickDelta, changingFov);
+        return camera.getFov();
     }
 
     // bobbing fix courtesy of Iris; https://github.com/IrisShaders/Iris/blob/1.20.1/src/main/java/net/irisshaders/iris/mixin/MixinModelViewBobbing.java
