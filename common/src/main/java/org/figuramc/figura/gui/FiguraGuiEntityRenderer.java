@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 public class FiguraGuiEntityRenderer extends GuiEntityRenderer {
 
     public FiguraGuiEntityRenderer(FiguraBufferSource bufferSource, EntityRenderDispatcher entityRenderDispatcher) {
-        super(bufferSource, entityRenderDispatcher);
+        super(entityRenderDispatcher);
     }
 
     @Override

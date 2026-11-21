@@ -104,7 +104,7 @@ public abstract class CustomHeadLayerMixin<S extends LivingEntityRenderState, M 
                 Avatar skullAvatar = SkullBlockRendererHelper.resolveAvatar(entityState.wornHeadProfile != null ? entityState.wornHeadProfile : (itemStack != null ? itemStack.get(DataComponents.PROFILE) : null));
                 SkullBlockRendererHelper.setAvatar(skullAvatar);
 
-                SkullBlockRenderer.submitSkull(null, 0f, f, stack, submitNodeCollector, i, skullModelBase,
+                SkullBlockRenderer.submitSkull(f, stack, submitNodeCollector, i, skullModelBase,
                         renderType, entityState.outlineColor, null);
             })) {
                 ci.cancel();

@@ -110,7 +110,7 @@ public class BiomeAPI {
     @LuaWhitelist
     @LuaMethodDoc("biome.get_sky_color")
     public FiguraVec3 getSkyColor() {
-        return ColorUtils.intToRGB(biome.getAttributes().applyModifier(EnvironmentAttributes.SKY_COLOR, 0));
+        return figura$vec(biome.getAttributes().applyModifier(EnvironmentAttributes.SKY_COLOR, (org.joml.Vector3fc) new org.joml.Vector3f()));
     }
 
     @LuaWhitelist
@@ -129,7 +129,7 @@ public class BiomeAPI {
     @LuaWhitelist
     @LuaMethodDoc("biome.get_fog_color")
     public FiguraVec3 getFogColor() {
-        return ColorUtils.intToRGB(biome.getAttributes().applyModifier(EnvironmentAttributes.FOG_COLOR, 0));
+        return figura$vec(biome.getAttributes().applyModifier(EnvironmentAttributes.FOG_COLOR, (org.joml.Vector3fc) new org.joml.Vector3f()));
     }
 
     @LuaWhitelist
@@ -141,7 +141,7 @@ public class BiomeAPI {
     @LuaWhitelist
     @LuaMethodDoc("biome.get_water_fog_color")
     public FiguraVec3 getWaterFogColor() {
-        return ColorUtils.intToRGB(biome.getAttributes().applyModifier(EnvironmentAttributes.WATER_FOG_COLOR, 0));
+        return figura$vec(biome.getAttributes().applyModifier(EnvironmentAttributes.WATER_FOG_COLOR, (org.joml.Vector3fc) new org.joml.Vector3f()));
     }
 
     @LuaWhitelist
@@ -175,5 +175,10 @@ public class BiomeAPI {
     @Override
     public String toString() {
         return id + " (Biome)";
+    }
+
+    // Quasar MC (26.3): environment colors are Vector3fc attributes now
+    private static FiguraVec3 figura$vec(org.joml.Vector3fc v) {
+        return FiguraVec3.of(v.x(), v.y(), v.z());
     }
 }

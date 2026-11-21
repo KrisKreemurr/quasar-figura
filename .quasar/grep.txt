@@ -1,1 +1,10 @@
+BakedQuad
+CommandEncoder$
+GpuDevice$
+BlockStateModel$
+EntitySpawnRequest
+OutlineBufferSource
+BlockRenderDispatcher
+ModelBlockRenderer
 EnvironmentAttributeMap
+BlockStateModelSet
