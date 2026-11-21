@@ -35,7 +35,7 @@ public abstract class CameraMixin {
     }
 
     // Neo adds roll in addition to pitch and yaw
-    @Inject(method = "setup", at = {@At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setRotation(FF)V", shift = At.Shift.AFTER), @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setRotation(FF)V", shift = At.Shift.AFTER)}, require = 1)
+    @Inject(method = "setup", at = {@At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setRotation(FF)V", shift = At.Shift.AFTER), @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setRotation(FF)V", shift = At.Shift.AFTER)}) // TODO(quasar): Camera.setup is gone in 26.3 (update/alignWithEntity)
     private void setupRot(Level level, Entity entity, boolean bl, boolean bl2, float f, CallbackInfo ci) {
         if (!RenderUtils.vanillaModelAndScript(avatar)) {
             avatar = null;
