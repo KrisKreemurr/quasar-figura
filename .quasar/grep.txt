@@ -1,4 +1,0 @@
-BlendFunction
-ColorTargetState
-DepthStencilState
-api.pipeline

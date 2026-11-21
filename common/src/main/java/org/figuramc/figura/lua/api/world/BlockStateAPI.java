@@ -355,7 +355,7 @@ public class BlockStateAPI {
 
         for (BlockStateModelPart part : blockModelParts) {
             for (BakedQuad quad : part.getQuads(direction)) {
-                textures.add(getTextureName(quad.sprite()));
+                textures.add(getTextureName(quad.materialInfo().sprite()));
             }
         }
 
