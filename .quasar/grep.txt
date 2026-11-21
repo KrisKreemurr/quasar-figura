@@ -1,0 +1,6 @@
+\.EntityTypes?$
+TeamColor
+CharacterEvent
+\.TextureSetup$
+\.GameNarrator$
+\.Toast(Manager)?$

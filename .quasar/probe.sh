@@ -23,7 +23,7 @@ if [ -f .quasar/javap.txt ]; then
     [ -z "$cls" ] && continue
     case "$cls" in
       c:*) cls="${cls#c:}"; echo "=== JAVAPC $cls"; javap -c -p -cp "$J" "$cls" 2>&1 | head -700;;
-      *) echo "=== JAVAP $cls"; javap -protected -cp "$J" "$cls" 2>&1 | head -150;;
+      *) echo "=== JAVAP $cls"; javap -protected -cp "$J" "$cls" 2>&1 | head -450;;
     esac
   done < .quasar/javap.txt
 fi
