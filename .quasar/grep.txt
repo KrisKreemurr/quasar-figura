@@ -1,8 +1,1 @@
-FeatureRendererDispatcher|FeatureDispatcher|FeatureFrameContext|FeatureRenderers?$
-NameTag
-renderpearl.*Format
-GuiRenderer$|GuiEntityRenderer|PictureInPictureRenderer
-HandRenderer
-Equipment.*Renderer
-BlockModelResolver|ItemModelResolver
-\.Minecraft$
+FeatureRenderDispatcher|FeatureRenderers$

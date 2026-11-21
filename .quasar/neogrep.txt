@@ -1,4 +1,4 @@
-GuiLayer
-RegisterClientCommands
-neoforge\.client\.event\.[A-Z]
-bus\.api\.[A-Z]
+neoforge\.client\.submit\.
+Register.*(Feature|Submit|RenderPhase|Phase)
+neoforge\.client\.gui\.
+neoforge\.client\.event\.(RegisterGuiLayers|RegisterClientCommands|RenderLevelStage|SubmitCustom|ExtractLevelRenderState)
