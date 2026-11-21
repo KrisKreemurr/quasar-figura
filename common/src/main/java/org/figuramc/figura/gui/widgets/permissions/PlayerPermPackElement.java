@@ -4,7 +4,7 @@ import com.mojang.renderpearl.backend.opengl.GlStateManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
@@ -95,7 +95,7 @@ public class PlayerPermPackElement extends AbstractPermPackElement {
         context.addTab(FiguraText.of("gui.context.set_permissions"), null, permissionsContext);
     }
 
-    public void renderDragged(GuiGraphics gui, int mouseX, int mouseY, float delta) {
+    public void renderDragged(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         int oX = getX();
         int oY = getY();
         setX(mouseX - (anchorX - oX));
@@ -106,7 +106,7 @@ public class PlayerPermPackElement extends AbstractPermPackElement {
     }
 
     @Override
-    public void renderContents(GuiGraphics gui, int mouseX, int mouseY, float delta) {
+    public void renderContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         if (dragged) {
             UIHelper.fillRounded(gui, getX() - 1, getY() - 1, getWidth() + 2, getHeight() + 2, 0x40FFFFFF);
         } else {
@@ -203,11 +203,11 @@ public class PlayerPermPackElement extends AbstractPermPackElement {
 
             // category
             int textY = y + height - font.lineHeight - 4;
-            gui.drawString(font, pack.getCategoryName().append(pack.hasChanges() ? "*" : ""), x + 40, textY, UIHelper.adjustColor(0xFFFFFF));
+            gui.text(font, pack.getCategoryName().append(pack.hasChanges() ? "*" : ""), x + 40, textY, UIHelper.adjustColor(0xFFFFFF));
 
             // disconnected
             if (disconnected)
-                gui.drawString(font, DC_TEXT, x + width - font.width(DC_TEXT) - 4, textY, UIHelper.adjustColor(0xFFFFFF));
+                gui.text(font, DC_TEXT, x + width - font.width(DC_TEXT) - 4, textY, UIHelper.adjustColor(0xFFFFFF));
 
             pose.popMatrix();
         }

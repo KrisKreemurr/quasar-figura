@@ -1,6 +1,6 @@
 package org.figuramc.figura.gui.screens;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
@@ -107,7 +107,7 @@ public class HelpScreen extends AbstractPanelScreen {
         }
 
         @Override
-        public void render(GuiGraphics gui, int mouseX, int mouseY, float delta) {
+        public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
             int x = getRawX();
             int y = getRawY();
 

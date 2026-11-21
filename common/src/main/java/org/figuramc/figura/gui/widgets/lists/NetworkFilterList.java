@@ -1,6 +1,6 @@
 package org.figuramc.figura.gui.widgets.lists;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 import net.minecraft.resources.Identifier;
 import org.figuramc.figura.config.ConfigType;
@@ -73,7 +73,7 @@ public class NetworkFilterList extends AbstractList {
     }
 
     @Override
-    public void render(GuiGraphics gui, int mouseX, int mouseY, float delta) {
+    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         int x = getX();
         int y = getY();
         int width = getWidth();
@@ -210,7 +210,7 @@ public class NetworkFilterList extends AbstractList {
         }
 
         @Override
-        public void render(GuiGraphics gui, int mouseX, int mouseY, float delta) {
+        public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
             super.render(gui, mouseX, mouseY, delta);
         }
 

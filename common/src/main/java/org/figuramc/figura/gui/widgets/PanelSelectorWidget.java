@@ -3,7 +3,7 @@ package org.figuramc.figura.gui.widgets;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -95,7 +95,7 @@ public class PanelSelectorWidget extends AbstractContainerElement {
     }
 
     @Override
-    public void render(GuiGraphics gui, int mouseX, int mouseY, float delta) {
+    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         UIHelper.blitSliced(gui, getX(), getY(), selected.getX() - getX(), getHeight() - 4, BACKGROUND);
         UIHelper.blitSliced(gui, selected.getX() + selected.getWidth(), getY(), getWidth() - selected.getX() - selected.getWidth(), getHeight() - 4, BACKGROUND);
         super.render(gui, mouseX, mouseY, delta);
@@ -160,7 +160,7 @@ public class PanelSelectorWidget extends AbstractContainerElement {
         }
 
         @Override
-        public void renderContents(GuiGraphics gui, int mouseX, int mouseY, float delta) {
+        public void renderContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
             super.renderContents(gui, mouseX, mouseY, delta);
             boolean iconOnly = iconsOnly();
 
@@ -169,7 +169,7 @@ public class PanelSelectorWidget extends AbstractContainerElement {
         }
 
         @Override
-        protected void renderTexture(GuiGraphics gui, float delta) {
+        protected void renderTexture(GuiGraphicsExtractor gui, float delta) {
             UIHelper.blitSliced(gui, getX(), getY(), getWidth(), getHeight(), isSelected() ? 24f : 0f, this.isHoveredOrFocused() ? 24f : 0f, 24, 24, 48, 48, TEXTURE);
 
             UIHelper.enableBlend();
@@ -178,7 +178,7 @@ public class PanelSelectorWidget extends AbstractContainerElement {
         }
 
         @Override
-        protected void renderText(GuiGraphics gui, float delta) {
+        protected void renderText(GuiGraphicsExtractor gui, float delta) {
             if (iconsOnly())
                 return;
 

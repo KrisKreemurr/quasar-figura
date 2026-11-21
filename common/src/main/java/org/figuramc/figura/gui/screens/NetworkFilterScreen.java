@@ -1,7 +1,7 @@
 package org.figuramc.figura.gui.screens;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
 import org.figuramc.figura.config.ConfigManager;
 import org.figuramc.figura.config.ConfigType;
@@ -32,7 +32,7 @@ public class NetworkFilterScreen extends AbstractPanelScreen {
     }
 
     @Override
-    public void render(GuiGraphics gui, int mouseX, int mouseY, float delta) {
+    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         super.render(gui, mouseX, mouseY, delta);
     }
 

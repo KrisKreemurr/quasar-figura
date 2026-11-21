@@ -1,7 +1,7 @@
 package org.figuramc.figura.mixin.gui;
 
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.SplashRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
@@ -17,10 +17,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class SplashRendererMixin {
 
     @Unique
-    private static GuiGraphics gui;
+    private static GuiGraphicsExtractor gui;
 
     @Inject(at = @At("HEAD"), method = "render")
-    private void render(GuiGraphics graphics, int i, Font textRenderer, float j, CallbackInfo ci) {
+    private void render(GuiGraphicsExtractor graphics, int i, Font textRenderer, float j, CallbackInfo ci) {
         gui = graphics;
     }
 

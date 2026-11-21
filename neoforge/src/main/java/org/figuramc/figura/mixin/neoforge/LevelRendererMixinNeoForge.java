@@ -77,7 +77,7 @@ public class LevelRendererMixinNeoForge {
         );
 
 
-        entityRenderer.render(state, stack, bufferSource, LightTexture.FULL_BRIGHT);
+        entityRenderer.render(state, stack, bufferSource, LightCoordsUtil.FULL_BRIGHT);
 
         do {
             stack.popPose();

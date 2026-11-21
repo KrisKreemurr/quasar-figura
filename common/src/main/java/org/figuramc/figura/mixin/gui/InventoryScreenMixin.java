@@ -1,6 +1,6 @@
 package org.figuramc.figura.mixin.gui;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.world.entity.LivingEntity;
 import org.figuramc.figura.avatar.AvatarManager;
@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class InventoryScreenMixin {
 
     @Inject(method = "renderEntityInInventoryFollowsMouse", at = @At("HEAD"), cancellable = true)
-    private static void renderEntityInInventoryFollowsMouse(GuiGraphics guiGraphics, int x, int y, int i, int j, int size, float yOffset, float mouseX, float mouseY, LivingEntity entity, CallbackInfo ci) {
+    private static void renderEntityInInventoryFollowsMouse(GuiGraphicsExtractor guiGraphics, int x, int y, int i, int j, int size, float yOffset, float mouseX, float mouseY, LivingEntity entity, CallbackInfo ci) {
         if (!Configs.FIGURA_INVENTORY.value || AvatarManager.panic)
             return;
         float g = (float)(x + i) / 2.0F;

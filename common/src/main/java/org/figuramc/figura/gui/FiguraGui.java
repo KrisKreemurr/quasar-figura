@@ -7,7 +7,7 @@ import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.CachedOrthoProjectionMatrixBuffer;
 import net.minecraft.world.entity.Entity;
 import org.figuramc.figura.FiguraMod;
@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class FiguraGui {
     private static final CachedOrthoProjectionMatrixBuffer guiProjectionMatrixBuffer = new CachedOrthoProjectionMatrixBuffer("gui", 1000.0F, 11000.0F, true);
 
-    public static void onRender(GuiGraphics guiGraphics, float tickDelta, CallbackInfo ci) {
+    public static void onRender(GuiGraphicsExtractor guiGraphics, float tickDelta, CallbackInfo ci) {
         if (AvatarManager.panic)
             return;
 
@@ -71,7 +71,7 @@ public class FiguraGui {
         FiguraMod.popProfiler();
     }
 
-    public static void renderOverlays(GuiGraphics guiGraphics) {
+    public static void renderOverlays(GuiGraphicsExtractor guiGraphics) {
         FiguraMod.pushProfiler(FiguraMod.MOD_ID);
 
         // render paperdoll

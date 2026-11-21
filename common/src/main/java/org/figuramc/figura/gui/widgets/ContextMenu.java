@@ -3,7 +3,7 @@ package org.figuramc.figura.gui.widgets;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.input.MouseButtonEvent;
@@ -44,7 +44,7 @@ public class ContextMenu extends AbstractContainerElement {
     }
 
     @Override
-    public void render(GuiGraphics gui, int mouseX, int mouseY, float delta) {
+    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         if (!isVisible()) return;
 
         // outline
@@ -192,10 +192,10 @@ public class ContextMenu extends AbstractContainerElement {
         }
 
         @Override
-        protected void renderText(GuiGraphics gui, float delta) {
+        protected void renderText(GuiGraphicsExtractor gui, float delta) {
             // draw text
             Font font = Minecraft.getInstance().font;
-            gui.drawString(
+            gui.text(
                     font, getMessage(),
                     this.getX() + 3, (int) (this.getY() + this.getHeight() / 2f - font.lineHeight / 2f),
                     UIHelper.adjustColor(getTextColor())
@@ -225,7 +225,7 @@ public class ContextMenu extends AbstractContainerElement {
         }
 
         @Override
-        public void renderContents(GuiGraphics gui, int mouseX, int mouseY, float delta) {
+        public void renderContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
             // draw line
             gui.fill(this.getX() + 4, getY() + 4, this.getX() + this.getWidth() - 4, getY() + 5, 0xFF000000 + ChatFormatting.DARK_GRAY.getColor());
         }
@@ -248,13 +248,13 @@ public class ContextMenu extends AbstractContainerElement {
         }
 
         @Override
-        public void renderContents(GuiGraphics gui, int mouseX, int mouseY, float delta) {
+        public void renderContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
             // super
             super.renderContents(gui, mouseX, mouseY, delta);
 
             // draw arrow
             Font font = Minecraft.getInstance().font;
-            gui.drawString(
+            gui.text(
                     font, ARROW,
                     this.getX() + this.getWidth() - font.width(ARROW) - 3, (int) (this.getY() + this.getHeight() / 2f - font.lineHeight / 2f),
                     UIHelper.adjustColor(getTextColor())

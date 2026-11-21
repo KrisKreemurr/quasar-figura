@@ -14,7 +14,7 @@ import net.minecraft.client.gui.render.pip.PictureInPictureRenderer;
 import net.minecraft.client.renderer.state.gui.BlitRenderState;
 import net.minecraft.client.renderer.state.gui.GuiRenderState;
 import net.minecraft.client.renderer.CachedOrthoProjectionMatrixBuffer;
-import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
@@ -49,7 +49,7 @@ public class FiguraPortraitRenderer extends PictureInPictureRenderer<FiguraPortr
 
         Avatar avatar = portraitState.avatar();
         if (avatar != null) {
-            renderSkin = !avatar.renderHeadForPortrait(this.bufferSource, poseStack, LightTexture.FULL_BRIGHT, portraitState.modelScale(), portraitState.upsideDown());
+            renderSkin = !avatar.renderHeadForPortrait(this.bufferSource, poseStack, LightCoordsUtil.FULL_BRIGHT, portraitState.modelScale(), portraitState.upsideDown());
         } else {
             renderSkin = true;
         }

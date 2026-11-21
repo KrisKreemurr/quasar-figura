@@ -315,7 +315,7 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
                 FiguraVec3 pos = part.savedPartToWorldMat.apply(0d, 0d, 0d);
                 int block = l.getBrightness(LightLayer.BLOCK, pos.asBlockPos());
                 int sky = l.getBrightness(LightLayer.SKY, pos.asBlockPos());
-                customizationStack.peek().light = LightTexture.pack(block, sky);
+                customizationStack.peek().light = LightCoordsUtil.pack(block, sky);
             }
 
             if (custom.alpha != null)
@@ -344,7 +344,7 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
             if (renderPivot || renderTasks || renderPivotParts) {
                 // fix light and overlay
                 PartCustomization parent = customizationStack.peek();
-                int light = parent.light != null ? parent.light : LightTexture.FULL_BRIGHT;
+                int light = parent.light != null ? parent.light : LightCoordsUtil.FULL_BRIGHT;
                 int overlay = parent.overlay != null ? parent.overlay : OverlayTexture.NO_OVERLAY;
 
                 // fix pivots
@@ -672,7 +672,7 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
         uvFixer.set(textureSet.getWidth(), textureSet.getHeight(), 1); // Dividing by this makes uv 0 to 1
 
         int overlay = customization.overlay;
-        int light = vertexData.fullBright ? LightTexture.FULL_BRIGHT : customization.light;
+        int light = vertexData.fullBright ? LightCoordsUtil.FULL_BRIGHT : customization.light;
 
         VERTEX_BUFFER.getBufferFor(vertexData.renderType, vertexData.primary, vertexConsumer -> {
             for (int i = 0; i < vertCount; i++) {

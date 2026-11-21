@@ -1,7 +1,7 @@
 package org.figuramc.figura.gui.widgets;
 
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractTextAreaWidget;
 import net.minecraft.client.gui.narration.NarratedElementType;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
@@ -51,16 +51,16 @@ public class BackendMotdWidget extends AbstractTextAreaWidget {
     }
 
     @Override
-    protected void renderBorder(GuiGraphics graphics, int x, int y, int width, int height) {
+    protected void renderBorder(GuiGraphicsExtractor graphics, int x, int y, int width, int height) {
         UIHelper.blitSliced(graphics, this.getX() - this.innerPadding(), this.getY() - this.innerPadding(), this.getWidth() + this.totalInnerPadding(), this.getHeight() + this.totalInnerPadding(), UIHelper.OUTLINE_FILL);
     }
 
     @Override
-    protected void renderBackground(GuiGraphics graphics) {
+    protected void renderBackground(GuiGraphicsExtractor graphics) {
         UIHelper.blitSliced(graphics, this.getX() - this.innerPadding(), this.getY() - this.innerPadding(), this.getWidth() + this.totalInnerPadding(), this.getHeight() + this.totalInnerPadding(), UIHelper.OUTLINE_FILL);
     }
 
-    public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+    public void renderWidget(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
         if (this.visible) {
             if (!scrollbarVisible()) {
                 renderBackground(graphics);
@@ -71,14 +71,14 @@ public class BackendMotdWidget extends AbstractTextAreaWidget {
         }
     }
 
-    protected void renderContents(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+    protected void renderContents(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
         int xx = this.getX() + this.innerPadding();
         int yy = this.getY() + this.innerPadding();
 
         int scroll = (int)scrollAmount();
         textHelper.update(font, maxWidth);
 
-        textHelper.visit((text, style, x, y, textWidth, textHeight) -> graphics.drawString(font, Component.literal(text).setStyle(style), xx + x, yy + y, UIHelper.adjustColor(0xFFFFFFFF)));
+        textHelper.visit((text, style, x, y, textWidth, textHeight) -> graphics.text(font, Component.literal(text).setStyle(style), xx + x, yy + y, UIHelper.adjustColor(0xFFFFFFFF)));
 
         //textHelper.renderDebug(graphics, xx, yy, mouseX, mouseY + scroll);
 
