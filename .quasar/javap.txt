@@ -1,0 +1,12 @@
+net.minecraft.client.renderer.RenderBuffers
+net.minecraft.client.renderer.SubmitNodeCollector
+net.minecraft.client.renderer.OrderedSubmitNodeCollector
+net.minecraft.client.renderer.SubmitNodeCollector$CustomGeometryRenderer
+net.minecraft.client.renderer.feature.RenderTypeFeatureRenderer
+net.minecraft.client.renderer.feature.CustomFeatureRenderer
+net.minecraft.client.gui.GuiGraphicsExtractor
+net.minecraft.client.renderer.Lightmap
+net.minecraft.util.LightCoordsUtil
+net.minecraft.client.renderer.StagedVertexBuffer
+net.minecraft.client.renderer.feature.TextFeatureRenderer
+net.minecraft.client.renderer.feature.ModelFeatureRenderer
