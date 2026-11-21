@@ -160,8 +160,8 @@ public class PanelSelectorWidget extends AbstractContainerElement {
         }
 
         @Override
-        public void renderContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
-            super.renderContents(gui, mouseX, mouseY, delta);
+        protected void extractContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+            super.extractContents(gui, mouseX, mouseY, delta);
             boolean iconOnly = iconsOnly();
 
             if (iconOnly && this.isMouseOver(mouseX, mouseY))

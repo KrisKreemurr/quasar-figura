@@ -15,4 +15,12 @@ public interface FiguraBufferSource {
     /** Flushes pending geometry, if the implementation batches. No-op by default. */
     default void endBatch() {
     }
+
+    /** No-op in the 26.3 feature renderer (batches are flushed by Minecraft). */
+    default void endBatch(RenderType renderType) {
+    }
+
+    /** No-op in the 26.3 feature renderer (batches are flushed by Minecraft). */
+    default void endLastBatch() {
+    }
 }

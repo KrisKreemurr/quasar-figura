@@ -35,4 +35,10 @@ public final class QuasarPlatform {
             FiguraMod.LOGGER.warn("Invalid URI " + uri, e);
         }
     }
+
+    /** Quasar MC (26.3): ChatFormatting.getColor() was removed. Returns the RGB color or null for non-color formats. */
+    public static Integer formattingColor(net.minecraft.ChatFormatting formatting) {
+        net.minecraft.network.chat.TextColor color = net.minecraft.network.chat.TextColor.fromLegacyFormat(formatting);
+        return color == null ? null : color.getValue();
+    }
 }

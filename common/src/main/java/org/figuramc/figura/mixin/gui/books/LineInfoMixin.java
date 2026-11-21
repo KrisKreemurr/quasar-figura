@@ -18,7 +18,7 @@ public class LineInfoMixin {
         Component literal = Component.literal(string);
         Component emojied = Emojis.applyEmojis(literal);
         if (literal != emojied) {
-            instance.drawString(font, emojied, i, j, k, bl); // make it use a component if emojis are present
+            instance.text(font, emojied, i, j, k, bl); // make it use a component if emojis are present
         } else {
             original.call(instance, font, string, i, j, k, bl);
         }

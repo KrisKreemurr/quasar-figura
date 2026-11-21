@@ -144,21 +144,23 @@ public class LivingEntityAPI<T extends LivingEntity> extends EntityAPI<T> {
     @LuaMethodDoc("living_entity.get_swing_time")
     public int getSwingTime() {
       checkEntity();
-      return entity.swingTime;
+      // Quasar MC (26.3): swingTime field removed; derive from the swing animation progress
+      var swing = entity.getCurrentSwing();
+      return entity.isSwinging() && swing != null ? Math.round(entity.getSwingAnimation(1f) * swing.durationTicks()) : 0;
     }
 
     @LuaWhitelist
     @LuaMethodDoc("living_entity.is_swinging_arm")
     public boolean isSwingingArm() {
       checkEntity();
-      return entity.swinging;
+      return entity.isSwinging();
     }
 
     @LuaWhitelist
     @LuaMethodDoc("living_entity.get_swing_arm")
     public String getSwingArm() {
       checkEntity();
-      return entity.swinging ? entity.swingingArm.name() : null;
+      return entity.isSwinging() && entity.getCurrentSwing() != null ? entity.getCurrentSwing().hand().name() : null;
     }
 
     @LuaWhitelist
@@ -188,13 +190,13 @@ public class LivingEntityAPI<T extends LivingEntity> extends EntityAPI<T> {
         checkEntity();
 
         EntityType<?> mobType = entity.getType(); // why it is not an enum
-        if (mobType.is(EntityTypeTags.ARTHROPOD))
+        if (mobType.builtInRegistryHolder().is(EntityTypeTags.ARTHROPOD))
             return "ARTHROPOD";
-        if (mobType.is(EntityTypeTags.UNDEAD))
+        if (mobType.builtInRegistryHolder().is(EntityTypeTags.UNDEAD))
             return "UNDEAD";
-        if (mobType.is(EntityTypeTags.AQUATIC))
+        if (mobType.builtInRegistryHolder().is(EntityTypeTags.AQUATIC))
             return "WATER";
-        if (mobType.is(EntityTypeTags.ILLAGER))
+        if (mobType.builtInRegistryHolder().is(EntityTypeTags.ILLAGER))
             return "ILLAGER";
 
         return "UNDEFINED";

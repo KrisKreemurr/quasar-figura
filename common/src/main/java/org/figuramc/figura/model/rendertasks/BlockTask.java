@@ -71,7 +71,7 @@ public class BlockTask extends RenderTask {
     public BlockTask setBlock(Object block) {
         this.block = LuaUtils.parseBlockState("block", block);
         Minecraft client = Minecraft.getInstance();
-        RandomSource random = client.level != null ? client.level.random : RandomSource.create();
+        RandomSource random = client.level != null ? client.level.getRandom() : RandomSource.create();
 
         BlockStateModel blockModel = client.getBlockRenderer().getBlockModel(this.block);
         cachedComplexity = blockModel.collectParts(random).stream().mapToInt(p -> p.getQuads(null).size()).sum();

@@ -30,8 +30,8 @@ public class AvatarWidget extends AbstractAvatarWidget {
             AvatarList.selectedEntry = avatar.getTheActualPathForThis();
         }) {
             @Override
-            public void renderContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
-                super.renderContents(gui, mouseX, mouseY, delta);
+            protected void extractContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+                super.extractContents(gui, mouseX, mouseY, delta);
 
                 // selected border
                 if (instance.isOf(AvatarList.selectedEntry))

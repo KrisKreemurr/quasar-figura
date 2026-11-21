@@ -55,7 +55,8 @@ public class FiguraGui {
             stack.setIdentity();
             stack.last().pose().mul(guiGraphics.pose());
 
-            avatar.hudRender(stack, Minecraft.getInstance().gameRenderer.renderBuffers().bufferSource(), entity, tickDelta);
+            // TODO(quasar): 26.3 has no immediate-mode buffer source for HUD rendering; avatar HUD parts are skipped for now
+            // avatar.hudRender(stack, ..., entity, tickDelta);
             stack.popPose();
             // hud hidden by script
             if (avatar.luaRuntime != null && !avatar.luaRuntime.renderer.renderHUD) {

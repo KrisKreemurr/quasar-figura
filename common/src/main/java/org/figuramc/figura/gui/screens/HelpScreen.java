@@ -67,7 +67,7 @@ public class HelpScreen extends AbstractPanelScreen {
                     addRenderableOnly(new ParticleWidget(x, y, ParticleTypes.HEART));
 
                     boolean purr = Math.random() < 0.95;
-                    minecraft.getSoundManager().play(SimpleSoundInstance.forUI(purr ? SoundEvents.CAT_PURR : SoundEvents.CAT_AMBIENT, 1f));
+                    minecraft.getSoundManager().play(SimpleSoundInstance.forUI(purr ? SoundEvents.CAT_PURR.value() : SoundEvents.CAT_AMBIENT.value(), 1f));
                     return false;
                 }
 

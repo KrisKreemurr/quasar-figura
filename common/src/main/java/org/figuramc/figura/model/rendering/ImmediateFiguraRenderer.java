@@ -1,5 +1,7 @@
 package org.figuramc.figura.model.rendering;
 
+import net.minecraft.util.LightCoordsUtil;
+
 import org.figuramc.figura.utils.FiguraBufferSource;
 
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -638,7 +640,7 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
         // get render type
         if (id != null) {
             if (translucent) {
-                ret.renderType = RenderTypes.itemEntityTranslucentCull(id);
+                ret.renderType = RenderTypes.entityTranslucentCull(id);
                 return ret;
             }
             if (glowing) {

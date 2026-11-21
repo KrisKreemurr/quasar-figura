@@ -1,1 +1,1 @@
-net.neoforged.neoforge.client.gui.PictureInPictureRendererRegistration
+net.neoforged.neoforge.client.event.RegisterPictureInPictureRenderersEvent

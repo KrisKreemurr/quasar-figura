@@ -98,7 +98,9 @@ public class MathUtils {
         transformMatrix.transform(camSpace);
 
         Vector4f projectiveCamSpace = new Vector4f(camSpace, 1f);
-        Matrix4f projMat = minecraft.gameRenderer.getProjectionMatrix((float) ((GameRendererAccessor) minecraft.gameRenderer).figura$getFov(camera, minecraft.getDeltaTracker().getGameTimeDeltaPartialTick(false), true));
+        // Quasar MC (26.3): GameRenderer.getProjectionMatrix was removed; rebuild the perspective projection
+        float figura$fov = (float) ((GameRendererAccessor) minecraft.gameRenderer).figura$getFov(camera, minecraft.getDeltaTracker().getGameTimeDeltaPartialTick(false), true);
+        Matrix4f projMat = new Matrix4f().setPerspective((float) Math.toRadians(figura$fov), (float) minecraft.getWindow().getWidth() / (float) minecraft.getWindow().getHeight(), 0.05F, minecraft.options.getEffectiveRenderDistance() * 64F);
         projMat.transform(projectiveCamSpace);
         float w = projectiveCamSpace.w();
 

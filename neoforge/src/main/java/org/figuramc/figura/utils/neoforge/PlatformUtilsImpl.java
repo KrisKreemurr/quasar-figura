@@ -26,4 +26,16 @@ public class PlatformUtilsImpl {
     public static String getModVersion(String modId) {
         return ModList.get().getModContainerById(modId).get().getModInfo().getVersion().getQualifier();
     }
+
+    // Quasar MC: NeoForge-only build. The enum has no NEOFORGE entry upstream; FORGE is the closest.
+    public static org.figuramc.figura.utils.PlatformUtils.ModLoader getModLoader() {
+        return org.figuramc.figura.utils.PlatformUtils.ModLoader.FORGE;
+    }
+
+    public static java.io.InputStream loadFileFromRoot(String path) throws java.io.FileNotFoundException {
+        java.io.InputStream stream = PlatformUtilsImpl.class.getResourceAsStream("/" + path);
+        if (stream == null)
+            throw new java.io.FileNotFoundException(path);
+        return stream;
+    }
 }

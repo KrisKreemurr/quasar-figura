@@ -235,7 +235,7 @@ public class ClientAPI {
     @LuaWhitelist
     @LuaMethodDoc("client.is_hud_enabled")
     public static boolean isHudEnabled() {
-        return !minecraft.options.hideGui;
+        return true; // TODO(quasar): hide-HUD flag moved in 26.3
     }
 
     @LuaWhitelist

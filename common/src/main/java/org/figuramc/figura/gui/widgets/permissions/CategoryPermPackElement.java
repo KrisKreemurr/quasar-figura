@@ -25,7 +25,7 @@ public class CategoryPermPackElement extends AbstractPermPackElement {
     }
 
     @Override
-    public void renderContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    protected void extractContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         Matrix3x2fStack pose = gui.pose();
         int width = getWidth();
         int height = getHeight();

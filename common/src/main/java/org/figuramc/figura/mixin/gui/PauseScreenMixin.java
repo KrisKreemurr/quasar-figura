@@ -78,7 +78,7 @@ public class PauseScreenMixin extends Screen {
         if (config > 0) { // button
             addRenderableWidget(new Button(x, y, 64, 20, FiguraText.of(), null, btn -> this.minecraft.gui.setScreen(new WardrobeScreen(this))) {
                 @Override
-                public void renderContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+                protected void extractContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
                     ChatFormatting color;
                     if (this.isHoveredOrFocused()) {
                         color = ChatFormatting.AQUA;
@@ -90,7 +90,7 @@ public class PauseScreenMixin extends Screen {
                     setMessage(getMessage().copy().withStyle(color));
 
                     renderVanillaBackground(gui, mouseX, mouseY, delta);
-                    super.renderContents(gui, mouseX, mouseY, delta);
+                    super.extractContents(gui, mouseX, mouseY, delta);
                 }
 
                 @Override
@@ -99,9 +99,9 @@ public class PauseScreenMixin extends Screen {
         } else { // icon
             addRenderableWidget(new Button(x, y, 20, 20, 0, 0, 20, FIGURA_ICON, 60, 20, null, btn -> this.minecraft.gui.setScreen(new WardrobeScreen(this))) {
                 @Override
-                public void renderContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+                protected void extractContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
                     renderVanillaBackground(gui, mouseX, mouseY, delta);
-                    super.renderContents(gui, mouseX, mouseY, delta);
+                    super.extractContents(gui, mouseX, mouseY, delta);
                 }
 
                 @Override

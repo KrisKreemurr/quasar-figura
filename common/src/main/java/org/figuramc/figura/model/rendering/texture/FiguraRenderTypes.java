@@ -26,12 +26,12 @@ import java.util.function.Function;
 public enum FiguraRenderTypes {
     NONE(null),
 
-    CUTOUT(RenderTypes::entityCutoutNoCull),
-    CUTOUT_CULL(RenderTypes::entityCutout),
+    CUTOUT(RenderTypes::entityCutout),
+    CUTOUT_CULL(RenderTypes::entityCutoutCull),
     CUTOUT_EMISSIVE_SOLID(resourceLocation -> FiguraRenderType.CUTOUT_EMISSIVE_SOLID.apply(resourceLocation, true)),
 
     TRANSLUCENT(RenderTypes::entityTranslucent),
-    TRANSLUCENT_CULL(RenderTypes::itemEntityTranslucentCull),
+    TRANSLUCENT_CULL(RenderTypes::entityTranslucentCull),
 
     EMISSIVE(RenderTypes::eyes),
     EMISSIVE_SOLID(resourceLocation -> RenderTypes.beaconBeam(resourceLocation, false)),
@@ -41,8 +41,9 @@ public enum FiguraRenderTypes {
     END_GATEWAY(t -> RenderTypes.endGateway(), false),
     TEXTURED_PORTAL(FiguraRenderType.TEXTURED_PORTAL),
 
-    GLINT(t -> RenderTypes.entityGlint(), false, false),
-    GLINT2(t -> RenderTypes.glint(), false, false),
+    // TODO(quasar): 26.3 has no standalone glint render types; closest available stand-in
+    GLINT(t -> RenderTypes.trimmedArmorGlint(), false, false),
+    GLINT2(t -> RenderTypes.trimmedArmorGlint(), false, false),
     TEXTURED_GLINT(FiguraRenderType.TEXTURED_GLINT, true, false),
 
     LINES(t -> RenderTypes.lines(), false),
@@ -88,7 +89,6 @@ public enum FiguraRenderTypes {
                 "figura_solid",
                 RenderSetup.builder(FiguraRenderPipelines.FIGURA_SOLID)
                         .setLayeringTransform(LayeringTransform.VIEW_OFFSET_Z_LAYERING)
-                        .setOutputTarget(OutputTarget.ITEM_ENTITY_TARGET)
                         .setOutline(RenderSetup.OutlineProperty.NONE)
                         .createRenderSetup()
         );

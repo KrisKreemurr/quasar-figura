@@ -253,8 +253,8 @@ public class PermissionsList extends AbstractList {
         }
 
         @Override
-        public void renderContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
-            super.renderContents(gui, mouseX, mouseY, delta);
+        protected void extractContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+            super.extractContents(gui, mouseX, mouseY, delta);
             if (parent.isInsideScissors(mouseX, mouseY) && UIHelper.isMouseOver(getX() + 1, getY() + 1, getWidth() - 2, Minecraft.getInstance().font.lineHeight, mouseX, mouseY))
                 UIHelper.setTooltip(Component.translatable(this.text + ".tooltip"));
         }

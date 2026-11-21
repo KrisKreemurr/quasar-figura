@@ -225,7 +225,7 @@ public class ContextMenu extends AbstractContainerElement {
         }
 
         @Override
-        public void renderContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+        protected void extractContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
             // draw line
             gui.fill(this.getX() + 4, getY() + 4, this.getX() + this.getWidth() - 4, getY() + 5, 0xFF000000 + net.minecraft.network.chat.TextColor.fromLegacyFormat(ChatFormatting.DARK_GRAY).getValue());
         }
@@ -248,9 +248,9 @@ public class ContextMenu extends AbstractContainerElement {
         }
 
         @Override
-        public void renderContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+        protected void extractContents(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
             // super
-            super.renderContents(gui, mouseX, mouseY, delta);
+            super.extractContents(gui, mouseX, mouseY, delta);
 
             // draw arrow
             Font font = Minecraft.getInstance().font;

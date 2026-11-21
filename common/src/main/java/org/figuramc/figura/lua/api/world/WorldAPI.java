@@ -165,7 +165,7 @@ public class WorldAPI {
             return list;
 
         BlockPos.betweenClosedStream(min, max).forEach(blockPos -> {
-            BlockPos pos = new BlockPos(blockPos);
+            BlockPos pos = new BlockPos(blockPos.getX(), blockPos.getY(), blockPos.getZ());
             list.add(new BlockStateAPI(world.getBlockState(pos), pos));
         });
         return list;
