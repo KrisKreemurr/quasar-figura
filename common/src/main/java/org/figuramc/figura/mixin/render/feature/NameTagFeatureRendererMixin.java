@@ -2,7 +2,7 @@ package org.figuramc.figura.mixin.render.feature;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.renderer.MultiBufferSource;
+import org.figuramc.figura.utils.FiguraBufferSource;
 import net.minecraft.client.renderer.SubmitNodeStorage;
 import net.minecraft.client.renderer.feature.NameTagFeatureRenderer;
 import org.figuramc.figura.ducks.NameTagFeatureRenderer$StorageExtension;
@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(NameTagFeatureRenderer.class)
 public class NameTagFeatureRendererMixin {
     @Inject(method = "render", at = @At(value = "TAIL"))
-    private void renderOutlineTexts(CallbackInfo ci, @Local(argsOnly = true) MultiBufferSource.BufferSource bufferSource,
+    private void renderOutlineTexts(CallbackInfo ci, @Local(argsOnly = true) FiguraBufferSource bufferSource,
                                     @Local(argsOnly = true) Font font, @Local NameTagFeatureRenderer.Storage storage) {
         NameTagFeatureRenderer$StorageExtension storageExt = (NameTagFeatureRenderer$StorageExtension) storage;
         for (SubmitNodeStorage.NameTagSubmit outlineText : storageExt.getOutlineSubmits()) {

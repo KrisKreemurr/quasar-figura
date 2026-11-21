@@ -5,7 +5,7 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.renderer.MultiBufferSource;
+import org.figuramc.figura.utils.FiguraBufferSource;
 import org.figuramc.figura.ducks.FiguraSubmitCallBackExtension;
 import org.figuramc.figura.ducks.PartPoseExtension;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,12 +25,12 @@ public class ModelPartMixin implements FiguraSubmitCallBackExtension {
     @Shadow
     public boolean visible;
     @Unique
-    private final List<BiFunction<MultiBufferSource, PoseStack, Boolean>> figura$preRenderingCallback = new ArrayList<>();
+    private final List<BiFunction<FiguraBufferSource, PoseStack, Boolean>> figura$preRenderingCallback = new ArrayList<>();
     @Unique
     private final List<Runnable> figura$postRenderingCallback = new ArrayList<>();
 
     @Override
-    public void figura$addPreRenderingCallback(BiFunction<MultiBufferSource, PoseStack, Boolean> callback) {
+    public void figura$addPreRenderingCallback(BiFunction<FiguraBufferSource, PoseStack, Boolean> callback) {
         this.figura$preRenderingCallback.add(callback);
     }
 
@@ -45,7 +45,7 @@ public class ModelPartMixin implements FiguraSubmitCallBackExtension {
     }
 
     @Override
-    public List<BiFunction<MultiBufferSource, PoseStack, Boolean>> figura$getPreRenderingCallbacks() {
+    public List<BiFunction<FiguraBufferSource, PoseStack, Boolean>> figura$getPreRenderingCallbacks() {
         return figura$preRenderingCallback;
     }
 

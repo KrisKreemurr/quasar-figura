@@ -76,7 +76,7 @@ public class EnumElement extends AbstractConfigElement {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         if (!this.isVisible()) return;
 
         // reset enabled
@@ -99,7 +99,7 @@ public class EnumElement extends AbstractConfigElement {
             button.setTooltip(tooltip.get(selectedIndex));
 
         // super render
-        super.render(gui, mouseX, mouseY, delta);
+        super.extractRenderState(gui, mouseX, mouseY, delta);
     }
 
     @Override

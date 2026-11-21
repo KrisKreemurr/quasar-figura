@@ -2,7 +2,7 @@ package org.figuramc.figura.mixin.gui;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import net.minecraft.client.gui.render.GuiRenderer;
-import net.minecraft.client.renderer.MultiBufferSource;
+import org.figuramc.figura.utils.FiguraBufferSource;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
@@ -12,5 +12,5 @@ public interface GuiRendererAccessor {
     BufferBuilder figura$getBufferBuilder();
 
     @Accessor("bufferSource")
-    MultiBufferSource.BufferSource figura$getBufferSource();
+    FiguraBufferSource figura$getBufferSource();
 }

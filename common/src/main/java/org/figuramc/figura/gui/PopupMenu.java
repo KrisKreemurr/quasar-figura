@@ -79,7 +79,7 @@ public class PopupMenu {
     private static Entity entity;
     private static UUID id;
 
-    public static void render(GuiGraphicsExtractor gui) {
+    public static void extractRenderState(GuiGraphicsExtractor gui) {
         if (!isEnabled()) return;
 
         if (entity == null) {

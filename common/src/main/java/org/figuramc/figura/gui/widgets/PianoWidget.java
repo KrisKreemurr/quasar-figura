@@ -58,7 +58,7 @@ public class PianoWidget extends AbstractContainerElement {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         this.setHovered(this.isMouseOver(mouseX, mouseY));
 
         // background
@@ -71,7 +71,7 @@ public class PianoWidget extends AbstractContainerElement {
             key.setHovered(key.isMouseOver(mouseX, mouseY));
 
         // render children
-        super.render(gui, mouseX, mouseY, delta);
+        super.extractRenderState(gui, mouseX, mouseY, delta);
 
         if (pressed && hovered != lastHovered && hovered != null)
             hovered.run();

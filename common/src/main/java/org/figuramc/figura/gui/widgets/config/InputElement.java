@@ -49,7 +49,7 @@ public class InputElement extends AbstractConfigElement {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         if (!this.isVisible()) return;
 
         // reset enabled
@@ -74,7 +74,7 @@ public class InputElement extends AbstractConfigElement {
         textField.setBorderColour(0xFF000000 + color);
 
         // super render
-        super.render(gui, mouseX, mouseY, delta);
+        super.extractRenderState(gui, mouseX, mouseY, delta);
 
         // hex colour preview
         if (inputType == InputType.HEX_COLOR) {

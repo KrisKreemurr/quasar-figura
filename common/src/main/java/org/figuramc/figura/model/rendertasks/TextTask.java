@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.renderer.MultiBufferSource;
+import org.figuramc.figura.utils.FiguraBufferSource;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.network.chat.Component;
 import org.figuramc.figura.FiguraMod;
@@ -52,7 +52,7 @@ public class TextTask extends RenderTask {
     }
 
     @Override
-    public void render(PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
+    public void render(PoseStack poseStack, FiguraBufferSource buffer, int light, int overlay) {
         if (opacity == 0) return; // lol
 
         // prepare matrices

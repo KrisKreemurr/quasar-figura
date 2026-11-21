@@ -48,7 +48,7 @@ public class SoundsList extends AbstractList {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         // background and scissors
         UIHelper.blitSliced(gui, getX(), getY(), getWidth(), getHeight(), UIHelper.OUTLINE_FILL);
         enableScissors(gui);
@@ -57,7 +57,7 @@ public class SoundsList extends AbstractList {
             updateEntries();
 
         // children
-        super.render(gui, mouseX, mouseY, delta);
+        super.extractRenderState(gui, mouseX, mouseY, delta);
 
         // reset scissor
         gui.disableScissor();
@@ -143,7 +143,7 @@ public class SoundsList extends AbstractList {
         }
 
         @Override
-        public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+        public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
             if (!this.isVisible()) return;
 
             int x = getX();
@@ -170,7 +170,7 @@ public class SoundsList extends AbstractList {
             gui.text(font, size, x + width - 96 - font.width(size), textY, UIHelper.adjustColor(0xFFFFFF));
 
             // render children
-            super.render(gui, mouseX, mouseY, delta);
+            super.extractRenderState(gui, mouseX, mouseY, delta);
         }
 
         @Override

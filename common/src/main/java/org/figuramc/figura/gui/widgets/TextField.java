@@ -46,7 +46,7 @@ public class TextField extends AbstractContainerElement {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         if (!isVisible()) return;
 
         // render background
@@ -61,7 +61,7 @@ public class TextField extends AbstractContainerElement {
             renderHint(gui);
 
         // children
-        super.render(gui, mouseX, mouseY, delta);
+        super.extractRenderState(gui, mouseX, mouseY, delta);
     }
 
     protected void renderHint(GuiGraphicsExtractor gui) {

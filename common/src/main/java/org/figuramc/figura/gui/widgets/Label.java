@@ -77,7 +77,7 @@ public class Label implements FiguraWidget, GuiEventListener, NarratableEntry {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         hovered = null;
 
         if (!isVisible())
@@ -87,7 +87,7 @@ public class Label implements FiguraWidget, GuiEventListener, NarratableEntry {
         renderText(gui, mouseX, mouseY, delta);
     }
 
-    private void renderBackground(GuiGraphicsExtractor gui) {
+    private void extractBackground(GuiGraphicsExtractor gui) {
         if (backgroundColor == null)
             return;
 

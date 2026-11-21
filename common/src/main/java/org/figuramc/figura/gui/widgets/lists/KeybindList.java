@@ -42,7 +42,7 @@ public class KeybindList extends AbstractList {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         // background and scissors
         UIHelper.blitSliced(gui, getX(), getY(), getWidth(), getHeight(), UIHelper.OUTLINE_FILL);
         enableScissors(gui);
@@ -51,7 +51,7 @@ public class KeybindList extends AbstractList {
             updateEntries();
 
         // children
-        super.render(gui, mouseX, mouseY, delta);
+        super.extractRenderState(gui, mouseX, mouseY, delta);
 
         // reset scissor
         gui.disableScissor();
@@ -146,7 +146,7 @@ public class KeybindList extends AbstractList {
         }
 
         @Override
-        public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+        public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
             if (!this.isVisible()) return;
 
             helper.renderConflictBars(gui, keybindButton.getX() - 8, keybindButton.getY() + 2, 4, 16);
@@ -167,7 +167,7 @@ public class KeybindList extends AbstractList {
             gui.text(font, this.keybind.getName(), getX() + 16, textY, UIHelper.adjustColor(0xFFFFFF));
 
             // render children
-            super.render(gui, mouseX, mouseY, delta);
+            super.extractRenderState(gui, mouseX, mouseY, delta);
         }
 
         @Override

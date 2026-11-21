@@ -1,12 +1,12 @@
 package org.figuramc.figura.gui;
 
 import net.minecraft.client.gui.render.pip.GuiEntityRenderer;
-import net.minecraft.client.renderer.MultiBufferSource;
+import org.figuramc.figura.utils.FiguraBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 
 public class FiguraGuiEntityRenderer extends GuiEntityRenderer {
 
-    public FiguraGuiEntityRenderer(MultiBufferSource.BufferSource bufferSource, EntityRenderDispatcher entityRenderDispatcher) {
+    public FiguraGuiEntityRenderer(FiguraBufferSource bufferSource, EntityRenderDispatcher entityRenderDispatcher) {
         super(bufferSource, entityRenderDispatcher);
     }
 

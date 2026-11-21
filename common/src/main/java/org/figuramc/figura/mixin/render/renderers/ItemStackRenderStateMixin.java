@@ -1,11 +1,11 @@
 package org.figuramc.figura.mixin.render.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.MultiBufferSource;
+import org.figuramc.figura.utils.FiguraBufferSource;
 import net.minecraft.client.resources.model.geometry.BakedQuad;
 import net.minecraft.client.resources.model.cuboid.ItemTransform;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.MultiBufferSource;
+import org.figuramc.figura.utils.FiguraBufferSource;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.resources.model.geometry.BakedQuad;
 import net.minecraft.client.resources.model.cuboid.ItemTransform;
@@ -40,7 +40,7 @@ public class ItemStackRenderStateMixin implements FiguraItemStackRenderStateExte
     @Unique
     ItemStack figura$itemStack;
     @Unique
-    private final List<BiFunction<MultiBufferSource, PoseStack, Boolean>> figura$preRenderingCallback = new ArrayList<>();
+    private final List<BiFunction<FiguraBufferSource, PoseStack, Boolean>> figura$preRenderingCallback = new ArrayList<>();
     @Unique
     private final List<Runnable> figura$postRenderingCallback = new ArrayList<>();
 
@@ -83,7 +83,7 @@ public class ItemStackRenderStateMixin implements FiguraItemStackRenderStateExte
     }
 
     @Override
-    public void figura$addPreRenderingCallback(BiFunction<MultiBufferSource, PoseStack, Boolean> callback) {
+    public void figura$addPreRenderingCallback(BiFunction<FiguraBufferSource, PoseStack, Boolean> callback) {
         this.figura$preRenderingCallback.add(callback);
     }
 
@@ -98,7 +98,7 @@ public class ItemStackRenderStateMixin implements FiguraItemStackRenderStateExte
     }
 
     @Override
-    public List<BiFunction<MultiBufferSource, PoseStack, Boolean>> figura$getPreRenderingCallbacks() {
+    public List<BiFunction<FiguraBufferSource, PoseStack, Boolean>> figura$getPreRenderingCallbacks() {
         return figura$preRenderingCallback;
     }
 

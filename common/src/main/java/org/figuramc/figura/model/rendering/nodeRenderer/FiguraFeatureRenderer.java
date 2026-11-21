@@ -1,7 +1,7 @@
 package org.figuramc.figura.model.rendering.nodeRenderer;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.renderer.MultiBufferSource;
+import org.figuramc.figura.utils.FiguraBufferSource;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.SubmitNodeCollection;
 import net.minecraft.client.renderer.SubmitNodeStorage;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class FiguraFeatureRenderer {
-    public void render(SubmitNodeCollection submitNodeCollection, MultiBufferSource.BufferSource bufferSource) {
+    public void render(SubmitNodeCollection submitNodeCollection, FiguraBufferSource bufferSource) {
         List<FiguraSubmission> figuraSubmissions = ((NodeCollectorExtension) submitNodeCollection).getFiguraSubmissions();
 
         for (int i = 0; i < figuraSubmissions.size(); i++) {

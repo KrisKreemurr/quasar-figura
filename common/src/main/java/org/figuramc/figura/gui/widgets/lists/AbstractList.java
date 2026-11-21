@@ -44,10 +44,10 @@ public abstract class AbstractList extends AbstractContainerElement {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         for (GuiEventListener child : children) {
             if (child instanceof Renderable widget && !contents().contains(child))
-                widget.render(gui, mouseX, mouseY, delta);
+                widget.extractRenderState(gui, mouseX, mouseY, delta);
         }
     }
 

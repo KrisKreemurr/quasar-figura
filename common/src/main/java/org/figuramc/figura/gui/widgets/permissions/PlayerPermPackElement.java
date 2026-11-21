@@ -100,7 +100,7 @@ public class PlayerPermPackElement extends AbstractPermPackElement {
         int oY = getY();
         setX(mouseX - (anchorX - oX));
         setY(mouseY - (anchorY - oY) + (initialY - oY));
-        super.render(gui, mouseX, mouseY, delta);
+        super.extractRenderState(gui, mouseX, mouseY, delta);
         setX(oX);
         setY(oY);
     }
@@ -191,14 +191,14 @@ public class PlayerPermPackElement extends AbstractPermPackElement {
             nameLabel.setX(x + 40);
             nameLabel.setY(y + 4);
             // nameLabel.setOutlineColor(ColorUtils.rgbToInt(ColorUtils.rainbow(2, 1, 0.5)) + ((int) (0.5f * 0xFF) << 24));
-            nameLabel.render(gui, mouseX, mouseY, delta);
+            nameLabel.extractRenderState(gui, mouseX, mouseY, delta);
 
             // status
             if (avatar != null && avatar.nbt != null) {
                 status.tick(); // yes I know
                 status.setX(x + 40);
                 status.setY(y + 6 + font.lineHeight);
-                status.render(gui, mouseX, mouseY, delta);
+                status.extractRenderState(gui, mouseX, mouseY, delta);
             }
 
             // category

@@ -107,7 +107,7 @@ public class HelpScreen extends AbstractPanelScreen {
         }
 
         @Override
-        public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+        public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
             int x = getRawX();
             int y = getRawY();
 
@@ -124,7 +124,7 @@ public class HelpScreen extends AbstractPanelScreen {
             gui.fill(x0, y0, x1, y1, 0xFFFFFFFF);
 
             // text
-            super.render(gui, mouseX, mouseY, delta);
+            super.extractRenderState(gui, mouseX, mouseY, delta);
         }
     }
 }

@@ -66,7 +66,7 @@ public class AvatarFolderWidget extends AbstractAvatarWidget {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         if (!isVisible() || !this.button.isVisible())
             return;
 
@@ -77,12 +77,12 @@ public class AvatarFolderWidget extends AbstractAvatarWidget {
             for (AbstractAvatarWidget value : entries.values())
                 value.button.setVisible(value.getY() < y1 && value.getY() + value.getHeight() > y0);
 
-            super.render(gui, mouseX, mouseY, delta);
+            super.extractRenderState(gui, mouseX, mouseY, delta);
 
             for (AbstractAvatarWidget value : entries.values())
                 value.button.setVisible(true);
         } else {
-            super.render(gui, mouseX, mouseY, delta);
+            super.extractRenderState(gui, mouseX, mouseY, delta);
         }
     }
 

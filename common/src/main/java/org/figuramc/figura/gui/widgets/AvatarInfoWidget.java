@@ -77,7 +77,7 @@ public class AvatarInfoWidget implements FiguraWidget, FiguraTickable, GuiEventL
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         if (!visible) return;
 
         // prepare vars

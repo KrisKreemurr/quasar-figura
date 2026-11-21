@@ -149,14 +149,14 @@ public class GameScreen extends AbstractPanelScreen {
         }
 
         @Override
-        public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+        public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
             Matrix3x2fStack pose = gui.pose();
             pose.pushMatrix();
             pose.scale(scale, scale);
 
             for (Cell[] cells : grid) {
                 for (Cell cell : cells) {
-                    cell.render(gui);
+                    cell.extractRenderState(gui);
                 }
             }
 
@@ -189,7 +189,7 @@ public class GameScreen extends AbstractPanelScreen {
             this.future = RULES[this.alive][neigh];
         }
 
-        private void render(GuiGraphicsExtractor gui) {
+        private void extractRenderState(GuiGraphicsExtractor gui) {
             this.alive = this.future;
             if (this.alive == 1)
                 gui.fill(this.x, this.y, this.x + 1, this.y + 1, color);

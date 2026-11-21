@@ -6,7 +6,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.debug.DebugScreenEntries;
 import net.minecraft.client.gui.components.debug.DebugScreenEntryStatus;
-import net.minecraft.client.renderer.MultiBufferSource;
+import org.figuramc.figura.utils.FiguraBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
@@ -47,7 +47,7 @@ public class EntityTask extends RenderTask {
     }
 
     @Override
-    public void render(PoseStack stack, MultiBufferSource buffer, int light, int overlay) {
+    public void render(PoseStack stack, FiguraBufferSource buffer, int light, int overlay) {
         stack.scale(16, 16, 16);
 
         if (entity != null) {

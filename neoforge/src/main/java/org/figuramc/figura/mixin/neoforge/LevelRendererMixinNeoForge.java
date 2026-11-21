@@ -1,5 +1,7 @@
 package org.figuramc.figura.mixin.neoforge;
 
+import org.figuramc.figura.utils.FiguraBufferSource;
+
 import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.resource.ResourceHandle;
@@ -55,7 +57,7 @@ public class LevelRendererMixinNeoForge {
 
         LivingEntityRenderState state = entityRenderer.createRenderState(livingEntity, deltaTracker.getGameTimeDeltaPartialTick(Minecraft.getInstance().level.tickRateManager().isEntityFrozen(e)));
         // first person world parts
-        MultiBufferSource.BufferSource bufferSource = this.renderBuffers.bufferSource();
+        FiguraBufferSource bufferSource = this.renderBuffers.bufferSource();
         avatar.firstPersonWorldRender(e, bufferSource, stack, camera, tickDelta);
 
         // first person matrices
@@ -87,7 +89,7 @@ public class LevelRendererMixinNeoForge {
     }
 
 
-    @Inject(method =  {"lambda$addMainPass$2"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/RenderBuffers;bufferSource()Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;"))
+    @Inject(method =  {"lambda$addMainPass$2"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/RenderBuffers;bufferSource()Lnet/minecraft/client/renderer/FiguraBufferSource$BufferSource;"))
     public void applyFiguraNormals(FogParameters fogParameters, DeltaTracker tracker, Camera camera, ProfilerFiller profiler, Matrix4f matrix4f, Matrix4f matrix4f2, ResourceHandle resourceHandle, ResourceHandle resourceHandle2, ResourceHandle resourceHandle3, ResourceHandle resourceHandle4, Frustum frustum, boolean bl, ResourceHandle resourceHandle5, CallbackInfo ci, @Local PoseStack poseStack) {
         Avatar avatar = AvatarManager.getAvatar(this.minecraft.getCameraEntity() == null ? this.minecraft.player : this.minecraft.getCameraEntity());
         if (!RenderUtils.vanillaModelAndScript(avatar)) return;

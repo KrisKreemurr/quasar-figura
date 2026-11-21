@@ -28,7 +28,7 @@ public class FiguraGui {
 
         // render popup menu below everything, as if it were in the world
         FiguraMod.pushProfiler("popupMenu");
-        PopupMenu.render(guiGraphics);
+        PopupMenu.extractRenderState(guiGraphics);
         FiguraMod.popProfiler();
 
         // get avatar
@@ -76,11 +76,11 @@ public class FiguraGui {
 
         // render paperdoll
         FiguraMod.pushProfiler("paperdoll");
-        PaperDoll.render(guiGraphics, false);
+        PaperDoll.extractRenderState(guiGraphics, false);
 
         // render wheel
         FiguraMod.popPushProfiler("actionWheel");
-        ActionWheel.render(guiGraphics);
+        ActionWheel.extractRenderState(guiGraphics);
 
         FiguraMod.popProfiler(2);
     }

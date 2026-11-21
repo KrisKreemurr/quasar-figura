@@ -40,7 +40,7 @@ public abstract class AbstractConfigElement extends AbstractContainerElement {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         if (!this.isVisible()) return;
 
         // vars
@@ -55,7 +55,7 @@ public abstract class AbstractConfigElement extends AbstractContainerElement {
         renderTitle(gui, font, textY);
 
         // render children
-        super.render(gui, mouseX, mouseY, delta);
+        super.extractRenderState(gui, mouseX, mouseY, delta);
     }
 
     public void renderTitle(GuiGraphicsExtractor gui, Font font, int y) {

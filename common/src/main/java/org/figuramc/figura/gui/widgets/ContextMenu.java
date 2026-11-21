@@ -44,7 +44,7 @@ public class ContextMenu extends AbstractContainerElement {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         if (!isVisible()) return;
 
         // outline
@@ -63,7 +63,7 @@ public class ContextMenu extends AbstractContainerElement {
         }
 
         if (nestedContext != null) {
-            nestedContext.render(gui, mouseX, mouseY, delta);
+            nestedContext.extractRenderState(gui, mouseX, mouseY, delta);
             if (nestedContext.parent instanceof Button button)
                 button.setHovered(true);
         }

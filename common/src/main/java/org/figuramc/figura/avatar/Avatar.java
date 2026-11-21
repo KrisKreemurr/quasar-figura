@@ -14,7 +14,7 @@ import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.player.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.LightCoordsUtil;
-import net.minecraft.client.renderer.MultiBufferSource;
+import org.figuramc.figura.utils.FiguraBufferSource;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;
@@ -540,7 +540,7 @@ public class Avatar {
         complexity.remaining = prev;
     }
 
-    public void render(Entity entity, float yaw, float delta, float alpha, PoseStack stack, MultiBufferSource bufferSource, int light, int overlay, EntityModel<?> entityModel, PartFilterScheme filter, boolean translucent, boolean glowing) {
+    public void render(Entity entity, float yaw, float delta, float alpha, PoseStack stack, FiguraBufferSource bufferSource, int light, int overlay, EntityModel<?> entityModel, PartFilterScheme filter, boolean translucent, boolean glowing) {
         if (renderer == null || !loaded)
             return;
 
@@ -557,7 +557,7 @@ public class Avatar {
         render();
     }
 
-    public synchronized void worldRender(Entity entity, double camX, double camY, double camZ, PoseStack stack, MultiBufferSource bufferSource, int lightFallback, float tickDelta, EntityRenderMode mode) {
+    public synchronized void worldRender(Entity entity, double camX, double camY, double camZ, PoseStack stack, FiguraBufferSource bufferSource, int lightFallback, float tickDelta, EntityRenderMode mode) {
         if (renderer == null || !loaded)
             return;
 
@@ -582,7 +582,7 @@ public class Avatar {
         renderer.updateLight = false;
     }
 
-    public void capeRender(Entity entity, MultiBufferSource bufferSource, PoseStack stack, int light, float tickDelta, ModelPart cloak) {
+    public void capeRender(Entity entity, FiguraBufferSource bufferSource, PoseStack stack, int light, float tickDelta, ModelPart cloak) {
         if (renderer == null || !loaded)
             return;
 
@@ -604,7 +604,7 @@ public class Avatar {
         FiguraMod.popProfiler(3);
     }
 
-    public void elytraRender(Entity entity, MultiBufferSource bufferSource, PoseStack stack, int light, float tickDelta, EntityModel<?> model) {
+    public void elytraRender(Entity entity, FiguraBufferSource bufferSource, PoseStack stack, int light, float tickDelta, EntityModel<?> model) {
         if (renderer == null || !loaded)
             return;
 
@@ -634,7 +634,7 @@ public class Avatar {
         FiguraMod.popProfiler(4);
     }
 
-    public void firstPersonWorldRender(Entity watcher, MultiBufferSource bufferSource, PoseStack matrices, Camera camera, float tickDelta) {
+    public void firstPersonWorldRender(Entity watcher, FiguraBufferSource bufferSource, PoseStack matrices, Camera camera, float tickDelta) {
         if (renderer == null || !loaded)
             return;
 
@@ -650,7 +650,7 @@ public class Avatar {
         FiguraMod.popProfiler(3);
     }
 
-    public void firstPersonRender(PoseStack stack, MultiBufferSource bufferSource, Player player, PlayerModel playerModel, ModelPart arm, int light, float tickDelta) {
+    public void firstPersonRender(PoseStack stack, FiguraBufferSource bufferSource, Player player, PlayerModel playerModel, ModelPart arm, int light, float tickDelta) {
         if (renderer == null || !loaded)
             return;
 
@@ -682,7 +682,7 @@ public class Avatar {
         FiguraMod.popProfiler(4);
     }
 
-    public void hudRender(PoseStack stack, MultiBufferSource bufferSource, Entity entity, float tickDelta) {
+    public void hudRender(PoseStack stack, FiguraBufferSource bufferSource, Entity entity, float tickDelta) {
         if (renderer == null || !loaded)
             return;
 
@@ -705,7 +705,7 @@ public class Avatar {
         );
 
         if (renderer.renderSpecialParts() > 0)
-            ((MultiBufferSource.BufferSource) renderer.bufferSource).endBatch();
+            ((FiguraBufferSource) renderer.bufferSource).endBatch();
 
         GlStateManager._enableDepthTest();
         Minecraft.getInstance().gameRenderer.getLighting().setupFor(Lighting.Entry.ITEMS_3D);
@@ -714,7 +714,7 @@ public class Avatar {
         FiguraMod.popProfiler(2);
     }
 
-    public boolean skullRender(PoseStack stack, MultiBufferSource bufferSource, int light, Direction direction, float yaw) {
+    public boolean skullRender(PoseStack stack, FiguraBufferSource bufferSource, int light, Direction direction, float yaw) {
         if (renderer == null || !loaded || !renderer.interceptRendersIntoFigura)
             return false;
 
@@ -747,7 +747,7 @@ public class Avatar {
         return bool;
     }
 
-    public boolean headRender(PoseStack stack, MultiBufferSource bufferSource, int light, boolean useComplexity) {
+    public boolean headRender(PoseStack stack, FiguraBufferSource bufferSource, int light, boolean useComplexity) {
         if (renderer == null || !loaded)
             return false;
 
@@ -817,7 +817,7 @@ public class Avatar {
         return true;
     }
 
-    public boolean renderHeadForPortrait(MultiBufferSource.BufferSource buffer, PoseStack stack, int light, float modelScale, boolean upsideDown) {
+    public boolean renderHeadForPortrait(FiguraBufferSource buffer, PoseStack stack, int light, float modelScale, boolean upsideDown) {
         stack.pushPose();
         stack.scale(2, 2, 2); // i have no clue why it's exactly 2x smaller than it should be
         //stack.scale(modelScale, modelScale * (upsideDown ? 1 : -1), modelScale);
@@ -847,7 +847,7 @@ public class Avatar {
         return ret;
     }
 
-    public boolean renderArrow(PoseStack stack, MultiBufferSource bufferSource, float delta, int light) {
+    public boolean renderArrow(PoseStack stack, FiguraBufferSource bufferSource, float delta, int light) {
         if (renderer == null || !loaded)
             return false;
 
@@ -869,7 +869,7 @@ public class Avatar {
         return comp > 0;
     }
 
-    public boolean renderTrident(PoseStack stack, MultiBufferSource bufferSource, float delta, int light) {
+    public boolean renderTrident(PoseStack stack, FiguraBufferSource bufferSource, float delta, int light) {
         if (renderer == null || !loaded)
             return false;
 
@@ -895,7 +895,7 @@ public class Avatar {
         return renderer != null && loaded && modelPart.parentType == ParentType.Item;
     }
 
-    public boolean renderItem(PoseStack stack, MultiBufferSource bufferSource, FiguraModelPart part, int light, int overlay) {
+    public boolean renderItem(PoseStack stack, FiguraBufferSource bufferSource, FiguraModelPart part, int light, int overlay) {
         if (!isItemPart(part))
             return false;
 

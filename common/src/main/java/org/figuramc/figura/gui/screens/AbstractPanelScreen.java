@@ -81,15 +81,15 @@ public abstract class AbstractPanelScreen extends Screen {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         // setup figura framebuffer
         // UIHelper.useFiguraGuiFramebuffer();
 
         // render background
-        this.renderBackground(gui, delta);
+        this.extractBackground(gui, delta);
 
         // render contents
-        super.render(gui, mouseX, mouseY, delta);
+        super.extractRenderState(gui, mouseX, mouseY, delta);
 
         // render overlays
         this.renderOverlays(gui, mouseX, mouseY, delta);
@@ -98,7 +98,7 @@ public abstract class AbstractPanelScreen extends Screen {
         // UIHelper.useVanillaFramebuffer();
     }
 
-    public void renderBackground(GuiGraphicsExtractor gui, float delta) {
+    public void extractBackground(GuiGraphicsExtractor gui, float delta) {
         // render
         float speed = Configs.BACKGROUND_SCROLL_SPEED.tempValue * 0.125f;
         for (Identifier background : BACKGROUNDS) {
@@ -120,7 +120,7 @@ public abstract class AbstractPanelScreen extends Screen {
             pose.pushMatrix();
 //            pose.translate(0f, 0f, 500f);
             gui.nextStratum();
-            contextMenu.render(gui, mouseX, mouseY, delta);
+            contextMenu.extractRenderState(gui, mouseX, mouseY, delta);
             pose.popMatrix();
         }
 

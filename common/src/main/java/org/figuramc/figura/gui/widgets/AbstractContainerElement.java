@@ -41,10 +41,10 @@ public abstract class AbstractContainerElement extends AbstractContainerEventHan
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         for (GuiEventListener listener : this.children) {
             if (listener instanceof Renderable widget)
-                widget.render(gui, mouseX, mouseY, delta);
+                widget.extractRenderState(gui, mouseX, mouseY, delta);
         }
     }
 

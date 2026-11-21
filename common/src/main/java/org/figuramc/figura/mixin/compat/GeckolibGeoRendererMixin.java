@@ -1,5 +1,7 @@
 package org.figuramc.figura.mixin.compat;
 
+import org.figuramc.figura.utils.FiguraBufferSource;
+
 import org.spongepowered.asm.mixin.*;
 import software.bernie.geckolib.renderer.base.GeoRenderState;
 import software.bernie.geckolib.renderer.base.GeoRenderer;
@@ -10,7 +12,7 @@ import software.bernie.geckolib.renderer.base.GeoRenderer;
 public interface GeckolibGeoRendererMixin<R extends GeoRenderState> {
 
 /*    @Shadow
-    void renderRecursively(R renderState, PoseStack poseStack, GeoBone bone, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, int packedLight, int packedOverlay, int renderColor);
+    void renderRecursively(R renderState, PoseStack poseStack, GeoBone bone, RenderType renderType, FiguraBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, int packedLight, int packedOverlay, int renderColor);
 */
     /**
      * @author UnlikePaladin
@@ -18,7 +20,7 @@ public interface GeckolibGeoRendererMixin<R extends GeoRenderState> {
      *  The functionality is the same as geckolib's but calls our pivots first
      */
   /*  @Overwrite
-    default void actuallyRender(R renderState, PoseStack poseStack, BakedGeoModel model, @Nullable RenderType renderType, MultiBufferSource bufferSource, @Nullable VertexConsumer buffer, boolean isReRender, int packedLight, int packedOverlay, int renderColor) {
+    default void actuallyRender(R renderState, PoseStack poseStack, BakedGeoModel model, @Nullable RenderType renderType, FiguraBufferSource bufferSource, @Nullable VertexConsumer buffer, boolean isReRender, int packedLight, int packedOverlay, int renderColor) {
         if (buffer == null) {
             if (renderType == null)
                 return;
@@ -37,7 +39,7 @@ public interface GeckolibGeoRendererMixin<R extends GeoRenderState> {
     }
 
     @Unique
-    default <T extends HumanoidRenderState & GeoRenderState> void figura$renderPivots(R ogState, PoseStack poseStack, BakedGeoModel bakedGeoModel, RenderType renderType, MultiBufferSource multiBufferSource, VertexConsumer vertexConsumer, boolean isReRender, int packedLight, int packedOverlay, int color, CallbackInfo ci){
+    default <T extends HumanoidRenderState & GeoRenderState> void figura$renderPivots(R ogState, PoseStack poseStack, BakedGeoModel bakedGeoModel, RenderType renderType, FiguraBufferSource multiBufferSource, VertexConsumer vertexConsumer, boolean isReRender, int packedLight, int packedOverlay, int color, CallbackInfo ci){
         boolean allFailed = true;
         // If the renderer is an armor renderer and the avatar is not null
         if (this instanceof GeoArmorRenderer && ((GeckolibGeoArmorAccessor) this).figura$getAvatar() != null) {
@@ -93,7 +95,7 @@ public interface GeckolibGeoRendererMixin<R extends GeoRenderState> {
 
     // Returns true if the pivot failed to render, false if it was successful to match HumanoidArmorLayerMixin
     @Unique
-    default <T extends HumanoidRenderState & GeoRenderState> boolean figura$renderPivot(R renderState, GeoArmorRenderer armorRenderer, Avatar avatar, ParentType parentType, GeoBone geoBone, RenderType renderType, MultiBufferSource multiBufferSource, VertexConsumer vertexConsumer, boolean isReRender, int packedLight, int packedOverlay, int color) {
+    default <T extends HumanoidRenderState & GeoRenderState> boolean figura$renderPivot(R renderState, GeoArmorRenderer armorRenderer, Avatar avatar, ParentType parentType, GeoBone geoBone, RenderType renderType, FiguraBufferSource multiBufferSource, VertexConsumer vertexConsumer, boolean isReRender, int packedLight, int packedOverlay, int color) {
         if (geoBone == null)
             return true;
 

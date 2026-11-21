@@ -43,7 +43,7 @@ public class ParticleWidget implements FiguraWidget, FiguraTickable, FiguraRemov
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         if (!visible || removed)
             return;
 

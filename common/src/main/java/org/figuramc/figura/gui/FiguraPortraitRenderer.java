@@ -15,7 +15,7 @@ import net.minecraft.client.renderer.state.gui.BlitRenderState;
 import net.minecraft.client.renderer.state.gui.GuiRenderState;
 import net.minecraft.client.renderer.CachedOrthoProjectionMatrixBuffer;
 import net.minecraft.util.LightCoordsUtil;
-import net.minecraft.client.renderer.MultiBufferSource;
+import org.figuramc.figura.utils.FiguraBufferSource;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
 import org.figuramc.figura.avatar.Avatar;
@@ -34,7 +34,7 @@ public class FiguraPortraitRenderer extends PictureInPictureRenderer<FiguraPortr
     );
     Map<Avatar, TextureEntry> avatarToTexture = new HashMap<>();
     private boolean renderSkin;
-    public FiguraPortraitRenderer(MultiBufferSource.BufferSource bufferSource) {
+    public FiguraPortraitRenderer(FiguraBufferSource bufferSource) {
         super(bufferSource);
     }
 

@@ -16,7 +16,7 @@ public class PaperDoll {
 
     private static Long lastActivityTime = 0L;
 
-    public static void render(GuiGraphicsExtractor gui, boolean force) {
+    public static void extractRenderState(GuiGraphicsExtractor gui, boolean force) {
         Minecraft minecraft = Minecraft.getInstance();
         LivingEntity entity = minecraft.getCameraEntity() instanceof LivingEntity e ? e : null;
         Avatar avatar;

@@ -41,14 +41,14 @@ public class KeybindElement extends AbstractConfigElement {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         if (!this.isVisible()) return;
 
         // reset enabled
         helper.renderConflictBars(gui, button.getX() - 8, button.getY() + 2, 4, 16);
 
         // super render
-        super.render(gui, mouseX, mouseY, delta);
+        super.extractRenderState(gui, mouseX, mouseY, delta);
     }
 
     @Override

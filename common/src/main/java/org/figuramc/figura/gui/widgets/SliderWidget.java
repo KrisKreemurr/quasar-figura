@@ -78,7 +78,7 @@ public class SliderWidget extends ScrollBarWidget {
     }
 
     @Override
-    public void renderWidget(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractWidgetRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         // set hovered
         this.isHovered = this.isMouseOver(mouseX, mouseY);
 

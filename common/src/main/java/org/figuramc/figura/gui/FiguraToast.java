@@ -43,7 +43,7 @@ public class FiguraToast implements Toast {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, Font font, long startTime) {
+    public void extractRenderState(GuiGraphicsExtractor gui, Font font, long startTime) {
         int titleTime = Math.round(Configs.TOAST_TITLE_TIME.value * 1000);
 
         long timeDiff = startTime - this.startTime;

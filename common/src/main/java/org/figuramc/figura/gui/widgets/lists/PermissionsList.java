@@ -38,7 +38,7 @@ public class PermissionsList extends AbstractList {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         int x = getX();
         int y = getY();
         int width = getWidth();
@@ -86,7 +86,7 @@ public class PermissionsList extends AbstractList {
         }
 
         // render children
-        super.render(gui, mouseX, mouseY, delta);
+        super.extractRenderState(gui, mouseX, mouseY, delta);
 
         // reset scissor
         gui.disableScissor();
@@ -170,14 +170,14 @@ public class PermissionsList extends AbstractList {
         }
 
         @Override
-        public void renderWidget(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+        public void extractWidgetRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
             Matrix3x2fStack pose = gui.pose();
             Font font = Minecraft.getInstance().font;
 
             // button
             pose.pushMatrix();
             pose.translate(0f, font.lineHeight);
-            super.renderWidget(gui, mouseX, mouseY, delta);
+            super.extractWidgetRenderState(gui, mouseX, mouseY, delta);
             pose.popMatrix();
 
             // texts
@@ -351,7 +351,7 @@ public class PermissionsList extends AbstractList {
         }
 
         @Override
-        public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+        public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
             Font font = Minecraft.getInstance().font;
 
             // text colour
@@ -373,7 +373,7 @@ public class PermissionsList extends AbstractList {
             setBorderColour(0xFF000000 + color);
 
             // field
-            super.render(gui, mouseX, mouseY, delta);
+            super.extractRenderState(gui, mouseX, mouseY, delta);
 
             // texts
             MutableComponent name = Component.translatable(this.text);

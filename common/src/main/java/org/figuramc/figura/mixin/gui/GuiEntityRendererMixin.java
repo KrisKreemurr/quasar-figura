@@ -8,7 +8,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.render.pip.GuiEntityRenderer;
 import net.minecraft.client.gui.render.pip.PictureInPictureRenderer;
 import net.minecraft.client.renderer.state.gui.pip.GuiEntityRenderState;
-import net.minecraft.client.renderer.MultiBufferSource;
+import org.figuramc.figura.utils.FiguraBufferSource;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;
@@ -31,7 +31,7 @@ public abstract class GuiEntityRendererMixin extends PictureInPictureRenderer<Gu
 
     @Shadow @Final private EntityRenderDispatcher entityRenderDispatcher;
 
-    protected GuiEntityRendererMixin(MultiBufferSource.BufferSource bufferSource) {
+    protected GuiEntityRendererMixin(FiguraBufferSource bufferSource) {
         super(bufferSource);
     }
 

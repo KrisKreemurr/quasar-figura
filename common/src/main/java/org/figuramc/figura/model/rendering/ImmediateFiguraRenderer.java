@@ -1,5 +1,7 @@
 package org.figuramc.figura.model.rendering;
 
+import org.figuramc.figura.utils.FiguraBufferSource;
+
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
@@ -191,7 +193,7 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
             VERTEX_BUFFER.consume(false, bufferSource);
             FiguraMod.popProfiler(2);
 
-            if (bufferSource instanceof MultiBufferSource.BufferSource bs) {
+            if (bufferSource instanceof FiguraBufferSource bs) {
                 bs.endLastBatch();
             }
 
@@ -473,7 +475,7 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
                 boxSize, boxSize, boxSize,
                 (float) color.x, (float) color.y, (float) color.z, 1f);
 
-        if (bufferSource instanceof MultiBufferSource.BufferSource bs) {
+        if (bufferSource instanceof FiguraBufferSource bs) {
             bs.endBatch(RenderTypes.lines());
         }
     }
@@ -717,7 +719,7 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
             list.add(consumer);
         }
 
-        public void consume(boolean primary, MultiBufferSource bufferSource) {
+        public void consume(boolean primary, FiguraBufferSource bufferSource) {
             HashMap<RenderType, List<Consumer<VertexConsumer>>> map = primary ? primaryBuffers : secondaryBuffers;
             for (Map.Entry<RenderType, List<Consumer<VertexConsumer>>> entry : map.entrySet()) {
                 RenderType renderType = entry.getKey();
@@ -726,7 +728,7 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
                 for (Consumer<VertexConsumer> consumer : consumers)
                     consumer.accept(vertexConsumer);
 
-                if (bufferSource instanceof MultiBufferSource.BufferSource bs) {
+                if (bufferSource instanceof FiguraBufferSource bs) {
                     if (renderType == RenderTypes.lines() || renderType == RenderTypes.linesTranslucent() || renderType == FiguraRenderTypes.FiguraRenderType.SOLID) {
                         bs.endBatch(renderType);
                     }

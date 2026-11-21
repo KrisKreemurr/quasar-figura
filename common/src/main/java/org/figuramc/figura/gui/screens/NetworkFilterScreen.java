@@ -32,8 +32,8 @@ public class NetworkFilterScreen extends AbstractPanelScreen {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
-        super.render(gui, mouseX, mouseY, delta);
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+        super.extractRenderState(gui, mouseX, mouseY, delta);
     }
 
     @Override

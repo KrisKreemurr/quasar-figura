@@ -51,7 +51,7 @@ public class ActionWheel {
     private static int x, y;
     private static double mouseX, mouseY;
 
-    public static void render(GuiGraphicsExtractor gui) {
+    public static void extractRenderState(GuiGraphicsExtractor gui) {
         if (!isEnabled()) return;
 
         minecraft = Minecraft.getInstance();
@@ -122,8 +122,8 @@ public class ActionWheel {
     private static void renderEmpty(GuiGraphicsExtractor gui, boolean avatar) {
         // render empty wheel
         TextureData data = OverlayTexture.values()[0].data[0];
-        data.render(gui, null, false);
-        data.render(gui, null, true);
+        data.extractRenderState(gui, null, false);
+        data.extractRenderState(gui, null, true);
 
         gui.pose().popMatrix(); // previous stack
 
@@ -468,7 +468,7 @@ public class ActionWheel {
             this(u, v, 0);
         }
 
-        public void render(GuiGraphicsExtractor gui, FiguraVec3 color, boolean left) {
+        public void extractRenderState(GuiGraphicsExtractor gui, FiguraVec3 color, boolean left) {
             Matrix3x2fStack pose = gui.pose();
             pose.pushMatrix();
             pose.rotate((rotation + (left ? 180 : 0)) * (float) (Math.PI / 180.0));

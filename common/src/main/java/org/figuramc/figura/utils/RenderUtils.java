@@ -8,7 +8,7 @@ import net.minecraft.client.model.player.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.player.AbstractClientPlayer;
-import net.minecraft.client.renderer.MultiBufferSource;
+import org.figuramc.figura.utils.FiguraBufferSource;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.SubmitNodeStorage;
@@ -168,7 +168,7 @@ public class RenderUtils {
 
 
     static PoseStack dummyPoseStack = new PoseStack();
-    public static void createDummySubmission(BitSet selection, SubmitNodeCollector submitNodeStorage, BiFunction<MultiBufferSource, PoseStack, Boolean> preRender, Runnable postRender) {
+    public static void createDummySubmission(BitSet selection, SubmitNodeCollector submitNodeStorage, BiFunction<FiguraBufferSource, PoseStack, Boolean> preRender, Runnable postRender) {
         // otherwise something is very wrong and this will cause out of bounds exceptions and other bad things
         assert (selection.size() >= 3);
 

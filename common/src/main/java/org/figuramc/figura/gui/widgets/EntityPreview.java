@@ -77,7 +77,7 @@ public class EntityPreview extends AbstractContainerElement {
     }
 
     @Override
-    public void render(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         if (!this.isVisible())
             return;
 
@@ -112,7 +112,7 @@ public class EntityPreview extends AbstractContainerElement {
 
         gui.disableScissor();
 
-        super.render(gui, mouseX, mouseY, delta);
+        super.extractRenderState(gui, mouseX, mouseY, delta);
     }
 
     @Override

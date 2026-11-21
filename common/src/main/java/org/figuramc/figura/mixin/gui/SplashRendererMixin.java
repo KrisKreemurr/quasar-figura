@@ -20,7 +20,7 @@ public class SplashRendererMixin {
     private static GuiGraphicsExtractor gui;
 
     @Inject(at = @At("HEAD"), method = "render")
-    private void render(GuiGraphicsExtractor graphics, int i, Font textRenderer, float j, CallbackInfo ci) {
+    private void extractRenderState(GuiGraphicsExtractor graphics, int i, Font textRenderer, float j, CallbackInfo ci) {
         gui = graphics;
     }
 

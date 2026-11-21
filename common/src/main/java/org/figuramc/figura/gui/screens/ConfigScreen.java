@@ -93,7 +93,7 @@ public class ConfigScreen extends AbstractPanelScreen {
     public void renderOverlays(GuiGraphicsExtractor gui, int mouseX, int mouseY, float delta) {
         super.renderOverlays(gui, mouseX, mouseY, delta);
         if (renderPaperdoll)
-            UIHelper.renderWithoutScissors(gui, g -> PaperDoll.render(g, true));
+            UIHelper.renderWithoutScissors(gui, g -> PaperDoll.extractRenderState(g, true));
     }
 
     @Override

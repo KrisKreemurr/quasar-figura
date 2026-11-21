@@ -1,5 +1,7 @@
 package org.figuramc.figura.mixin.render.feature;
 
+import org.figuramc.figura.utils.FiguraBufferSource;
+
 import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -21,8 +23,8 @@ public class ModelPartFeatureRendererMixin {
     private PoseStack poseStack;
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/geom/ModelPart;render(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V", ordinal = 0), cancellable = true)
-    private <S> void figura$preRender(SubmitNodeCollection submitNodeCollection, MultiBufferSource.BufferSource bufferSource,
-                                      OutlineBufferSource outlineBufferSource, MultiBufferSource.BufferSource crumblingBufferSource, CallbackInfo ci, @Local SubmitNodeStorage.ModelPartSubmit modelSubmit) {
+    private <S> void figura$preRender(SubmitNodeCollection submitNodeCollection, FiguraBufferSource bufferSource,
+                                      OutlineBufferSource outlineBufferSource, FiguraBufferSource crumblingBufferSource, CallbackInfo ci, @Local SubmitNodeStorage.ModelPartSubmit modelSubmit) {
         FiguraSubmitCallBackExtension callBackExtension = (FiguraSubmitCallBackExtension) (Object) modelSubmit;
 
         for (var callback : callBackExtension.figura$getPreRenderingCallbacks()) {
@@ -41,8 +43,8 @@ public class ModelPartFeatureRendererMixin {
     }
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/geom/ModelPart;render(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V", ordinal = 0, shift = At.Shift.AFTER))
-    private <S> void figura$postRender(SubmitNodeCollection submitNodeCollection, MultiBufferSource.BufferSource bufferSource,
-                                       OutlineBufferSource outlineBufferSource, MultiBufferSource.BufferSource crumblingBufferSource, CallbackInfo ci, @Local SubmitNodeStorage.ModelPartSubmit modelSubmit) {
+    private <S> void figura$postRender(SubmitNodeCollection submitNodeCollection, FiguraBufferSource bufferSource,
+                                       OutlineBufferSource outlineBufferSource, FiguraBufferSource crumblingBufferSource, CallbackInfo ci, @Local SubmitNodeStorage.ModelPartSubmit modelSubmit) {
         FiguraSubmitCallBackExtension callBackExtension = (FiguraSubmitCallBackExtension) (Object) modelSubmit;
         for (var callback : callBackExtension.figura$getPostRenderingCallbacks())
              callback.run();
