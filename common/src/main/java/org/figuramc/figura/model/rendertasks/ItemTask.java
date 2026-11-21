@@ -86,7 +86,7 @@ public class ItemTask extends RenderTask {
         this.item = LuaUtils.parseItemStack("item", item);
         Minecraft client = Minecraft.getInstance();
         RandomSource random = client.level != null ? client.level.random : RandomSource.create();
-        cachedComplexity = ((FiguraItemRendererExtension)client.getItemRenderer()).figura$getModelComplexity(this.item, random);
+        cachedComplexity = org.figuramc.figura.utils.RenderUtils.getItemModelComplexity(this.item);
         return this;
     }
 

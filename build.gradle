@@ -32,6 +32,11 @@ sourceSets.main {
             '**/mixin/render/feature/NameTagFeatureRenderer$StorageMixin.java', '**/mixin/render/feature/NameTagFeatureRendererMixin.java',
             '**/mixin/render/feature/FeatureRendererDispatcherMixin.java', '**/mixin/render/nodeRenderer/SubmitNodeStorage$*SubmitMixin.java',
             '**/ducks/NameTagFeatureRenderer$StorageExtension.java'
+    // TODO(quasar): first-person hands (ItemInHandRenderer -> FirstPersonHandsAndItemsRenderer), Figura armor rendering
+    // and the NeoForge level-render hooks need a proper 26.3 rewrite; parked so the rest can compile.
+    java.exclude '**/mixin/render/renderers/ItemRendererMixin.java', '**/ducks/FiguraItemRendererExtension.java',
+            '**/mixin/render/renderers/ItemInHandRendererMixin.java',
+            '**/mixin/neoforge/HumanoidArmorLayerMixinNeoForge.java', '**/mixin/neoforge/LevelRendererMixinNeoForge.java'
 }
 
 repositories {

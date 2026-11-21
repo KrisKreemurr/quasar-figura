@@ -13,7 +13,7 @@ import net.minecraft.client.gui.render.TextureSetup;
 import net.minecraft.client.gui.render.pip.PictureInPictureRenderer;
 import net.minecraft.client.renderer.state.gui.BlitRenderState;
 import net.minecraft.client.renderer.state.gui.GuiRenderState;
-import net.minecraft.client.renderer.CachedOrthoProjectionMatrixBuffer;
+import org.figuramc.figura.utils.QuasarOrthoProjection;
 import net.minecraft.util.LightCoordsUtil;
 import org.figuramc.figura.utils.FiguraBufferSource;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -29,7 +29,7 @@ import java.util.OptionalDouble;
 
 public class FiguraPortraitRenderer extends PictureInPictureRenderer<FiguraPortraitRenderState> {
 
-    private final CachedOrthoProjectionMatrixBuffer avatarProjectionMatrixBuffer = new CachedOrthoProjectionMatrixBuffer(
+    private final QuasarOrthoProjection avatarProjectionMatrixBuffer = new QuasarOrthoProjection(
             "Portrait-PIP - " + this.getClass().getSimpleName(), -1000.0F, 1000.0F, true
     );
     Map<Avatar, TextureEntry> avatarToTexture = new HashMap<>();

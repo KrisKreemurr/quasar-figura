@@ -6,9 +6,7 @@
   "client": [
     "ClientCommandSourceMixinNeoForge",
     "CommandSuggestionsMixinNeoForge",
-    "ElytraLayerAccessor",
-    "HumanoidArmorLayerMixinNeoForge",
-    "LevelRendererMixinNeoForge"
+    "ElytraLayerAccessor"
   ],
   "mixins": [
   ],

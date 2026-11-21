@@ -8,7 +8,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.renderer.CachedOrthoProjectionMatrixBuffer;
+import org.figuramc.figura.utils.QuasarOrthoProjection;
 import net.minecraft.world.entity.Entity;
 import org.figuramc.figura.FiguraMod;
 import org.figuramc.figura.avatar.Avatar;
@@ -18,7 +18,7 @@ import org.joml.Matrix4fStack;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 public class FiguraGui {
-    private static final CachedOrthoProjectionMatrixBuffer guiProjectionMatrixBuffer = new CachedOrthoProjectionMatrixBuffer("gui", 1000.0F, 11000.0F, true);
+    private static final QuasarOrthoProjection guiProjectionMatrixBuffer = new QuasarOrthoProjection("gui", 1000.0F, 11000.0F, true);
 
     public static void onRender(GuiGraphicsExtractor guiGraphics, float tickDelta, CallbackInfo ci) {
         if (AvatarManager.panic)

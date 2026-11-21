@@ -6,7 +6,7 @@ import com.mojang.renderpearl.api.device.GpuDevice;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.renderpearl.api.textures.AddressMode;
 import com.mojang.renderpearl.api.textures.FilterMode;
-import com.mojang.blaze3d.textures.TextureFormat;
+import com.mojang.renderpearl.api.GpuFormat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.MipmapStrategy;
 import net.minecraft.client.renderer.texture.SimpleTexture;
@@ -151,7 +151,7 @@ public class FiguraTexture extends SimpleTexture {
     @Override
     protected void doLoad(NativeImage nativeImage) {
         GpuDevice gpuDevice = RenderSystem.getDevice();
-        this.texture = gpuDevice.createTexture(this.resourceId()::toString, 5, TextureFormat.RGBA8, nativeImage.getWidth(), nativeImage.getHeight(), 1, 1);
+        this.texture = gpuDevice.createTexture(this.resourceId()::toString, 5, GpuFormat.RGBA8_UNORM, nativeImage.getWidth(), nativeImage.getHeight(), 1, 1);
         this.textureView = gpuDevice.createTextureView(this.texture);
         gpuDevice.createCommandEncoder().writeToTexture(this.texture, nativeImage);
     }

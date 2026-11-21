@@ -225,4 +225,13 @@ public class RenderUtils {
 
         return false;
     }
+
+    // Quasar MC (26.3): moved here from ItemRendererMixin (ItemRenderer no longer exists).
+    private static final net.minecraft.client.renderer.item.ItemStackRenderState FIGURA$SCRATCH_ITEM_STATE = new net.minecraft.client.renderer.item.ItemStackRenderState();
+
+    public static int getItemModelComplexity(net.minecraft.world.item.ItemStack stack) {
+        net.minecraft.client.Minecraft.getInstance().getItemModelResolver().updateForTopItem(FIGURA$SCRATCH_ITEM_STATE, stack, net.minecraft.world.item.ItemDisplayContext.NONE, org.figuramc.figura.lua.api.world.WorldAPI.getCurrentWorld(), null, 1);
+        var quads = ((org.figuramc.figura.ducks.FiguraItemStackRenderStateExtension) FIGURA$SCRATCH_ITEM_STATE).figura$getQuads();
+        return quads != null && !quads.isEmpty() ? quads.size() : 20;
+    }
 }

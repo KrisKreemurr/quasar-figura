@@ -1,4 +1,5 @@
-c:net.minecraft.client.renderer.feature.ModelFeatureRenderer
-c:net.minecraft.client.renderer.OrderedSubmitNodeCollector
-com.mojang.renderpearl.api.GpuFormat
-net.minecraft.client.renderer.block.BlockStateModelSet
+net.minecraft.client.renderer.Projection
+net.minecraft.client.resources.model.ModelManager
+net.minecraft.client.resources.model.sprite.Material$Baked
+net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer
+com.mojang.blaze3d.systems.RenderSystem
