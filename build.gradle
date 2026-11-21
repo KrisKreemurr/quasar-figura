@@ -62,11 +62,6 @@ dependencies {
     jarJar(implementation("com.github.FiguraMC.luaj:luaj-jse:${luaj}-figura"))
     jarJar(implementation("com.neovisionaries:nv-websocket-client:${nv_websocket}"))
 
-    // Same libraries on the classpath when running the game from the IDE.
-    additionalRuntimeClasspath "com.github.FiguraMC.luaj:luaj-core:${luaj}-figura"
-    additionalRuntimeClasspath "com.github.FiguraMC.luaj:luaj-jse:${luaj}-figura"
-    additionalRuntimeClasspath "com.neovisionaries:nv-websocket-client:${nv_websocket}"
-
     // MixinExtras ships with NeoForge at runtime; this is only for compiling.
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0"))
 }
