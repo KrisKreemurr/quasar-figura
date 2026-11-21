@@ -25,6 +25,13 @@ sourceSets.main {
     resources.exclude 'figura.accesswidener', 'architectury.common.json', 'fabric.mod.json'
     // GeckoLib armor integration needs GeckoLib at compile time; left out until GeckoLib has a 26.3 build.
     java.exclude '**/mixin/compat/Geckolib*', '**/ducks/GeckolibGeoArmorAccessor.java'
+    // TODO(quasar): render-callback mixins for vanilla models/items/flames/name tags, not yet ported to 26.3's
+    // feature renderers (also removed from figura-common.mixins.json). See SubmitNodeCollectionMixin.
+    java.exclude '**/mixin/render/feature/ModelFeatureRendererMixin.java', '**/mixin/render/feature/ModelPartFeatureRendererMixin.java',
+            '**/mixin/render/feature/ItemFeatureRendererMixin.java', '**/mixin/render/feature/FlameFeatureRendererMixin.java',
+            '**/mixin/render/feature/NameTagFeatureRenderer$StorageMixin.java', '**/mixin/render/feature/NameTagFeatureRendererMixin.java',
+            '**/mixin/render/feature/FeatureRendererDispatcherMixin.java', '**/mixin/render/nodeRenderer/SubmitNodeStorage$*SubmitMixin.java',
+            '**/ducks/NameTagFeatureRenderer$StorageExtension.java'
 }
 
 repositories {

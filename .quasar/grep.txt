@@ -1,1 +1,1 @@
-FeatureRenderDispatcher|FeatureRenderers$
+NameTag|nametag|Nametag

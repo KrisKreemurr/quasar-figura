@@ -1,2 +1,4 @@
-c:net.minecraft.client.renderer.SubmitNodeCollection
-net.minecraft.client.renderer.feature.FeatureRenderDispatcher
+c:net.minecraft.client.renderer.feature.ModelFeatureRenderer
+c:net.minecraft.client.renderer.OrderedSubmitNodeCollector
+com.mojang.renderpearl.api.GpuFormat
+net.minecraft.client.renderer.block.BlockStateModelSet
