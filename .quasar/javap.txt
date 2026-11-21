@@ -1,5 +1,1 @@
-net.minecraft.client.PreferredGraphicsApi
-g:net.minecraft.client.Minecraft|PreferredGraphicsApi|preferredGraphicsApi
-g:net.minecraft.client.main.Main|PreferredGraphicsApi|preferredGraphicsApi|GpuBackend
-g:net.minecraft.client.Options|PreferredGraphicsApi|preferredGraphicsApi
-g:com.mojang.blaze3d.platform.Window|PreferredGraphicsApi|GpuBackend|BackendCreation
+c:net.minecraft.client.main.Main
