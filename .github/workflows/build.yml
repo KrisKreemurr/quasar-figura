@@ -19,6 +19,10 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          # Quasar MC: our work branch isn't the default branch, so let it write the dependency cache too
+          # (otherwise every run re-downloads everything and Maven Central rate-limits us with HTTP 429).
+          cache-read-only: false
 
       - name: Build
         run: ./gradlew build --stacktrace
