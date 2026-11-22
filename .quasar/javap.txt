@@ -1,3 +1,9 @@
-net.minecraft.util.ColorCollection
-g:net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase|isSolidRender|getDestroyProgress|getDigSpeed
-g:net.minecraft.world.entity.monster.piglin.PiglinAi|angerNearby
+g:net.minecraft.world.level.Level|neighborChanged|updateNeighborsAt
+g:net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase|handleNeighborChanged
+g:net.minecraft.world.level.block.Block|shouldRenderFace
+g:net.minecraft.world.entity.EntityType|static .*create\(|loadEntityRecursive
+g:net.minecraft.world.entity.player.Player|getDigSpeed|getDestroySpeed
+g:net.minecraft.world.entity.LivingEntity|hurtAndBreak|getSlotForHand
+g:net.minecraft.world.item.ItemStack|hurtAndBreak
+g:net.minecraft.server.MinecraftServer|isUnderSpawnProtection
+g:net.minecraft.world.level.Level|dragonParts
