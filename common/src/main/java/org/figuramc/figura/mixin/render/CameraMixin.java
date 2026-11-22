@@ -29,14 +29,16 @@ public abstract class CameraMixin {
     @Shadow protected abstract void setRotation(float yaw, float pitch);
     @Shadow protected abstract void move(float x, float y, float z);
 
-    @Inject(method = "setup", at = @At(value = "HEAD"))
-    private void setupAvatarVar(Level level, Entity focusedEntity, boolean bl, boolean bl2, float f, CallbackInfo ci) {
-        avatar = AvatarManager.getAvatar(focusedEntity);
+    // Quasar MC (26.3): Camera.setup(...) became update(DeltaTracker) -> alignWithEntity(float).
+    // alignWithEntity keeps the old structure (rotation, eye position, third-person zoom), so the hooks move over.
+    @Inject(method = "alignWithEntity", at = @At(value = "HEAD"))
+    private void setupAvatarVar(float partialTick, CallbackInfo ci) {
+        avatar = AvatarManager.getAvatar(((Camera) (Object) this).entity());
     }
 
     // Neo adds roll in addition to pitch and yaw
-    @Inject(method = "setup", at = {@At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setRotation(FF)V", shift = At.Shift.AFTER), @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setRotation(FF)V", shift = At.Shift.AFTER)}) // TODO(quasar): Camera.setup is gone in 26.3 (update/alignWithEntity)
-    private void setupRot(Level level, Entity entity, boolean bl, boolean bl2, float f, CallbackInfo ci) {
+    @Inject(method = "alignWithEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setRotation(FF)V", shift = At.Shift.AFTER))
+    private void setupRot(float partialTick, CallbackInfo ci) {
         if (!RenderUtils.vanillaModelAndScript(avatar)) {
             avatar = null;
             return;
@@ -60,7 +62,7 @@ public abstract class CameraMixin {
         setRotation(y, x);
     }
 
-    @ModifyArg(method = "setup", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setPosition(DDD)V"), index = 0)
+    @ModifyArg(method = "alignWithEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setPosition(DDD)V"), index = 0)
     private double setupPivotX(double originalX) {
         if (RenderUtils.vanillaModelAndScript(avatar)) {
             double x = originalX;
@@ -79,7 +81,7 @@ public abstract class CameraMixin {
         return originalX;
     }
 
-    @ModifyArg(method = "setup", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setPosition(DDD)V"), index = 1)
+    @ModifyArg(method = "alignWithEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setPosition(DDD)V"), index = 1)
     private double setupPivotY(double originalY) {
         if (RenderUtils.vanillaModelAndScript(avatar)) {
             double y = originalY;
@@ -98,7 +100,7 @@ public abstract class CameraMixin {
         return originalY;
     }
 
-    @ModifyArg(method = "setup", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setPosition(DDD)V"), index = 2)
+    @ModifyArg(method = "alignWithEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setPosition(DDD)V"), index = 2)
     private double setupPivotZ(double originalZ) {
         if (RenderUtils.vanillaModelAndScript(avatar)) {
             double z = originalZ;
@@ -118,8 +120,8 @@ public abstract class CameraMixin {
     }
 
 
-    @Inject(method = "setup", at = @At(value = "RETURN"))
-    private void setupPos(Level level, Entity entity, boolean bl, boolean bl2, float f, CallbackInfo ci) {
+    @Inject(method = "alignWithEntity", at = @At(value = "RETURN"))
+    private void setupPos(float partialTick, CallbackInfo ci) {
         if (RenderUtils.vanillaModelAndScript(avatar)) {
             FiguraVec3 pos = avatar.luaRuntime.renderer.cameraPos;
             if (pos != null && pos.notNaN())

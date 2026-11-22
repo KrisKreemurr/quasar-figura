@@ -1,1 +1,1 @@
-g:net.minecraft.client.Camera|Method (setRotation|setPosition|move|getMaxZoom|alignWithEntity|setEntity)|void (alignWithEntity|update)
+g:net.minecraft.client.renderer.GameRenderer|Method (bobHurt|bobView|doEntityOutline|checkEntityPostEffect)|OptionInstance.get|^  (public|private|protected) .*(render|Level|extract)
