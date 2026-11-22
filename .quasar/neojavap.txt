@@ -1,1 +1,3 @@
-net.neoforged.neoforge.event.entity.player.PlayerInteractEvent$RightClickBlock
+net.neoforged.neoforge.capabilities.Capabilities$Item
+net.neoforged.neoforge.transfer.ResourceHandler
+net.neoforged.neoforge.transfer.item.ItemResource
