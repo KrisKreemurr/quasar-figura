@@ -1,3 +1,7 @@
-g:net.minecraft.world.level.gamerules.GameRules|RANDOM|public .* get\(|SPAWN|MOB
-g:net.minecraft.server.MinecraftServer|Spawning|Npc|Animals|getGameRules|gameRules
-g:net.minecraft.server.level.ServerLevel|getGameRules|tickChunk\(|spawnAnimals|isSpawning
+net.minecraft.world.level.chunk.storage.SerializableChunkData
+g:net.minecraft.world.level.chunk.storage.SerializableChunkData|CODEC|Codec<|PalettedContainer|makeBiomeCodec|containerFactory
+net.minecraft.world.level.chunk.PalettedContainer
+net.minecraft.world.level.chunk.PalettedContainerFactory
+net.minecraft.world.ticks.LevelChunkTicks
+net.minecraft.world.level.chunk.DataLayer
+net.minecraft.world.level.chunk.ChunkAccess$PackedTicks
