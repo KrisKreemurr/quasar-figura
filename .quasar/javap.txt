@@ -1,2 +1,1 @@
-g:net.minecraft.world.level.Level|Time|Clock
-g:net.minecraft.world.level.LevelReader|Time
+g:net.minecraft.world.level.block.Block|getAppearance
