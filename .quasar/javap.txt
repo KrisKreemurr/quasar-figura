@@ -1,0 +1,3 @@
+c:net.minecraft.client.Camera
+g:net.minecraft.client.renderer.entity.player.AvatarRenderer|submitNameTag|submitNameDisplay|Scoreboard|belowName
+g:net.minecraft.client.renderer.entity.EntityRenderer|submitNameTag|submitNameDisplay
