@@ -1,3 +1,0 @@
-net.minecraft.world.entity.UpdateInterval
-net.minecraft.server.level.ServerEntity$Synchronizer
-m:net.minecraft.world.level.chunk.LevelChunk|replaceWithPacketData
