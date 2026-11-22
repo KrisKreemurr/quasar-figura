@@ -1,1 +1,1 @@
-VideoSettingsScreen
+renderer\.extract\.|state\.LevelRenderState|EntityRenderState$
