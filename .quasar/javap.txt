@@ -1,3 +1,2 @@
-m:net.minecraft.client.multiplayer.ClientPacketListener|updateLevelChunk
-m:net.minecraft.client.multiplayer.ClientPacketListener|createEntityFromPacket
-g:net.minecraft.client.multiplayer.ClientChunkCache|replaceWithPacketData
+g:net.minecraft.client.gui.Gui|Screen
+g:net.minecraft.client.Minecraft|Screen
