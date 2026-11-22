@@ -33,6 +33,24 @@ public final class FiguraTimings {
     private static final long[] frameNanos = new long[Part.values().length];
     private static final double[] smoothedMs = new double[Part.values().length];
 
+    // Quasar MC: where the MODEL time goes (the rest is walking the part tree and its matrices)
+    public enum ModelPart { PART_SCRIPTS, VERTICES, SUBMIT }
+    private static final long[] frameModelNanos = new long[ModelPart.values().length];
+    private static final double[] smoothedModelMs = new double[ModelPart.values().length];
+
+    public static void stopModel(ModelPart part, long startNanos) {
+        frameModelNanos[part.ordinal()] += System.nanoTime() - startNanos;
+    }
+
+    public static String f3ModelLine() {
+        double model = ms(Part.MODEL);
+        double scripts = smoothedModelMs[0], verts = smoothedModelMs[1], submit = smoothedModelMs[2];
+        // part scripts run inside the tree walk, vertices too; so the walk is what's left over
+        double walk = Math.max(0, model - scripts - verts - submit);
+        return String.format(Locale.ROOT, "Figura model split: part scripts %.3f, vertices %.3f, submit %.3f, tree/matrices %.3f",
+                scripts, verts, submit, walk);
+    }
+
     private FiguraTimings() {}
 
     public static long start() {
@@ -49,6 +67,11 @@ public final class FiguraTimings {
             double ms = frameNanos[i] / 1_000_000.0;
             smoothedMs[i] += (ms - smoothedMs[i]) * SMOOTHING;
             frameNanos[i] = 0;
+        }
+        for (int i = 0; i < frameModelNanos.length; i++) {
+            double ms = frameModelNanos[i] / 1_000_000.0;
+            smoothedModelMs[i] += (ms - smoothedModelMs[i]) * SMOOTHING;
+            frameModelNanos[i] = 0;
         }
         for (int i = 0; i < frameBuilds.length; i++) {
             smoothedBuilds[i] += (frameBuilds[i] - smoothedBuilds[i]) * SMOOTHING;

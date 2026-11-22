@@ -188,6 +188,7 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
             }
 
             // push vertices to vertex consumer
+            long qd = org.figuramc.figura.quasar.FiguraTimings.start();
             FiguraMod.pushProfiler("draw");
             FiguraMod.pushProfiler("primary");
             VERTEX_BUFFER.consume(true, bufferSource);
@@ -198,6 +199,7 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
             if (bufferSource instanceof FiguraBufferSource bs) {
                 bs.endLastBatch();
             }
+            org.figuramc.figura.quasar.FiguraTimings.stopModel(org.figuramc.figura.quasar.FiguraTimings.ModelPart.SUBMIT, qd);
 
             // finish rendering
             checkEmpty();
@@ -273,7 +275,9 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
         // pre render function
         if (part.preRender != null) {
             FiguraMod.popPushProfiler("preRenderFunction");
+            long qt = org.figuramc.figura.quasar.FiguraTimings.start();
             avatar.run(part.preRender, avatar.render, tickDelta, avatar.renderMode.name(), part);
+            org.figuramc.figura.quasar.FiguraTimings.stopModel(org.figuramc.figura.quasar.FiguraTimings.ModelPart.PART_SCRIPTS, qt);
         }
 
         // recalculate stuff
@@ -344,12 +348,16 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
         // mid render function
         if (part.midRender != null) {
             FiguraMod.popPushProfiler("midRenderFunction");
+            long qt = org.figuramc.figura.quasar.FiguraTimings.start();
             avatar.run(part.midRender, avatar.render, tickDelta, avatar.renderMode.name(), part);
+            org.figuramc.figura.quasar.FiguraTimings.stopModel(org.figuramc.figura.quasar.FiguraTimings.ModelPart.PART_SCRIPTS, qt);
         }
 
         // render this
         FiguraMod.popPushProfiler("pushVertices");
+        long qv = org.figuramc.figura.quasar.FiguraTimings.start();
         boolean breakRender = thisPassedPredicate && !part.pushVerticesImmediate(this, remainingComplexity);
+        org.figuramc.figura.quasar.FiguraTimings.stopModel(org.figuramc.figura.quasar.FiguraTimings.ModelPart.VERTICES, qv);
 
         // render extras
         FiguraMod.popPushProfiler("extras");
@@ -419,7 +427,9 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
         // post render function
         if (part.postRender != null) {
             FiguraMod.popPushProfiler("postRenderFunction");
+            long qt = org.figuramc.figura.quasar.FiguraTimings.start();
             avatar.run(part.postRender, avatar.render, tickDelta, avatar.renderMode.name(), part);
+            org.figuramc.figura.quasar.FiguraTimings.stopModel(org.figuramc.figura.quasar.FiguraTimings.ModelPart.PART_SCRIPTS, qt);
         }
 
         // pop
