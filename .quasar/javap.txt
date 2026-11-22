@@ -1,1 +1,7 @@
-m:net.minecraft.server.network.ServerGamePacketListenerImpl|handleUseItemOn
+net.minecraft.network.protocol.game.ClientboundPlayerPositionPacket
+net.minecraft.world.entity.PositionMoveRotation
+g:net.minecraft.network.protocol.game.ServerboundMovePlayerPacket$PosRot|PosRot\(
+g:net.minecraft.network.protocol.game.ServerboundMoveVehiclePacket|ServerboundMoveVehiclePacket\(|static
+m:net.minecraft.client.multiplayer.ClientPacketListener|handleMovePlayer
+g:net.minecraft.client.gui.screens.DeathScreen|DeathScreen\(
+g:net.minecraft.world.entity.EntityType|public .* create\(
