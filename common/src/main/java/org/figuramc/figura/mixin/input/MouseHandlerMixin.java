@@ -31,6 +31,8 @@ public class MouseHandlerMixin {
         if (window != this.minecraft.getWindow().handle())
             return;
 
+        org.figuramc.figura.utils.ui.UIHelper.setButtonHeld(org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonInfo.button()), action != 0);
+
         Avatar avatar = AvatarManager.getAvatarForPlayer(FiguraMod.getLocalPlayerUUID());
         if (avatar == null || avatar.luaRuntime == null)
             return;

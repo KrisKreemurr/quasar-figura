@@ -303,6 +303,20 @@ public final class UIHelper {
      * Quasar MC (26.3): Minecraft renumbered mouse buttons (left is no longer 0). Figura's GUI and
      * Lua scripts use the old numbers (0 = left, 1 = right, 2 = middle, 3+ = extra buttons).
      */
+    // Quasar MC (26.3): which mouse buttons are held (old numbering), tracked in MouseHandlerMixin.
+    // Minecraft's own MouseHandler stops tracking buttons while a screen is open.
+    private static int heldButtons;
+
+    public static void setButtonHeld(int legacyButton, boolean held) {
+        if (legacyButton < 0 || legacyButton > 31) return;
+        if (held) heldButtons |= 1 << legacyButton;
+        else heldButtons &= ~(1 << legacyButton);
+    }
+
+    public static boolean isButtonHeld(int legacyButton) {
+        return legacyButton >= 0 && legacyButton <= 31 && (heldButtons & (1 << legacyButton)) != 0;
+    }
+
     public static int legacyButton(int button) {
         if (button == com.mojang.blaze3d.platform.InputConstants.MOUSE_BUTTON_LEFT) return 0;
         if (button == com.mojang.blaze3d.platform.InputConstants.MOUSE_BUTTON_RIGHT) return 1;

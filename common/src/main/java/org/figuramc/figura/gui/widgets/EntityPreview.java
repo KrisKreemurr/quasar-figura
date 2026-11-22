@@ -93,6 +93,10 @@ public class EntityPreview extends AbstractContainerElement {
             UIHelper.blit(gui, x + 1, y + 1, width - 2, height, OVERLAY);
         }
 
+        // Quasar MC (26.3): drag messages don't reliably reach this widget, so follow the mouse here
+        // while the button that started the rotate/move is still held.
+        figura$followMouse(mouseX, mouseY);
+
         // scissors
         gui.enableScissor(x + 1, y + 1, x + width - 1, y + height - 1);
 
@@ -257,6 +261,28 @@ public class EntityPreview extends AbstractContainerElement {
         scaledPrecise = ((scale + scaledPrecise) * scaleDir) - scale;
 
         return true;
+    }
+
+    private void figura$followMouse(int mouseX, int mouseY) {
+        if (isRotating) {
+            if (!UIHelper.isButtonHeld(0)) {
+                isRotating = false;
+            } else {
+                double factor = 3d / Minecraft.getInstance().getWindow().getGuiScale();
+                angleX = (float) (anchorAngleX + (anchorY - mouseY) / factor);
+                angleY = (float) (anchorAngleY - (anchorX - mouseX) / factor);
+                if (angleX >= 360 || angleX <= -360) { anchorY = mouseY; anchorAngleX = 0; angleX = 0; }
+                if (angleY >= 360 || angleY <= -360) { anchorX = mouseX; anchorAngleY = 0; angleY = 0; }
+            }
+        }
+        if (isDragging) {
+            if (!UIHelper.isButtonHeld(1)) {
+                isDragging = false;
+            } else {
+                modelX = (int) (dragAnchorX + (mouseX - dragDeltaX));
+                modelY = (int) (dragAnchorY + (mouseY - dragDeltaY));
+            }
+        }
     }
 
     public void setEntity(LivingEntity entity) {
