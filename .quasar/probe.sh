@@ -47,7 +47,7 @@ if [ -f .quasar/hier.txt ]; then
     for c in $queue; do
       [ -n "${SEEN[$c]}" ] && continue; SEEN[$c]=1
       out=$(javap -protected -cp "$CP" "$c" 2>/dev/null) || continue
-      echo "=== HIER $c"; echo "$out" | grep -E "^\s+(public|protected)" 
+      echo "=== HIER $c"; echo "HEADER $(echo "$out" | grep -E "^(public |protected |abstract |final |sealed |non-sealed )*(class|interface) " | head -1)"; echo "$out" | grep -E "^\s+(public|protected)" 
       hdr=$(echo "$out" | grep -E "^(public |protected |abstract |final |sealed |non-sealed )*(class|interface) " | head -1)
       sup=$(echo "$hdr" | sed -E 's/<[^<>]*>//g; s/<[^<>]*>//g; s/<[^<>]*>//g' | grep -oE "(extends|implements) [^{]+" | sed -E 's/(extends|implements) //' | tr ',' '\n' | sed 's/ //g')
       for x in $sup; do case "$x" in java.*|"") ;; *) next="$next $x";; esac; done
