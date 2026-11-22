@@ -1,1 +1,2 @@
-g:net.minecraft.world.item.DyeItem|public
+net.minecraft.client.renderer.chunk.ChunkSectionLayer
+g:net.minecraft.client.renderer.ItemBlockRenderTypes|public
