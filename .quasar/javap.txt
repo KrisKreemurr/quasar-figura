@@ -1,1 +1,3 @@
-g:com.mojang.renderpearl.frontend.FrontendGpuDevice|TracyGpuProfiler|tracy|Tracy|getProperty|Boolean|  [a-z].*\(
+m:com.mojang.renderpearl.frontend.FrontendGpuDevice|getDeviceInfo
+g:com.mojang.renderpearl.frontend.FrontendCommandEncoder|profiler|pushZone|popZone|  [a-z].*\(
+g:com.mojang.renderpearl.frontend.FrontendRenderPass|profiler|pushZone|popZone|DebugGroup|  [a-z].*\(
