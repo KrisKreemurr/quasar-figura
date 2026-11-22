@@ -1,0 +1,5 @@
+g:net.minecraft.world.item.Item|public .*(canDestroy|canAttack|getName|getDescriptionId|use\(|mineBlock)
+g:net.minecraft.world.level.block.state.BlockBehaviour\$BlockStateBase|isSolidRender|getDestroyProgress
+g:net.minecraft.world.level.GameType|public
+g:net.minecraft.world.level.block.state.properties.EnumProperty|public static
+g:net.minecraft.world.item.Items|DYE
