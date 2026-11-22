@@ -1,4 +1,0 @@
-r:net.minecraft.network.protocol.game.ClientGamePacketListener
-r:net.minecraft.network.protocol.game.ServerGamePacketListener
-r:net.minecraft.server.network.ServerPlayerConnection
-r:net.minecraft.network.TickablePacketListener

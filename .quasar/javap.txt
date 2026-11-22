@@ -1,0 +1,1 @@
+g:net.minecraft.client.multiplayer.ClientPacketListener|ClientLevel level;|ClientLevel level$|private .*ClientLevel
