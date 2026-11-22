@@ -1,3 +1,2 @@
-AbstractHorse$
-/Boat$
-AbstractHurtingProjectile$
+vehicle.*Boat$
+boat.*Boat$
