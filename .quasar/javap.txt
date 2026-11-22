@@ -1,1 +1,0 @@
-g:net.minecraft.client.renderer.entity.LivingEntityRenderer|setupAnim|submitModel|extractRenderState

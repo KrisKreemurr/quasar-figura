@@ -13,5 +13,6 @@ public class FrameEndMixin {
     @Inject(method = "render", at = @At("RETURN"))
     private void figura$endFrame(CallbackInfo ci) {
         FiguraCallbackFrame.endFrame();
+        org.figuramc.figura.utils.ui.UIHelper.paperdoll = false;
     }
 }
