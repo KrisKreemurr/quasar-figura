@@ -1,3 +1,0 @@
-ItemStackTemplate$
-AddServerReloadListenersEvent$
-NeoForgeConfig$

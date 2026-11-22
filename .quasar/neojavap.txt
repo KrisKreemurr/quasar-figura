@@ -1,1 +1,2 @@
-net.neoforged.neoforge.event.AddServerReloadListenersEvent
+net.neoforged.neoforge.event.SortedReloadListenerEvent
+net.neoforged.neoforge.resource.ListenerKey
