@@ -23,6 +23,7 @@ if [ -f .quasar/javap.txt ]; then
     [ -z "$cls" ] && continue
     case "$cls" in
       g:*) spec="${cls#g:}"; c2="${spec%%|*}"; rx="${spec#*|}"; echo "=== JAVAPG $c2 /$rx/"; javap -c -p -cp "$J" "$c2" 2>&1 | grep -nE "^  [a-z].*\(|$rx" | grep -B1 -E "$rx" | head -400;;
+      m:*) spec="${cls#m:}"; c2="${spec%%|*}"; mn="${spec#*|}"; echo "=== JAVAPM $c2 $mn"; javap -c -p -cp "$J" "$c2" 2>&1 | awk -v m="$mn" '/^  [a-z].*\(/ {on = (index($0, " " m "(") > 0)} on';;
       c:*) cls="${cls#c:}"; echo "=== JAVAPC $cls"; javap -c -p -cp "$J" "$cls" 2>&1 | head -1400;;
       *) echo "=== JAVAP $cls"; javap -protected -cp "$J" "$cls" 2>&1 | head -450;;
     esac
