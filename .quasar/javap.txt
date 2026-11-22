@@ -1,5 +1,3 @@
-g:net.minecraft.server.level.ChunkMap|ThreadedLevelLightEngine\.\"<init>|ConsecutiveExecutor|ChunkTaskDispatcher|PriorityConsecutive|ThrottlingChunkTaskDispatcher
-net.minecraft.server.level.ThreadedLevelLightEngine
-net.minecraft.server.level.ChunkTaskDispatcher
-net.minecraft.server.level.DistanceManager
-net.minecraft.server.level.ChunkTaskPriorityQueue
+g:net.minecraft.world.level.gamerules.GameRules|RANDOM|public .* get\(|SPAWN|MOB
+g:net.minecraft.server.MinecraftServer|Spawning|Npc|Animals|getGameRules|gameRules
+g:net.minecraft.server.level.ServerLevel|getGameRules|tickChunk\(|spawnAnimals|isSpawning
