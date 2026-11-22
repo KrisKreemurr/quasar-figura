@@ -1,0 +1,1 @@
+g:net.minecraft.world.item.ItemStackTemplate|static
