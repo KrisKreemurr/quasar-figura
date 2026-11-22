@@ -93,6 +93,10 @@ public class EntityPreview extends AbstractContainerElement {
             UIHelper.blit(gui, x + 1, y + 1, width - 2, height, OVERLAY);
         }
 
+        // Quasar MC (26.3): poll the mouse buttons directly so rotate/move works even when the
+        // screen's click/drag events don't reach this widget.
+        figura$pollMouse(mouseX, mouseY);
+
         // scissors
         gui.enableScissor(x + 1, y + 1, x + width - 1, y + height - 1);
 
@@ -257,6 +261,65 @@ public class EntityPreview extends AbstractContainerElement {
         scaledPrecise = ((scale + scaledPrecise) * scaleDir) - scale;
 
         return true;
+    }
+
+    // -- Quasar MC (26.3): polled input -- //
+    private boolean wasLeft, wasRight, wasMiddle;
+
+    private void figura$pollMouse(int mouseX, int mouseY) {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.gui.screen() == null)
+            return;
+        boolean left = mc.mouseHandler.isLeftPressed();
+        boolean right = mc.mouseHandler.isRightPressed();
+        boolean middle = mc.mouseHandler.isMiddlePressed();
+        boolean over = this.isMouseOver(mouseX, mouseY) && !button.isMouseOver(mouseX, mouseY);
+
+        // press edges inside the preview
+        if (left && !wasLeft && over && !isRotating) {
+            anchorX = mouseX;
+            anchorY = mouseY;
+            anchorAngleX = angleX;
+            anchorAngleY = angleY;
+            isRotating = true;
+        }
+        if (right && !wasRight && over && !isDragging) {
+            dragDeltaX = mouseX;
+            dragDeltaY = mouseY;
+            dragAnchorX = modelX;
+            dragAnchorY = modelY;
+            isDragging = true;
+        }
+        if (middle && !wasMiddle && over) {
+            isRotating = false;
+            isDragging = false;
+            angleX = pitch;
+            angleY = yaw;
+            scaledValue = 0f;
+            scaledPrecise = 0f;
+            modelX = getWidth() / 2;
+            modelY = getHeight() / 2;
+        }
+
+        // releases
+        if (!left) isRotating = false;
+        if (!right) isDragging = false;
+
+        // apply movement
+        if (isRotating) {
+            double factor = 3d / mc.getWindow().getGuiScale();
+            angleX = (float) (anchorAngleX + (anchorY - mouseY) / factor);
+            angleY = (float) (anchorAngleY - (anchorX - mouseX) / factor);
+            if (angleX >= 360 || angleX <= -360) { anchorY = mouseY; anchorAngleX = 0; angleX = 0; }
+            if (angleY >= 360 || angleY <= -360) { anchorX = mouseX; anchorAngleY = 0; angleY = 0; }
+        } else if (isDragging) {
+            modelX = (int) (dragAnchorX + (mouseX - dragDeltaX));
+            modelY = (int) (dragAnchorY + (mouseY - dragDeltaY));
+        }
+
+        wasLeft = left;
+        wasRight = right;
+        wasMiddle = middle;
     }
 
     public void setEntity(LivingEntity entity) {
