@@ -1,2 +1,5 @@
-net.minecraft.client.renderer.chunk.ChunkSectionLayer
-g:net.minecraft.client.renderer.ItemBlockRenderTypes|public
+g:net.minecraft.world.level.Level|abstract|protected Level\(|public Level\(|addParticle|environmentAttributes|potionBrewing|getMapData|MapId|random\b|getRandom
+g:net.minecraft.world.level.LevelHeightAccessor|public
+g:net.minecraft.world.entity.Entity|absSnapTo|setPos\(|makeBoundingBox|kill\(
+g:net.minecraft.world.level.block.entity.BlockEntity|static|loadWithComponents|saveWithFullMetadata|loadStatic
+net.minecraft.world.level.storage.TagValueInput
