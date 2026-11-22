@@ -1,1 +1,1 @@
-g:net.minecraft.util.ExtraCodecs| NBT|Tag>
+net.minecraft.world.level.storage.LevelData$RespawnData
