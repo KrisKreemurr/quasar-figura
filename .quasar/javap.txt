@@ -1,2 +1,2 @@
-net.minecraft.client.particle.SingleQuadParticle
-g:net.minecraft.client.particle.Particle|protected|public
+net.minecraft.client.particle.SingleQuadParticle$Layer
+net.minecraft.client.particle.ParticleRenderType

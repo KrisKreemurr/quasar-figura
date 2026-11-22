@@ -1,6 +1,3 @@
-EnvironmentAttributeSystem$
-/ClockManager$
-/PotionBrewing$
-/TextureSheetParticle$
-/SingleQuadParticle$
-particle/Particle$
+ClockManager$
+PotionBrewing$
+SingleQuadParticle.Layer$
