@@ -1,1 +1,0 @@
-g:net.minecraft.world.level.Level|abstract void explode
