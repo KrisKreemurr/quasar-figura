@@ -1,4 +1,1 @@
-g:net.minecraft.core.Registry|Tag
-g:net.minecraft.client.Minecraft|DeltaTracker|getDeltaTracker
-net.minecraft.client.DeltaTracker
-g:net.minecraft.sounds.SoundEvent|public
+g:net.minecraft.world.item.DyeItem|public
