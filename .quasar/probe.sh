@@ -37,6 +37,24 @@ if [ -f .quasar/audit.txt ]; then
   done < .quasar/audit.txt
 fi
 NEOJAR=$(find ~/.gradle/caches -name "neoforge-*-universal.jar" 2>/dev/null | head -1)
+# r:<class> lines in .quasar/hier.txt -> public/protected members of the class and every superclass/interface (MC + NeoForge)
+if [ -f .quasar/hier.txt ]; then
+  CP="$J:$NEOJAR"
+  declare -A SEEN
+  queue=$(sed 's/^r://' .quasar/hier.txt)
+  while [ -n "$queue" ]; do
+    next=""
+    for c in $queue; do
+      [ -n "${SEEN[$c]}" ] && continue; SEEN[$c]=1
+      out=$(javap -protected -cp "$CP" "$c" 2>/dev/null) || continue
+      echo "=== HIER $c"; echo "$out" | grep -E "^\s+(public|protected)" 
+      hdr=$(echo "$out" | grep -E "^(public |protected |abstract |final |sealed |non-sealed )*(class|interface) " | head -1)
+      sup=$(echo "$hdr" | sed -E 's/<[^<>]*>//g; s/<[^<>]*>//g; s/<[^<>]*>//g' | grep -oE "(extends|implements) [^{]+" | sed -E 's/(extends|implements) //' | tr ',' '\n' | sed 's/ //g')
+      for x in $sup; do case "$x" in java.*|"") ;; *) next="$next $x";; esac; done
+    done
+    queue="$next"
+  done
+fi
 echo "=== PROBE: neoforge jar $NEOJAR"
 if [ -n "$NEOJAR" ] && [ -f .quasar/neogrep.txt ]; then
   unzip -Z1 "$NEOJAR" | grep '\.class$' | grep -v '\$[0-9]' | sed 's/\.class$//; s#/#.#g' > /tmp/neoclasses.txt

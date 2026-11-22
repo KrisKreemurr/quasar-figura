@@ -1,9 +1,0 @@
-net.minecraft.world.entity.player.Player
-net.minecraft.world.level.ChunkPos
-net.minecraft.client.renderer.GameRenderer
-net.minecraft.client.Minecraft
-net.minecraft.client.particle.TextureSheetParticle
-net.minecraft.client.particle.SingleQuadParticle
-net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket
-net.minecraft.client.gui.Gui
-net.minecraft.world.InteractionResult
