@@ -1,1 +1,1 @@
-GuiGraphics|options\.(Video|Options)|components\.(Tooltip|WidgetTooltipHolder)|ScreenRectangle$|ARGB
+VideoSettingsScreen
