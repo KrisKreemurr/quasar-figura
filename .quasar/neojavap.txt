@@ -1,1 +1,2 @@
-net.neoforged.neoforge.client.event.RegisterPictureInPictureRenderersEvent
+net.neoforged.neoforge.common.extensions.ValueInputExtension
+net.neoforged.neoforge.common.extensions.ValueOutputExtension
