@@ -23,6 +23,7 @@ net.minecraft.client.gui.GuiGraphicsExtractor
 net.minecraft.client.gui.Hud
 net.minecraft.client.gui.components.AbstractScrollArea
 net.minecraft.client.gui.components.AbstractTextAreaWidget
+net.minecraft.client.gui.components.AbstractWidget
 net.minecraft.client.gui.components.ChatComponent
 net.minecraft.client.gui.components.ChatComponent$ChatGraphicsAccess
 net.minecraft.client.gui.components.CommandSuggestions
@@ -37,6 +38,7 @@ net.minecraft.client.gui.components.debug.DebugScreenEntries
 net.minecraft.client.gui.components.debug.DebugScreenEntryList
 net.minecraft.client.gui.components.events.AbstractContainerEventHandler
 net.minecraft.client.gui.components.events.ContainerEventHandler
+net.minecraft.client.gui.components.events.GuiEventListener
 net.minecraft.client.gui.font.FontSet
 net.minecraft.client.gui.font.FontSet$Source
 net.minecraft.client.gui.font.FontTexture
@@ -55,6 +57,7 @@ net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
 net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen
 net.minecraft.client.gui.screens.inventory.BookViewScreen
 net.minecraft.client.gui.screens.inventory.InventoryScreen
+net.minecraft.client.gui.screens.inventory.MenuAccess
 net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener
 net.minecraft.client.gui.screens.social.PlayerSocialManager
 net.minecraft.client.model.ArmedModel
@@ -154,6 +157,7 @@ net.minecraft.network.PacketListener
 net.minecraft.network.TickablePacketListener
 net.minecraft.network.chat.ClickEvent$Action
 net.minecraft.network.protocol.common.ClientCommonPacketListener
+net.minecraft.network.protocol.cookie.ClientCookiePacketListener
 net.minecraft.network.protocol.game.ClientGamePacketListener
 net.minecraft.network.protocol.ping.ClientPongPacketListener
 net.minecraft.network.syncher.SyncedDataHolder
@@ -166,8 +170,10 @@ net.minecraft.server.packs.resources.SimplePreparableReloadListener
 net.minecraft.server.permissions.PermissionSetSupplier
 net.minecraft.util.StringRepresentable
 net.minecraft.util.debug.DebugValueSource
+net.minecraft.util.profiling.metrics.ProfilerMeasured
 net.minecraft.util.thread.BlockableEventLoop
 net.minecraft.util.thread.ReentrantBlockableEventLoop
+net.minecraft.util.thread.TaskScheduler
 net.minecraft.world.Nameable
 net.minecraft.world.entity.Attackable
 net.minecraft.world.entity.Avatar
@@ -187,8 +193,11 @@ net.minecraft.world.item.ItemInstance
 net.minecraft.world.item.ItemStack
 net.minecraft.world.item.component.Consumable
 net.minecraft.world.level.BlockAndLightGetter
+net.minecraft.world.level.BlockGetter
+net.minecraft.world.level.CommonLevelAccessor
 net.minecraft.world.level.Level
 net.minecraft.world.level.LevelAccessor
+net.minecraft.world.level.ScheduledTickAccess
 net.minecraft.world.level.biome.Biome
 net.minecraft.world.level.block.state.BlockBehaviour
 net.minecraft.world.level.entity.EntityAccess
