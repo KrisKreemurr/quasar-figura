@@ -1,3 +1,2 @@
-c:net.minecraft.client.gui.render.pip.PictureInPictureRenderer
-g:net.minecraft.client.gui.render.GuiRenderer|PictureInPicture|canBeReusedFor|prepare|pictureInPicture|oldPictureInPicture|Map
-net.minecraft.client.renderer.state.gui.pip.GuiEntityRenderState
+c:net.minecraft.client.gui.render.pip.GuiEntityRenderer
+g:net.minecraft.client.gui.screens.inventory.InventoryScreen|EntityInInventory|GuiEntityRenderState|Rot|rotation|Quaternion|LivingEntity
