@@ -1,2 +1,6 @@
-g:net.minecraft.client.main.Main|racy|  [a-z].*\(
-g:net.minecraft.client.Minecraft|racy
+com.mojang.renderpearl.api.commands.GpuQueryPool
+com.mojang.renderpearl.api.commands.GpuQuery
+c:com.mojang.blaze3d.systems.TimerQuery
+com.mojang.renderpearl.api.commands.CommandEncoder
+com.mojang.renderpearl.api.device.GpuDevice
+g:com.mojang.renderpearl.frontend.TracyGpuProfiler|  [a-z].*\(|Query|Timestamp
