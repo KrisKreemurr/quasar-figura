@@ -1,0 +1,2 @@
+g:net.minecraft.client.main.Main|racy|  [a-z].*\(
+g:net.minecraft.client.Minecraft|racy
