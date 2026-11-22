@@ -1,0 +1,2 @@
+g:net.minecraft.client.renderer.ScreenEffectRenderer|Fire|fire|  [a-z].*\(
+g:net.minecraft.client.renderer.special.PlayerHeadSpecialRenderer|  [a-z].*\(
