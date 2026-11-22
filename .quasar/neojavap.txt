@@ -1,2 +1,2 @@
-net.neoforged.neoforge.event.level.ChunkDataEvent$Load
-net.neoforged.neoforge.event.level.ChunkDataEvent$Save
+net.neoforged.fml.loading.FMLLoader
+net.neoforged.fml.loading.FMLEnvironment

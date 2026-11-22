@@ -1,5 +1,6 @@
-net.minecraft.world.ticks.SavedTick
-g:net.minecraft.world.level.chunk.ChunkAccess|getTicksForSerialization|MinSection|markUnsaved|setUnsaved|getBlockEntityNbtForSaving|getInhabitedTime
-g:net.minecraft.world.level.chunk.LevelChunk|public net.minecraft.world.level.chunk.LevelChunk\(|writeAttachments|readAttachments
-g:net.minecraft.world.level.block.entity.BlockEntity|loadStatic|getPosFromTag
-g:net.minecraft.world.entity.EntityType|loadEntitiesRecursive
+g:net.minecraft.world.level.Level|protected net.minecraft.world.level.Level\(|recipeAccess|environmentAttributes|abstract
+g:net.minecraft.client.multiplayer.ClientLevel|public net.minecraft.client.multiplayer.ClientLevel\(|disconnect|effects|recipe
+g:net.minecraft.server.level.ServerEntity|public net.minecraft.server.level.ServerEntity\(
+g:net.minecraft.world.level.chunk.LevelChunk|replaceWithPacketData
+g:net.minecraft.client.multiplayer.ClientChunkCache|replaceWithPacketData
+g:net.minecraft.client.multiplayer.ClientPacketListener|recipe|Recipe
