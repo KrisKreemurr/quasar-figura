@@ -1,3 +1,5 @@
-net.minecraft.network.protocol.game.ClientboundMoveVehiclePacket
-m:net.minecraft.client.multiplayer.ClientPacketListener|handleMoveVehicle
-g:net.minecraft.client.multiplayer.ClientPacketListener|setValuesFromPositionPacket
+net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData
+net.minecraft.network.protocol.game.ClientboundLightUpdatePacketData
+net.minecraft.network.PacketSendListener
+g:net.minecraft.world.level.LevelHeightAccessor|Section
+g:net.minecraft.world.entity.EntityType|PLAYER
