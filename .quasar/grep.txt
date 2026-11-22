@@ -1,5 +1,0 @@
-neoforge.*capabilities.Capabilities
-neoforge.transfer.*ResourceHandler$
-neoforge.transfer.item.ItemResource$
-neoforge.transfer.*(PlayerInventoryWrapper|ItemAccess|CombinedResourceHandler|VanillaContainerWrapper|ItemStacksResourceHandler)$
-neoforge.transfer.transaction.Transaction$
