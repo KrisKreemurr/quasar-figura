@@ -1,7 +1,5 @@
-net.minecraft.world.level.chunk.storage.SerializableChunkData
-g:net.minecraft.world.level.chunk.storage.SerializableChunkData|CODEC|Codec<|PalettedContainer|makeBiomeCodec|containerFactory
-net.minecraft.world.level.chunk.PalettedContainer
-net.minecraft.world.level.chunk.PalettedContainerFactory
-net.minecraft.world.ticks.LevelChunkTicks
-net.minecraft.world.level.chunk.DataLayer
-net.minecraft.world.level.chunk.ChunkAccess$PackedTicks
+net.minecraft.world.ticks.SavedTick
+g:net.minecraft.world.level.chunk.ChunkAccess|getTicksForSerialization|MinSection|markUnsaved|setUnsaved|getBlockEntityNbtForSaving|getInhabitedTime
+g:net.minecraft.world.level.chunk.LevelChunk|public net.minecraft.world.level.chunk.LevelChunk\(|writeAttachments|readAttachments
+g:net.minecraft.world.level.block.entity.BlockEntity|loadStatic|getPosFromTag
+g:net.minecraft.world.entity.EntityType|loadEntitiesRecursive
