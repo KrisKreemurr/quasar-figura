@@ -1,3 +1,9 @@
-g:net.minecraft.client.KeyMapping|public KeyMapping\(|matches|Category
-net.minecraft.client.KeyMapping$Category
-g:com.mojang.blaze3d.platform.InputConstants$Type|public
+net.minecraft.world.entity.player.Player$BedSleepingProblem
+g:net.minecraft.server.level.ServerPlayer|setRespawnPosition|RespawnConfig|public ServerLevel level
+net.minecraft.server.level.ServerPlayer$RespawnConfig
+g:net.minecraft.world.level.Level|isDay|isBright|isDarkOutside|isNight
+g:net.minecraft.world.entity.Entity|hasImpulse|needsSync|markHurt
+g:net.minecraft.world.item.ItemStack|static .*(parse|save|CODEC)
+g:net.minecraft.network.chat.ComponentSerialization|public static
+g:net.minecraft.world.entity.player.Inventory|selected|getSelected
+g:net.minecraft.sounds.SoundEvent|location
