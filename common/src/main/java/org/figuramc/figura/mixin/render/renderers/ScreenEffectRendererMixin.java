@@ -21,8 +21,9 @@ public class ScreenEffectRendererMixin {
     @Unique
     private static Avatar avatar;
 
-    @Inject(method = "renderFire", at = @At("HEAD"), cancellable = true)
-    private static void renderFire(PoseStack poseStack, FiguraBufferSource multiBufferSource, TextureAtlasSprite textureAtlasSprite, CallbackInfo ci) {
+    // Quasar MC (26.3): renderFire -> submitFire(PoseStack, SubmitNodeCollector, TextureAtlasSprite)
+    @Inject(method = "submitFire", at = @At("HEAD"), cancellable = true)
+    private static void renderFire(PoseStack poseStack, net.minecraft.client.renderer.SubmitNodeCollector submitNodeCollector, TextureAtlasSprite textureAtlasSprite, CallbackInfo ci) {
         Avatar a = AvatarManager.getAvatar(Minecraft.getInstance().getCameraEntity());
         if (RenderUtils.vanillaModelAndScript(a)) {
             if (!a.luaRuntime.renderer.renderFire) {
@@ -33,7 +34,7 @@ public class ScreenEffectRendererMixin {
         }
     }
 
-    @ModifyVariable(method = "renderFire", at = @At("HEAD"), ordinal = 0, argsOnly = true)
+    @ModifyVariable(method = "submitFire", at = @At("HEAD"), ordinal = 0, argsOnly = true)
     private static TextureAtlasSprite secondFireTexture(TextureAtlasSprite sprite) {
         TextureAtlasSprite s = RenderUtils.secondFireLayer(avatar);
         avatar = null;
