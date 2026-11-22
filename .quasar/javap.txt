@@ -1,2 +1,5 @@
-net.minecraft.client.particle.SingleQuadParticle$Layer
-net.minecraft.client.particle.ParticleRenderType
+net.minecraft.world.item.crafting.RecipeSerializer
+g:net.minecraft.world.item.crafting.ShapedRecipe|public|protected|final
+g:net.minecraft.world.item.crafting.ShapelessRecipe|public|final
+g:net.minecraft.world.level.block.entity.BlockEntityType|public BlockEntityType\(
+g:net.minecraft.world.entity.EntityType\$Builder|build
