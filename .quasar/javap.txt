@@ -1,0 +1,3 @@
+m:net.minecraft.world.entity.Entity|move
+m:net.minecraft.server.network.ServerGamePacketListenerImpl|isEntityCollidingWithAnythingNew
+g:net.minecraft.server.level.ServerEntity|invoke.*send

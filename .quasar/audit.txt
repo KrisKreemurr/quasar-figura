@@ -1,8 +1,2 @@
-net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase
-net.minecraft.world.level.block.state.BlockState
-net.minecraft.core.Cursor3D
-net.minecraft.world.phys.shapes.VoxelShape
-net.minecraft.world.item.ItemStack
-net.minecraft.nbt.NbtAccounter
-net.minecraft.world.level.chunk.ChunkGeneratorStructureState
-com.mojang.blaze3d.platform.InputConstants
+net.minecraft.world.level.block.state.BlockBehaviour
+net.minecraft.client.particle.ParticleResources
