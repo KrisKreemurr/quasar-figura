@@ -1,1 +1,14 @@
-g:net.minecraft.client.multiplayer.ClientPacketListener|ClientLevel level;|ClientLevel level$|private .*ClientLevel
+net.minecraft.network.protocol.game.ServerboundUseItemOnPacket
+net.minecraft.network.protocol.game.ServerboundUseItemPacket
+net.minecraft.network.protocol.game.ServerboundSignUpdatePacket
+net.minecraft.world.InteractionResult
+net.minecraft.world.InteractionResult$Success
+g:net.minecraft.server.level.ServerPlayer|canInteractWith|InteractionRange|ermission|public .* swing
+g:net.minecraft.world.entity.LivingEntity|public void swing
+net.minecraft.world.item.ItemCooldowns
+g:net.minecraft.world.level.BaseCommandBlock|onUpdated
+net.minecraft.network.protocol.game.ClientboundTagQueryPacket
+g:net.minecraft.world.level.block.Block|playerDestroy
+g:net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase|useItemOn|useWithoutItem
+g:net.minecraft.world.item.ItemStack|InteractionResult use|useOn
+g:net.minecraft.world.level.Level|getMaxY|getMinY|isCommandBlockEnabled
