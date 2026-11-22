@@ -1,6 +1,1 @@
-com.mojang.renderpearl.api.commands.GpuQueryPool
-com.mojang.renderpearl.api.commands.GpuQuery
-c:com.mojang.blaze3d.systems.TimerQuery
-com.mojang.renderpearl.api.commands.CommandEncoder
-com.mojang.renderpearl.api.device.GpuDevice
-g:com.mojang.renderpearl.frontend.TracyGpuProfiler|  [a-z].*\(|Query|Timestamp
+g:com.mojang.renderpearl.frontend.FrontendGpuDevice|TracyGpuProfiler|tracy|Tracy|getProperty|Boolean|  [a-z].*\(
