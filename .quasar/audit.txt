@@ -34,6 +34,7 @@ net.minecraft.client.gui.components.PlayerTabOverlay
 net.minecraft.client.gui.components.Renderable
 net.minecraft.client.gui.components.SplashRenderer
 net.minecraft.client.gui.components.SubtitleOverlay
+net.minecraft.client.gui.components.TabOrderedElement
 net.minecraft.client.gui.components.debug.DebugScreenEntries
 net.minecraft.client.gui.components.debug.DebugScreenEntryList
 net.minecraft.client.gui.components.events.AbstractContainerEventHandler
@@ -47,6 +48,8 @@ net.minecraft.client.gui.font.glyphs.BakedGlyph
 net.minecraft.client.gui.font.glyphs.BakedSheetGlyph
 net.minecraft.client.gui.font.glyphs.EffectGlyph
 net.minecraft.client.gui.font.providers.BitmapProvider$Glyph
+net.minecraft.client.gui.layouts.LayoutElement
+net.minecraft.client.gui.narration.NarratableEntry
 net.minecraft.client.gui.render.GuiRenderer
 net.minecraft.client.gui.render.pip.GuiEntityRenderer
 net.minecraft.client.gui.render.pip.PictureInPictureRenderer
@@ -153,6 +156,7 @@ net.minecraft.core.TypedInstance
 net.minecraft.core.component.DataComponentGetter
 net.minecraft.core.component.DataComponentHolder
 net.minecraft.core.particles.ParticleTypes
+net.minecraft.network.ClientboundPacketListener
 net.minecraft.network.PacketListener
 net.minecraft.network.TickablePacketListener
 net.minecraft.network.chat.ClickEvent$Action
@@ -195,8 +199,12 @@ net.minecraft.world.item.component.Consumable
 net.minecraft.world.level.BlockAndLightGetter
 net.minecraft.world.level.BlockGetter
 net.minecraft.world.level.CommonLevelAccessor
+net.minecraft.world.level.EntityGetter
 net.minecraft.world.level.Level
 net.minecraft.world.level.LevelAccessor
+net.minecraft.world.level.LevelHeightAccessor
+net.minecraft.world.level.LevelReader
+net.minecraft.world.level.LevelSimulatedRW
 net.minecraft.world.level.ScheduledTickAccess
 net.minecraft.world.level.biome.Biome
 net.minecraft.world.level.block.state.BlockBehaviour
