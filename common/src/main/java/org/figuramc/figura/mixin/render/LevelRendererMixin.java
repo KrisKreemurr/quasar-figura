@@ -99,13 +99,17 @@ public abstract class LevelRendererMixin {
     @Inject(method = "render", at = @At("HEAD"))
     private void onRenderLevel(CallbackInfo ci) {
         float delta = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        long t = org.figuramc.figura.quasar.FiguraTimings.start();
         AvatarManager.executeAll("worldRender", avatar -> avatar.render(delta));
+        org.figuramc.figura.quasar.FiguraTimings.stop(org.figuramc.figura.quasar.FiguraTimings.Part.WORLD_EVENTS, t);
     }
 
     @Inject(method = "render", at = @At("RETURN"))
     private void afterRenderLevel(CallbackInfo ci) {
         float delta = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        long t = org.figuramc.figura.quasar.FiguraTimings.start();
         AvatarManager.executeAll("postWorldRender", avatar -> avatar.postWorldRenderEvent(delta));
+        org.figuramc.figura.quasar.FiguraTimings.stop(org.figuramc.figura.quasar.FiguraTimings.Part.WORLD_EVENTS, t);
     }
 
     @ModifyArg(method = "renderHitOutline", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/ShapeRenderer;renderShape(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/shapes/VoxelShape;DDDIF)V"), index = 6)

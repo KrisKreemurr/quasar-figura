@@ -40,6 +40,7 @@ public class DebugEntryFigura implements DebugScreenEntry {
                 lines.add(color + String.format("World Render instructions: %d (W: %d PW: %d)", avatar.worldRender.getTotal(), avatar.worldRender.pre, avatar.worldRender.post) + ChatFormatting.RESET);
             }
         }
+        lines.add(org.figuramc.figura.quasar.FiguraTimings.f3Line());
         lines.add(String.format("Pings per second: ↑%d, ↓%d", NetworkStuff.pingsSent, NetworkStuff.pingsReceived));
 
         lines.add("");

@@ -202,12 +202,18 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, S extend
             figura$transformParts(avatar, model);
 
             FiguraMod.popPushProfiler("renderEvent");
+            long tEvent = org.figuramc.figura.quasar.FiguraTimings.start();
             avatar.renderEvent(tickDelta, poseMatrix);
+            org.figuramc.figura.quasar.FiguraTimings.stop(org.figuramc.figura.quasar.FiguraTimings.Part.RENDER_EVENTS, tEvent);
 
+            long tModel = org.figuramc.figura.quasar.FiguraTimings.start();
             avatar.render(entity, livingEntityState.yRot, tickDelta, translucent ? 0.15f : 1f, poseStack2, bufferSource, livingEntityState.lightCoords, overlay, model, filter, translucent, glowing);
+            org.figuramc.figura.quasar.FiguraTimings.stop(org.figuramc.figura.quasar.FiguraTimings.Part.MODEL, tModel);
 
             FiguraMod.popPushProfiler("postRenderEvent");
+            long tPost = org.figuramc.figura.quasar.FiguraTimings.start();
             avatar.postRenderEvent(tickDelta, poseMatrix);
+            org.figuramc.figura.quasar.FiguraTimings.stop(org.figuramc.figura.quasar.FiguraTimings.Part.RENDER_EVENTS, tPost);
 
             FiguraMod.popProfiler(3);
 

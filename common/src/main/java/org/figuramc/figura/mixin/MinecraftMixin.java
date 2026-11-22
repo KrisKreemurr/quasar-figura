@@ -136,12 +136,16 @@ public abstract class MinecraftMixin {
 
     @Inject(at = @At("HEAD"), method = "runTick")
     private void preTick(boolean tick, CallbackInfo ci) {
+        long t = org.figuramc.figura.quasar.FiguraTimings.start();
         AvatarManager.executeAll("applyBBAnimations", Avatar::applyAnimations);
+        org.figuramc.figura.quasar.FiguraTimings.stop(org.figuramc.figura.quasar.FiguraTimings.Part.ANIMATIONS, t);
     }
 
     @Inject(at = @At("RETURN"), method = "runTick")
     private void afterTick(boolean tick, CallbackInfo ci) {
+        long t = org.figuramc.figura.quasar.FiguraTimings.start();
         AvatarManager.executeAll("clearBBAnimations", Avatar::clearAnimations);
+        org.figuramc.figura.quasar.FiguraTimings.stop(org.figuramc.figura.quasar.FiguraTimings.Part.ANIMATIONS, t);
     }
 
     @Inject(at = @At("RETURN"), method = "tick")

@@ -67,6 +67,15 @@ public class AvatarManager {
     public static void tickLoadedAvatars() {
         if (panic)
             return;
+        long quasarTickStart = org.figuramc.figura.quasar.FiguraTimings.start();
+        try {
+            tickLoadedAvatarsInner();
+        } finally {
+            org.figuramc.figura.quasar.FiguraTimings.stop(org.figuramc.figura.quasar.FiguraTimings.Part.TICK, quasarTickStart);
+        }
+    }
+
+    private static void tickLoadedAvatarsInner() {
 
         // tick the avatars
         for (UserData user : LOADED_USERS.values()) {
