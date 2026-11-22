@@ -23,6 +23,7 @@ public abstract class CameraMixin {
 
     @Shadow private float xRot;
     @Shadow private float yRot;
+    @Shadow private float fovModifier;
 
     @Unique private Avatar avatar;
 
@@ -141,5 +142,15 @@ public abstract class CameraMixin {
     private void yRot(CallbackInfoReturnable<Float> cir) {
         if (UIHelper.paperdoll)
             cir.setReturnValue(0f);
+    }
+
+    // Quasar MC (26.3): FOV ticking moved from GameRenderer into Camera.
+    @Inject(method = "tickFov", at = @At("RETURN"))
+    private void figura$tickFov(CallbackInfo ci) {
+        Avatar fovAvatar = AvatarManager.getAvatar(((Camera) (Object) this).entity());
+        if (RenderUtils.vanillaModelAndScript(fovAvatar)) {
+            Float fov = fovAvatar.luaRuntime.renderer.fov;
+            if (fov != null) this.fovModifier = fov;
+        }
     }
 }

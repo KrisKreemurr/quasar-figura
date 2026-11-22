@@ -172,22 +172,7 @@ public abstract class GameRendererMixin implements GameRendererAccessor {
             ci.cancel();
     }
 
-    @Inject(method = "tickFov", at = @At("RETURN"))
-    private void tickFov(CallbackInfo ci) {
-        Avatar avatar = AvatarManager.getAvatar(this.minecraft.getCameraEntity());
-        if (RenderUtils.vanillaModelAndScript(avatar)) {
-            Float fov = avatar.luaRuntime.renderer.fov;
-            if (fov != null) this.fovModifier = fov;
-        }
-    }
-
-    @Inject(method = "pick(F)V", at = @At("RETURN"))
-    private void pick(float tickDelta, CallbackInfo ci) {
-        FiguraMod.pushProfiler(FiguraMod.MOD_ID);
-        FiguraMod.pushProfiler("extendedPick");
-        FiguraMod.extendedPickEntity = EntityUtils.getViewedEntity(32);
-        FiguraMod.popProfiler(2);
-    }
+    // Quasar MC (26.3): FOV now ticks in Camera.tickFov (CameraMixin), picking moved to Minecraft.pick (MinecraftMixin).
 
     @Override @Intrinsic
     public double figura$getFov(Camera camera, float tickDelta, boolean changingFov) {
@@ -200,9 +185,9 @@ public abstract class GameRendererMixin implements GameRendererAccessor {
         hasShaders = ClientAPI.hasShaderPack();
     }
 
-    @ModifyArg(method = "renderLevel", index = 0,
+    @ModifyArg(method = "renderLevel", index = 1,
             at = @At(value = "INVOKE",
-                    target = "Lnet/minecraft/client/renderer/GameRenderer;bobHurt(Lcom/mojang/blaze3d/vertex/PoseStack;F)V"))
+                    target = "Lnet/minecraft/client/renderer/GameRenderer;bobHurt(Lnet/minecraft/client/renderer/state/level/CameraRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;)V"))
     private PoseStack renderLevelBobHurt(PoseStack stack) {
         Avatar avatar = AvatarManager.getAvatar(this.minecraft.getCameraEntity() == null ? this.minecraft.player : this.minecraft.getCameraEntity());
         if (!RenderUtils.vanillaModelAndScript(avatar) || hasShaders) return stack;
@@ -215,30 +200,24 @@ public abstract class GameRendererMixin implements GameRendererAccessor {
 
     @WrapOperation(method = "renderLevel",
             at = @At(value = "INVOKE",
-                    target = "Lnet/minecraft/client/renderer/GameRenderer;bobView(Lcom/mojang/blaze3d/vertex/PoseStack;F)V"))
-    private void figura$stopBobView(GameRenderer instance, PoseStack stack, float f, Operation<GameRenderer> original) {
+                    target = "Lnet/minecraft/client/renderer/GameRenderer;bobView(Lnet/minecraft/client/renderer/state/level/CameraRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;)V"))
+    private void figura$stopBobView(GameRenderer instance, net.minecraft.client.renderer.state.level.CameraRenderState cameraState, PoseStack stack, Operation<GameRenderer> original) {
         Avatar avatar = AvatarManager.getAvatar(this.minecraft.getCameraEntity() == null ? this.minecraft.player : this.minecraft.getCameraEntity());
         if (!RenderUtils.vanillaModelAndScript(avatar) || hasShaders)
-            original.call(instance, stack, f);
+            original.call(instance, cameraState, stack);
     }
 
     @WrapOperation(method = "renderLevel",
             at = @At(value = "INVOKE",
-                    target = "Lnet/minecraft/client/renderer/GameRenderer;bobHurt(Lcom/mojang/blaze3d/vertex/PoseStack;F)V"))
-    private void figura$stopBobHurt(GameRenderer instance, PoseStack stack, float f, Operation<GameRenderer> original) {
+                    target = "Lnet/minecraft/client/renderer/GameRenderer;bobHurt(Lnet/minecraft/client/renderer/state/level/CameraRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;)V"))
+    private void figura$stopBobHurt(GameRenderer instance, net.minecraft.client.renderer.state.level.CameraRenderState cameraState, PoseStack stack, Operation<GameRenderer> original) {
         Avatar avatar = AvatarManager.getAvatar(this.minecraft.getCameraEntity() == null ? this.minecraft.player : this.minecraft.getCameraEntity());
         if (!RenderUtils.vanillaModelAndScript(avatar) || hasShaders)
-            original.call(instance, stack, f);
+            original.call(instance, cameraState, stack);
     }
 
 
-    @WrapOperation(method = "renderLevel",
-            at = @At(value = "INVOKE",
-                    target = "Lnet/minecraft/client/OptionInstance;get()Ljava/lang/Object;", ordinal = 1))
-    private<T> T figura$disableConfusionOnMatrix(OptionInstance<T> instance, Operation<T> original) {
-        Avatar avatar = AvatarManager.getAvatar(this.minecraft.getCameraEntity() == null ? this.minecraft.player : this.minecraft.getCameraEntity());
-        return (!RenderUtils.vanillaModelAndScript(avatar) || hasShaders) ? original.call(instance) : (T) (Object) 0.0;
-    }
+    // TODO(quasar): nausea/confusion distortion is read in GameRenderer.extractOptions in 26.3; re-hook there.
 
     @Override
     public GuiRenderer figura$getGuiRenderer() {

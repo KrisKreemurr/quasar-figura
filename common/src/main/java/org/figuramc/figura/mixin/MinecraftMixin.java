@@ -150,4 +150,13 @@ public abstract class MinecraftMixin {
         FiguraMod.tick();
         FiguraMod.popProfiler();
     }
+
+    // Quasar MC (26.3): crosshair picking moved from GameRenderer.pick to Minecraft.pick.
+    @Inject(method = "pick(F)V", at = @At("RETURN"))
+    private void figura$extendedPick(float tickDelta, CallbackInfo ci) {
+        org.figuramc.figura.FiguraMod.pushProfiler(org.figuramc.figura.FiguraMod.MOD_ID);
+        org.figuramc.figura.FiguraMod.pushProfiler("extendedPick");
+        org.figuramc.figura.FiguraMod.extendedPickEntity = org.figuramc.figura.utils.EntityUtils.getViewedEntity(32);
+        org.figuramc.figura.FiguraMod.popProfiler(2);
+    }
 }
