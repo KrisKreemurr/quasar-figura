@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = InventoryScreen.class, priority = 999)
 public class InventoryScreenMixin {
 
-    @Inject(method = "renderEntityInInventoryFollowsMouse", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "extractEntityInInventoryFollowsMouse", at = @At("HEAD"), cancellable = true)
     private static void renderEntityInInventoryFollowsMouse(GuiGraphicsExtractor guiGraphics, int x, int y, int i, int j, int size, float yOffset, float mouseX, float mouseY, LivingEntity entity, CallbackInfo ci) {
         if (!Configs.FIGURA_INVENTORY.value || AvatarManager.panic)
             return;

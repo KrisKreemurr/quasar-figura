@@ -44,8 +44,9 @@ public class ChatComponentMixin {
     @Unique private Integer color;
     @Unique private static int currColor;
 
-    @Inject(method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/client/multiplayer/chat/GuiMessageTag;)V", at = @At(value = "HEAD"), locals = LocalCapture.CAPTURE_FAILSOFT, cancellable = true)
-    private void injectAddMessage(Component message, MessageSignature signature, GuiMessageTag tag, CallbackInfo ci, @Local(argsOnly = true) LocalRef<Component> localMessageRef) {
+    // Quasar MC (26.3): addMessage gained a GuiMessageSource parameter
+    @Inject(method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/client/multiplayer/chat/GuiMessageSource;Lnet/minecraft/client/multiplayer/chat/GuiMessageTag;)V", at = @At(value = "HEAD"), cancellable = true)
+    private void injectAddMessage(Component message, MessageSignature signature, net.minecraft.client.multiplayer.chat.GuiMessageSource source, GuiMessageTag tag, CallbackInfo ci, @Local(argsOnly = true) LocalRef<Component> localMessageRef) {
         Component modifiedMessage = modifyMessage(message);
         if (modifiedMessage == null) {
             ci.cancel();
@@ -180,14 +181,15 @@ public class ChatComponentMixin {
         return message;
     }
 
-    @ModifyVariable(at = @At("HEAD"), method = "method_75802", argsOnly = true)
+    // Quasar MC (26.3): the per-line chat drawing moved into this lambda of extractRenderState
+    @ModifyVariable(at = @At("HEAD"), method = "lambda$extractRenderState$1", argsOnly = true)
     private static GuiMessage.Line grabColor(GuiMessage.Line value) {
         currColor = ((GuiMessageAccessor) (Object) value).figura$getColor();
         return value;
     }
 
-    @ModifyArg(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/ChatComponent$ChatGraphicsAccess;fill(IIIII)V", ordinal = 0), method = "render(Lnet/minecraft/client/gui/components/ChatComponent$ChatGraphicsAccess;IIZ)V", index = 4)
-    private int textBackgroundOnRender(int color) {
+    @ModifyArg(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/ChatComponent$ChatGraphicsAccess;fill(IIIII)V", ordinal = 0), method = "lambda$extractRenderState$1", index = 4)
+    private static int textBackgroundOnRender(int color) {
         return color + currColor;
     }
 

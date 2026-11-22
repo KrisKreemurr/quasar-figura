@@ -1,4 +1,2 @@
-g:net.minecraft.client.gui.components.ChatComponent|addFirst|fill|GuiMessage\$Line|addMessage|ChatGraphicsAccess|  [a-z].*\(
-g:net.minecraft.client.gui.screens.ChatScreen|  [a-z].*\(
-g:net.minecraft.client.gui.components.PlayerTabOverlay|PlayerFaceRenderer|getPlayerByUUID|  [a-z].*\(
-net.minecraft.client.gui.components.PlayerFaceRenderer
+net.minecraft.client.gui.components.PlayerFaceExtractor
+g:net.minecraft.client.gui.components.PlayerTabOverlay|PlayerFace|getPlayerByUUID
