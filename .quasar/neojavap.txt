@@ -1,0 +1,2 @@
+net.neoforged.neoforge.client.extensions.IKeyMappingExtension
+net.neoforged.neoforge.client.event.EntityRenderersEvent$RegisterRenderers
