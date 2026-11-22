@@ -29,6 +29,35 @@ public final class FiguraTimings {
 
     public static void countBuild(Build build) {
         frameBuilds[build.ordinal()]++;
+        if (build == Build.WORLD_SELF_FIRST_PERSON) {
+            long now = System.currentTimeMillis();
+            if (now - lastCallerCheck > 2000) {
+                lastCallerCheck = now;
+                firstPersonCaller = describeCaller();
+            }
+        }
+    }
+
+    private static long lastCallerCheck = 0;
+    private static String firstPersonCaller = "";
+
+    /** The code path that asked for the build: the frames just outside Figura and the entity renderers. */
+    private static String describeCaller() {
+        StackTraceElement[] stack = new Throwable().getStackTrace();
+        StringBuilder sb = new StringBuilder();
+        int shown = 0;
+        for (StackTraceElement e : stack) {
+            String c = e.getClassName();
+            if (c.startsWith("org.figuramc") || c.startsWith("java.") || c.startsWith("jdk.")
+                    || c.contains("LivingEntityRenderer") || c.contains("AvatarRenderer") || c.contains("EntityRenderer")
+                    || c.contains("FeatureRender") || c.contains("SubmitNode") || c.contains("$$Lambda"))
+                continue;
+            String simple = c.substring(c.lastIndexOf('.') + 1);
+            if (sb.length() > 0) sb.append(" <- ");
+            sb.append(simple).append('.').append(e.getMethodName());
+            if (++shown >= 4) break;
+        }
+        return sb.toString();
     }
     private static final long[] frameNanos = new long[Part.values().length];
     private static final double[] smoothedMs = new double[Part.values().length];
@@ -63,6 +92,10 @@ public final class FiguraTimings {
     public static String f3BuildsLine() {
         return String.format(Locale.ROOT, "Figura model builds/frame: others %.1f, self 3rd person %.1f, self 1st person %.1f, GUI %.1f",
                 smoothedBuilds[0], smoothedBuilds[1], smoothedBuilds[2], smoothedBuilds[3]);
+    }
+
+    public static String f3CallerLine() {
+        return firstPersonCaller.isEmpty() ? "" : "1st person build via: " + firstPersonCaller;
     }
 
     public static String f3Line() {

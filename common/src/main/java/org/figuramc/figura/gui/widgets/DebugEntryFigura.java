@@ -42,6 +42,8 @@ public class DebugEntryFigura implements DebugScreenEntry {
         }
         lines.add(org.figuramc.figura.quasar.FiguraTimings.f3Line());
         lines.add(org.figuramc.figura.quasar.FiguraTimings.f3BuildsLine());
+        String quasarCaller = org.figuramc.figura.quasar.FiguraTimings.f3CallerLine();
+        if (!quasarCaller.isEmpty()) lines.add(quasarCaller);
         lines.add(String.format("Pings per second: ↑%d, ↓%d", NetworkStuff.pingsSent, NetworkStuff.pingsReceived));
 
         lines.add("");
