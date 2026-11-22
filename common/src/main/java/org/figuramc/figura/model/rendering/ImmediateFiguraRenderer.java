@@ -235,6 +235,10 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
         return customization;
     }
 
+    // Quasar MC: last part-light lookup (see renderPart)
+    private Level quasarLightLevel;
+    private int quasarLightX, quasarLightY, quasarLightZ, quasarLight;
+
     protected boolean renderPart(FiguraModelPart part, int[] remainingComplexity, boolean prevPredicate) {
         FiguraMod.pushProfiler(part.name);
 
@@ -316,10 +320,19 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
                 pivotOffsetter.light = custom.light;
             }
             else if (updateLight && (l = Minecraft.getInstance().level) != null) {
-                FiguraVec3 pos = part.savedPartToWorldMat.apply(0d, 0d, 0d);
-                int block = l.getBrightness(LightLayer.BLOCK, pos.asBlockPos());
-                int sky = l.getBrightness(LightLayer.SKY, pos.asBlockPos());
-                customizationStack.peek().light = LightCoordsUtil.pack(block, sky);
+                // Quasar MC: most parts of an avatar sit in the same one or two blocks, so reuse the
+                // last light lookup when the part is in the same block (two world lookups per part before)
+                FiguraMat4 m = part.savedPartToWorldMat;
+                int bx = (int) Math.floor(m.v14), by = (int) Math.floor(m.v24), bz = (int) Math.floor(m.v34);
+                if (l != quasarLightLevel || bx != quasarLightX || by != quasarLightY || bz != quasarLightZ) {
+                    net.minecraft.core.BlockPos bp = new net.minecraft.core.BlockPos(bx, by, bz);
+                    quasarLight = LightCoordsUtil.pack(l.getBrightness(LightLayer.BLOCK, bp), l.getBrightness(LightLayer.SKY, bp));
+                    quasarLightLevel = l;
+                    quasarLightX = bx;
+                    quasarLightY = by;
+                    quasarLightZ = bz;
+                }
+                customizationStack.peek().light = quasarLight;
             }
 
             if (custom.alpha != null)
@@ -672,32 +685,57 @@ public class ImmediateFiguraRenderer extends FiguraRenderer {
     private void pushToBuffer(int faceCount, VertexData vertexData, PartCustomization customization, FiguraTextureSet textureSet, List<Vertex> vertices) {
         int vertCount = faceCount * 4;
 
-        FiguraVec3 uvFixer = FiguraVec3.of();
-        uvFixer.set(textureSet.getWidth(), textureSet.getHeight(), 1); // Dividing by this makes uv 0 to 1
+        // Quasar MC: same math as before, written out by hand so building an avatar doesn't allocate
+        // per vertex (the old normalized() call made a new vector for every vertex) or go through
+        // generic vector objects.
+        final double uScale = 1.0 / textureSet.getWidth();
+        final double vScale = 1.0 / textureSet.getHeight();
 
         int overlay = customization.overlay;
         int light = vertexData.fullBright ? LightCoordsUtil.FULL_BRIGHT : customization.light;
 
         VERTEX_BUFFER.getBufferFor(vertexData.renderType, vertexData.primary, vertexConsumer -> {
+            final FiguraMat4 pm = customization.positionMatrix;
+            final FiguraMat3 nm = customization.normalMatrix;
+            final FiguraMat3 um = customization.uvMatrix;
+            final double offset = vertexData.vertexOffset;
+            final float r = (float) vertexData.color.x, g = (float) vertexData.color.y, b = (float) vertexData.color.z;
+            final float a = customization.alpha;
+
             for (int i = 0; i < vertCount; i++) {
                 Vertex vertex = vertices.get(i);
+                double x = vertex.x, y = vertex.y, z = vertex.z;
 
-                pos.set(vertex.x, vertex.y, vertex.z, 1);
-                pos.transform(customization.positionMatrix);
-                pos.add(pos.normalized().scale(vertexData.vertexOffset));
-                normal.set(vertex.nx, vertex.ny, vertex.nz);
-                normal.transform(customization.normalMatrix);
-                uv.set(vertex.u, vertex.v, 1);
-                uv.divide(uvFixer);
-                uv.transform(customization.uvMatrix);
+                double px = pm.v11 * x + pm.v12 * y + pm.v13 * z + pm.v14;
+                double py = pm.v21 * x + pm.v22 * y + pm.v23 * z + pm.v24;
+                double pz = pm.v31 * x + pm.v32 * y + pm.v33 * z + pm.v34;
+                if (offset != 0) {
+                    double pw = pm.v41 * x + pm.v42 * y + pm.v43 * z + pm.v44;
+                    double len = Math.sqrt(px * px + py * py + pz * pz + pw * pw);
+                    if (len > 0) {
+                        double k = offset / len;
+                        px += px * k;
+                        py += py * k;
+                        pz += pz * k;
+                    }
+                }
+
+                double nx = vertex.nx, ny = vertex.ny, nz = vertex.nz;
+                double tnx = nm.v11 * nx + nm.v12 * ny + nm.v13 * nz;
+                double tny = nm.v21 * nx + nm.v22 * ny + nm.v23 * nz;
+                double tnz = nm.v31 * nx + nm.v32 * ny + nm.v33 * nz;
+
+                double u = vertex.u * uScale, v = vertex.v * vScale;
+                double tu = um.v11 * u + um.v12 * v + um.v13;
+                double tv = um.v21 * u + um.v22 * v + um.v23;
 
                 vertexConsumer
-                        .addVertex((float) pos.x, (float) pos.y, (float) pos.z)
-                        .setColor((float) vertexData.color.x, (float) vertexData.color.y, (float) vertexData.color.z, customization.alpha)
-                        .setUv((float) uv.x, (float) uv.y)
+                        .addVertex((float) px, (float) py, (float) pz)
+                        .setColor(r, g, b, a)
+                        .setUv((float) tu, (float) tv)
                         .setOverlay(overlay)
                         .setLight(light)
-                        .setNormal((float) normal.x, (float) normal.y, (float) normal.z)
+                        .setNormal((float) tnx, (float) tny, (float) tnz)
                         .setLineWidth(1.0F);
             }
         });
