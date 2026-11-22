@@ -32,7 +32,7 @@ if [ -f .quasar/audit.txt ]; then
   while IFS= read -r cls; do
     [ -z "$cls" ] && continue
     echo "=== AUDIT $cls"
-    javap -s -p -cp "$J" "$cls" 2>&1 | awk '/descriptor:/ {d=$2; n=prev; sub(/\(.*/,"",n); k=split(n,a," "); nm=a[k]; if (index(prev,"(")) print "M " nm d; else print "F " nm " " d; next} {prev=$0}'
+    javap -s -p -cp "$J" "$cls" 2>&1 | awk '/^(public |protected |private |final |abstract |sealed |non-sealed )*(class|interface|enum|record) / && !hdr {print "H " $0; hdr=1} /descriptor:/ {d=$2; n=prev; sub(/\(.*/,"",n); k=split(n,a," "); nm=a[k]; if (index(prev,"(")) print "M " nm d; else print "F " nm " " d; next} {prev=$0}'
   done < .quasar/audit.txt
 fi
 NEOJAR=$(find ~/.gradle/caches -name "neoforge-*-universal.jar" 2>/dev/null | head -1)
