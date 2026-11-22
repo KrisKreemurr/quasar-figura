@@ -1,8 +1,3 @@
-com.mojang.renderpearl.api.pipeline.RenderPipeline
-net.minecraft.client.renderer.state.level.CameraRenderState
-net.minecraft.client.gui.screens.options.VideoSettingsScreen
-net.minecraft.client.gui.screens.options.OptionsSubScreen
-net.minecraft.client.gui.components.CycleButton
-net.minecraft.client.gui.components.Button
-net.minecraft.client.gui.components.OptionsList
-m:net.minecraft.client.gui.screens.options.VideoSettingsScreen|addOptions
+net.minecraft.client.input.MouseButtonInfo
+g:com.mojang.blaze3d.platform.InputConstants|MOUSE_BUTTON
+m:net.minecraft.client.gui.components.AbstractWidget|isValidClickButton
