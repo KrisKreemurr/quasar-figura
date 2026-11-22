@@ -21,6 +21,15 @@ public final class FiguraTimings {
     }
 
     private static final double SMOOTHING = 0.05;
+
+    // model builds per frame, split by why they happened
+    public enum Build { WORLD_OTHERS, WORLD_SELF_THIRD_PERSON, WORLD_SELF_FIRST_PERSON, GUI }
+    private static final int[] frameBuilds = new int[Build.values().length];
+    private static final double[] smoothedBuilds = new double[Build.values().length];
+
+    public static void countBuild(Build build) {
+        frameBuilds[build.ordinal()]++;
+    }
     private static final long[] frameNanos = new long[Part.values().length];
     private static final double[] smoothedMs = new double[Part.values().length];
 
@@ -41,10 +50,19 @@ public final class FiguraTimings {
             smoothedMs[i] += (ms - smoothedMs[i]) * SMOOTHING;
             frameNanos[i] = 0;
         }
+        for (int i = 0; i < frameBuilds.length; i++) {
+            smoothedBuilds[i] += (frameBuilds[i] - smoothedBuilds[i]) * SMOOTHING;
+            frameBuilds[i] = 0;
+        }
     }
 
     public static double ms(Part part) {
         return smoothedMs[part.ordinal()];
+    }
+
+    public static String f3BuildsLine() {
+        return String.format(Locale.ROOT, "Figura model builds/frame: others %.1f, self 3rd person %.1f, self 1st person %.1f, GUI %.1f",
+                smoothedBuilds[0], smoothedBuilds[1], smoothedBuilds[2], smoothedBuilds[3]);
     }
 
     public static String f3Line() {

@@ -206,6 +206,20 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, S extend
             avatar.renderEvent(tickDelta, poseMatrix);
             org.figuramc.figura.quasar.FiguraTimings.stop(org.figuramc.figura.quasar.FiguraTimings.Part.RENDER_EVENTS, tEvent);
 
+            // Quasar MC: count why this model build happened
+            {
+                net.minecraft.client.Minecraft quasarMc = net.minecraft.client.Minecraft.getInstance();
+                org.figuramc.figura.quasar.FiguraTimings.Build why;
+                if (org.figuramc.figura.utils.ui.UIHelper.paperdoll)
+                    why = org.figuramc.figura.quasar.FiguraTimings.Build.GUI;
+                else if (entity != quasarMc.player)
+                    why = org.figuramc.figura.quasar.FiguraTimings.Build.WORLD_OTHERS;
+                else if (quasarMc.options.getCameraType().isFirstPerson())
+                    why = org.figuramc.figura.quasar.FiguraTimings.Build.WORLD_SELF_FIRST_PERSON;
+                else
+                    why = org.figuramc.figura.quasar.FiguraTimings.Build.WORLD_SELF_THIRD_PERSON;
+                org.figuramc.figura.quasar.FiguraTimings.countBuild(why);
+            }
             long tModel = org.figuramc.figura.quasar.FiguraTimings.start();
             avatar.render(entity, livingEntityState.yRot, tickDelta, translucent ? 0.15f : 1f, poseStack2, bufferSource, livingEntityState.lightCoords, overlay, model, filter, translucent, glowing);
             org.figuramc.figura.quasar.FiguraTimings.stop(org.figuramc.figura.quasar.FiguraTimings.Part.MODEL, tModel);
