@@ -35,7 +35,7 @@ public class MouseHandlerMixin {
         if (avatar == null || avatar.luaRuntime == null)
             return;
 
-        if (avatar.mousePressEvent(mouseButtonInfo.button(), action, mouseButtonInfo.modifiers()) && (this.mouseGrabbed || this.minecraft.gui.screen() == null)) {
+        if (avatar.mousePressEvent(org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonInfo.button()), action, mouseButtonInfo.modifiers()) && (this.mouseGrabbed || this.minecraft.gui.screen() == null)) {
             ci.cancel();
             return;
         }
@@ -49,7 +49,8 @@ public class MouseHandlerMixin {
             ci.cancel();
 
         if (avatar.luaRuntime != null && pressed && ActionWheel.isEnabled()) {
-            if (mouseButtonInfo.button() <= 1) ActionWheel.execute(ActionWheel.getSelected(), mouseButtonInfo.button() == 0);
+            int legacy = org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonInfo.button());
+            if (legacy <= 1) ActionWheel.execute(ActionWheel.getSelected(), legacy == 0);
             ci.cancel();
         }
     }

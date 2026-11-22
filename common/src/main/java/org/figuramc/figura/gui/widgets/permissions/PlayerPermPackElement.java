@@ -219,7 +219,7 @@ public class PlayerPermPackElement extends AbstractPermPackElement {
             return false;
 
         // context menu on right click
-        if (mouseButtonEvent.button() == 1) {
+        if (org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonEvent.button()) == 1) {
             context.setX((int) mouseX);
             context.setY((int) mouseY);
             context.setVisible(true);

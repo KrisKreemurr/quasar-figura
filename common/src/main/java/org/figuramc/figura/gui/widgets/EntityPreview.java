@@ -93,10 +93,6 @@ public class EntityPreview extends AbstractContainerElement {
             UIHelper.blit(gui, x + 1, y + 1, width - 2, height, OVERLAY);
         }
 
-        // Quasar MC (26.3): poll the mouse buttons directly so rotate/move works even when the
-        // screen's click/drag events don't reach this widget.
-        figura$pollMouse(mouseX, mouseY);
-
         // scissors
         gui.enableScissor(x + 1, y + 1, x + width - 1, y + height - 1);
 
@@ -119,23 +115,129 @@ public class EntityPreview extends AbstractContainerElement {
         super.extractRenderState(gui, mouseX, mouseY, delta);
     }
 
-    // Quasar MC (26.3): rotate / move / reset are read straight from GLFW in figura$pollMouse.
-    // The click events only claim the click so the screen keeps this widget focused.
     @Override
     public boolean mouseClicked(MouseButtonEvent mouseButtonEvent, boolean bl) {
-        if (!this.isVisible() || !this.isMouseOver(mouseButtonEvent.x(), mouseButtonEvent.y()))
+        double mouseX = mouseButtonEvent.x();
+        double mouseY = mouseButtonEvent.y();
+        int button = org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonEvent.button());
+
+        if (!this.isVisible() || !this.isMouseOver(mouseX, mouseY))
             return false;
-        return super.mouseClicked(mouseButtonEvent, bl) || true;
+
+        if (super.mouseClicked(mouseButtonEvent, bl))
+            return true;
+
+        switch (button) {
+            // left click - rotate
+            case 0 -> {
+                // set anchor rotation
+
+                // get starter mouse pos
+                anchorX = (float) mouseX;
+                anchorY = (float) mouseY;
+
+                // get starter rotation angles
+                anchorAngleX = angleX;
+                anchorAngleY = angleY;
+
+                isRotating = true;
+                return true;
+            }
+
+            // right click - move
+            case 1 -> {
+                // get starter mouse pos
+                dragDeltaX = (float) mouseX;
+                dragDeltaY = (float) mouseY;
+
+                // also get start node pos
+                dragAnchorX = modelX;
+                dragAnchorY = modelY;
+
+                isDragging = true;
+                return true;
+            }
+
+            // middle click - reset pos
+            case 2 -> {
+                isRotating = false;
+                isDragging = false;
+                anchorX = 0f;
+                anchorY = 0f;
+                anchorAngleX = 0f;
+                anchorAngleY = 0f;
+                angleX = pitch;
+                angleY = yaw;
+                scaledValue = 0f;
+                scaledPrecise = 0f;
+                modelX = getWidth() / 2;
+                modelY = getHeight() / 2;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
     public boolean mouseReleased(MouseButtonEvent mouseButtonEvent) {
-        return super.mouseReleased(mouseButtonEvent) || isRotating || isDragging;
+        int button = org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonEvent.button());
+        // left click - stop rotating
+        if (button == 0) {
+            isRotating = false;
+            return true;
+        }
+
+        // right click - stop dragging
+        else if (button == 1) {
+            isDragging = false;
+            return true;
+        }
+
+        return super.mouseReleased(mouseButtonEvent);
     }
 
     @Override
     public boolean mouseDragged(MouseButtonEvent mouseButtonEvent, double deltaX, double deltaY) {
-        return isRotating || isDragging || super.mouseDragged(mouseButtonEvent, deltaX, deltaY);
+        double mouseX = mouseButtonEvent.x();
+        double mouseY = mouseButtonEvent.y();
+        // left click - rotate
+        if (isRotating) {
+            // get starter rotation angle then get hot much is moved and divided by a slow factor
+            // as of 1.21.6 gui scale is an int, this must be a float or else it may be Nan and that is a big nono
+            angleX = (float) (anchorAngleX + (anchorY - mouseY) / (3d / Minecraft.getInstance().getWindow().getGuiScale()));
+            angleY = (float) (anchorAngleY - (anchorX - mouseX) / (3d / Minecraft.getInstance().getWindow().getGuiScale()));
+
+            // cap to 360, so we don't get extremely high unnecessary rotation values
+            if (angleX >= 360 || angleX <= -360) {
+                anchorY = (float) mouseY;
+                anchorAngleX = 0;
+                angleX = 0;
+            }
+            if (angleY >= 360 || angleY <= -360) {
+                anchorX = (float) mouseX;
+                anchorAngleY = 0;
+                angleY = 0;
+            }
+
+            return true;
+        }
+
+        // right click - move
+        else if (isDragging) {
+            // get how much it should move
+            // get actual pos of the mouse, then subtract starter X,Y
+            float x = (float) (mouseX - dragDeltaX);
+            float y = (float) (mouseY - dragDeltaY);
+
+            // move it
+            modelX = (int) (dragAnchorX + x);
+            modelY = (int) (dragAnchorY + y);
+
+            return true;
+        }
+
+        return super.mouseDragged(mouseButtonEvent, deltaX, deltaY);
     }
 
     @Override
@@ -155,67 +257,6 @@ public class EntityPreview extends AbstractContainerElement {
         scaledPrecise = ((scale + scaledPrecise) * scaleDir) - scale;
 
         return true;
-    }
-
-    // -- Quasar MC (26.3): polled input -- //
-    private boolean wasLeft, wasRight, wasMiddle;
-
-    private void figura$pollMouse(int mouseX, int mouseY) {
-        Minecraft mc = Minecraft.getInstance();
-        if (mc.gui.screen() == null)
-            return;
-        // MouseHandler only tracks buttons while no screen is open, so ask GLFW directly.
-        long window = mc.getWindow().handle();
-        boolean left = org.lwjgl.glfw.GLFW.glfwGetMouseButton(window, org.lwjgl.glfw.GLFW.GLFW_MOUSE_BUTTON_LEFT) == org.lwjgl.glfw.GLFW.GLFW_PRESS;
-        boolean right = org.lwjgl.glfw.GLFW.glfwGetMouseButton(window, org.lwjgl.glfw.GLFW.GLFW_MOUSE_BUTTON_RIGHT) == org.lwjgl.glfw.GLFW.GLFW_PRESS;
-        boolean middle = org.lwjgl.glfw.GLFW.glfwGetMouseButton(window, org.lwjgl.glfw.GLFW.GLFW_MOUSE_BUTTON_MIDDLE) == org.lwjgl.glfw.GLFW.GLFW_PRESS;
-        boolean over = this.isMouseOver(mouseX, mouseY) && !button.isMouseOver(mouseX, mouseY);
-
-        // press edges inside the preview
-        if (left && !wasLeft && over && !isRotating) {
-            anchorX = mouseX;
-            anchorY = mouseY;
-            anchorAngleX = angleX;
-            anchorAngleY = angleY;
-            isRotating = true;
-        }
-        if (right && !wasRight && over && !isDragging) {
-            dragDeltaX = mouseX;
-            dragDeltaY = mouseY;
-            dragAnchorX = modelX;
-            dragAnchorY = modelY;
-            isDragging = true;
-        }
-        if (middle && !wasMiddle && over) {
-            isRotating = false;
-            isDragging = false;
-            angleX = pitch;
-            angleY = yaw;
-            scaledValue = 0f;
-            scaledPrecise = 0f;
-            modelX = getWidth() / 2;
-            modelY = getHeight() / 2;
-        }
-
-        // releases
-        if (!left) isRotating = false;
-        if (!right) isDragging = false;
-
-        // apply movement
-        if (isRotating) {
-            double factor = 3d / mc.getWindow().getGuiScale();
-            angleX = (float) (anchorAngleX + (anchorY - mouseY) / factor);
-            angleY = (float) (anchorAngleY - (anchorX - mouseX) / factor);
-            if (angleX >= 360 || angleX <= -360) { anchorY = mouseY; anchorAngleX = 0; angleX = 0; }
-            if (angleY >= 360 || angleY <= -360) { anchorX = mouseX; anchorAngleY = 0; angleY = 0; }
-        } else if (isDragging) {
-            modelX = (int) (dragAnchorX + (mouseX - dragDeltaX));
-            modelY = (int) (dragAnchorY + (mouseY - dragDeltaY));
-        }
-
-        wasLeft = left;
-        wasRight = right;
-        wasMiddle = middle;
     }
 
     public void setEntity(LivingEntity entity) {

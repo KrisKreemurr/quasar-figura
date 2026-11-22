@@ -242,7 +242,7 @@ public class PermissionsScreen extends AbstractPanelScreen {
 
         double mouseX = mouseButtonEvent.x();
         double mouseY = mouseButtonEvent.y();
-        if (mouseButtonEvent.button() == 0 && playerList.selectedEntry instanceof PlayerPermPackElement element && element.isMouseOver(mouseX, mouseY)) {
+        if (org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonEvent.button()) == 0 && playerList.selectedEntry instanceof PlayerPermPackElement element && element.isMouseOver(mouseX, mouseY)) {
             dragged = element;
             element.anchorX = (int) mouseX;
             element.anchorY = (int) mouseY;

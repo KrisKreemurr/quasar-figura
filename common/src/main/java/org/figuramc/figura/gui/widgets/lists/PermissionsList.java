@@ -201,7 +201,7 @@ public class PermissionsList extends AbstractList {
             if (!this.isActive() || !this.isHoveredOrFocused() || !this.isMouseOver(mouseButtonEvent.x(), mouseButtonEvent.y()))
                 return false;
 
-            if (mouseButtonEvent.button() == 1) {
+            if (org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonEvent.button()) == 1) {
                 container.reset(permissions);
                 this.parent.updateList(container);
                 playDownSound(Minecraft.getInstance().getSoundManager());
@@ -290,7 +290,7 @@ public class PermissionsList extends AbstractList {
             if (!this.isActive() || !this.isHoveredOrFocused() || !this.isMouseOver(mouseButtonEvent.x(), mouseButtonEvent.y()))
                 return false;
 
-            if (mouseButtonEvent.button() == 1) {
+            if (org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonEvent.button()) == 1) {
                 container.reset(permissions);
                 this.parent.updateList(container);
                 playDownSound(Minecraft.getInstance().getSoundManager());
@@ -396,7 +396,7 @@ public class PermissionsList extends AbstractList {
             if (!this.isEnabled() || !this.isMouseOver(mouseButtonEvent.x(), mouseButtonEvent.y()))
                 return false;
 
-            if (mouseButtonEvent.button() == 1) {
+            if (org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonEvent.button()) == 1) {
                 container.reset(permissions);
                 this.parent.updateList(container);
                 this.getField().playDownSound(Minecraft.getInstance().getSoundManager());

@@ -1,3 +1,0 @@
-net.minecraft.client.input.MouseButtonInfo
-g:com.mojang.blaze3d.platform.InputConstants|MOUSE_BUTTON
-m:net.minecraft.client.gui.components.AbstractWidget|isValidClickButton

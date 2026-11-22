@@ -90,7 +90,7 @@ public abstract class AbstractAvatarWidget extends AbstractContainerElement impl
     public boolean mouseClicked(MouseButtonEvent mouseButtonEvent, boolean bl) {
         double mouseX = mouseButtonEvent.x();
         double mouseY = mouseButtonEvent.y();
-        int button = mouseButtonEvent.button();
+        int button = org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonEvent.button());
         if (!this.isMouseOver(mouseX, mouseY))
             return false;
 

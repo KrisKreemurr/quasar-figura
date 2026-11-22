@@ -60,7 +60,7 @@ public class HelpScreen extends AbstractPanelScreen {
                 double mouseX = mouseButtonEvent.x();
                 double mouseY = mouseButtonEvent.y();
 
-                if (Configs.EASTER_EGGS.value && this.isHoveredOrFocused() && this.isMouseOver(mouseX, mouseY) && mouseButtonEvent.button() == 1) {
+                if (Configs.EASTER_EGGS.value && this.isHoveredOrFocused() && this.isMouseOver(mouseX, mouseY) && org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonEvent.button()) == 1) {
                     int dim = getTextureSize();
                     int x = (int) (Math.random() * dim) + getX() + 2;
                     int y = (int) (Math.random() * dim) + getY() + 2;

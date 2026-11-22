@@ -51,7 +51,7 @@ public class SoundScreen extends AbstractPanelScreen {
 
     @Override
     public boolean mouseClicked(MouseButtonEvent mouseButtonEvent, boolean bl) {
-        piano.pressed = mouseButtonEvent.button() == 0;
+        piano.pressed = org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonEvent.button()) == 0;
         return super.mouseClicked(mouseButtonEvent, bl);
     }
 

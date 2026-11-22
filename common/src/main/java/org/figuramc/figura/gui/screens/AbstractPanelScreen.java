@@ -156,7 +156,7 @@ public abstract class AbstractPanelScreen extends Screen {
             setFocused(widget);
 
         if (widget != null) {
-            if (mouseButtonEvent.button() == 0) this.setDragging(true);
+            if (org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonEvent.button()) == 0) this.setDragging(true);
             return true;
         }
 

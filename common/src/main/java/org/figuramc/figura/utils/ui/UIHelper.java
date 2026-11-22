@@ -299,6 +299,22 @@ public final class UIHelper {
         entity.setInvisible(invisible);
     }
 
+    /**
+     * Quasar MC (26.3): Minecraft renumbered mouse buttons (left is no longer 0). Figura's GUI and
+     * Lua scripts use the old numbers (0 = left, 1 = right, 2 = middle, 3+ = extra buttons).
+     */
+    public static int legacyButton(int button) {
+        if (button == com.mojang.blaze3d.platform.InputConstants.MOUSE_BUTTON_LEFT) return 0;
+        if (button == com.mojang.blaze3d.platform.InputConstants.MOUSE_BUTTON_RIGHT) return 1;
+        if (button == com.mojang.blaze3d.platform.InputConstants.MOUSE_BUTTON_MIDDLE) return 2;
+        if (button == com.mojang.blaze3d.platform.InputConstants.MOUSE_BUTTON_4) return 3;
+        if (button == com.mojang.blaze3d.platform.InputConstants.MOUSE_BUTTON_5) return 4;
+        if (button == com.mojang.blaze3d.platform.InputConstants.MOUSE_BUTTON_6) return 5;
+        if (button == com.mojang.blaze3d.platform.InputConstants.MOUSE_BUTTON_7) return 6;
+        if (button == com.mojang.blaze3d.platform.InputConstants.MOUSE_BUTTON_8) return 7;
+        return button;
+    }
+
     public static void enableBlend() {
         GlStateManager._blendFuncSeparate(770, 771, 1, 0);
     }

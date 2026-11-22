@@ -49,7 +49,7 @@ public class ScrollBarWidget extends AbstractWidget implements FiguraWidget {
         if (!this.isActive() || !this.isHoveredOrFocused() || !this.isMouseOver(mouseButtonEvent.x(), mouseButtonEvent.y()))
             return false;
 
-        if (mouseButtonEvent.button() == 0) {
+        if (org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonEvent.button()) == 0) {
             double mouseX = mouseButtonEvent.x();
             double mouseY = mouseButtonEvent.y();
             // jump to pos when not clicking on head
@@ -70,7 +70,7 @@ public class ScrollBarWidget extends AbstractWidget implements FiguraWidget {
 
     @Override
     public boolean mouseReleased(MouseButtonEvent mouseButtonEvent) {
-        if (mouseButtonEvent.button() == 0 && isScrolling) {
+        if (org.figuramc.figura.utils.ui.UIHelper.legacyButton(mouseButtonEvent.button()) == 0 && isScrolling) {
             isScrolling = false;
             return true;
         }
