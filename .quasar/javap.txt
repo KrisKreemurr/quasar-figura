@@ -1,1 +1,5 @@
-net.minecraft.world.level.storage.LevelData$RespawnData
+g:net.minecraft.server.level.ServerLevel|ServerChunkCache\.\"<init>\"|public net.minecraft.server.level.ServerLevel\(
+g:net.minecraft.server.level.ServerChunkCache|ChunkMap\.\"<init>\"|DistanceManager\.\"<init>\"|public net.minecraft.server.level.ServerChunkCache\(
+g:net.minecraft.server.level.ChunkMap|public net.minecraft.server.level.ChunkMap\(|DistanceManager\.\"<init>\"
+g:net.minecraft.server.level.DistanceManager|net.minecraft.server.level.DistanceManager\(
+net.minecraft.world.level.TicketStorage
