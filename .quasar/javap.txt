@@ -1,6 +1,3 @@
-g:net.minecraft.world.level.Level|protected net.minecraft.world.level.Level\(|recipeAccess|environmentAttributes|abstract
-g:net.minecraft.client.multiplayer.ClientLevel|public net.minecraft.client.multiplayer.ClientLevel\(|disconnect|effects|recipe
-g:net.minecraft.server.level.ServerEntity|public net.minecraft.server.level.ServerEntity\(
-g:net.minecraft.world.level.chunk.LevelChunk|replaceWithPacketData
-g:net.minecraft.client.multiplayer.ClientChunkCache|replaceWithPacketData
-g:net.minecraft.client.multiplayer.ClientPacketListener|recipe|Recipe
+net.minecraft.world.entity.UpdateInterval
+net.minecraft.server.level.ServerEntity$Synchronizer
+m:net.minecraft.world.level.chunk.LevelChunk|replaceWithPacketData
