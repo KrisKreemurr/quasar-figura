@@ -1,0 +1,3 @@
+net.minecraft.util.ColorCollection
+g:net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase|isSolidRender|getDestroyProgress|getDigSpeed
+g:net.minecraft.world.entity.monster.piglin.PiglinAi|angerNearby
