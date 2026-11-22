@@ -1,2 +1,2 @@
-c:net.minecraft.client.gui.render.pip.GuiEntityRenderer
-g:net.minecraft.client.gui.screens.inventory.InventoryScreen|EntityInInventory|GuiEntityRenderState|Rot|rotation|Quaternion|LivingEntity
+g:net.minecraft.client.MouseHandler|mouseDragged|mouseClicked|mouseReleased|isDragging|activeButton|getFocused|  [a-z].*\(
+g:net.minecraft.client.gui.components.events.ContainerEventHandler|mouseDragged|mouseClicked|isDragging|setDragging|getFocused|  [a-z].*\(
