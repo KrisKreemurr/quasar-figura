@@ -1,3 +1,0 @@
-net.neoforged.neoforge.transfer.item.VanillaContainerWrapper
-net.neoforged.neoforge.transfer.CombinedResourceHandler
-net.neoforged.neoforge.transfer.access.ItemAccess
