@@ -1,1 +1,2 @@
-net.minecraft.client.renderer.FaceInfo$Extent
+g:net.minecraft.world.level.Level|Time|Clock
+g:net.minecraft.world.level.LevelReader|Time
