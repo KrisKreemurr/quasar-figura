@@ -1,6 +1,1 @@
-g:net.minecraft.world.entity.LivingEntity| swing\(
-g:net.minecraft.world.entity.player.Player|InteractionRange|canInteract|isWithin
-net.minecraft.server.permissions.PermissionSet
-net.minecraft.server.permissions.Permissions
-g:net.minecraft.world.level.block.entity.SignBlockEntity|updateSignText
-net.minecraft.world.InteractionResult$SwingSource
+m:net.minecraft.server.network.ServerGamePacketListenerImpl|handleUseItemOn
