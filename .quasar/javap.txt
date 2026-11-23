@@ -1,7 +1,2 @@
-c:net.minecraft.client.renderer.Projection
-g:net.minecraft.client.gui.render.GuiRenderer|setProjectionMatrix|preparePictureInPicture|Projection|ProjectionType
-com.mojang.blaze3d.ProjectionType
-com.mojang.blaze3d.platform.Lighting
-com.mojang.blaze3d.platform.Lighting$Entry
-m:net.minecraft.client.renderer.GameRenderer|getProjectionMatrix
-g:com.mojang.blaze3d.systems.RenderSystem|ProjectionMatrix|ProjectionType
+net.minecraft.network.Connection
+g:net.minecraft.network.Connection|ProtocolInfo|protocol
