@@ -1,2 +1,0 @@
-net.neoforged.neoforge.client.event.RenderFrameEvent
-net.neoforged.neoforge.client.event.RenderFrameEvent$Pre
