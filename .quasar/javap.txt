@@ -1,5 +1,7 @@
-net.minecraft.client.resources.model.geometry.BakedQuad
-com.mojang.blaze3d.vertex.VertexConsumer
-net.minecraft.client.color.block.BlockColors
-g:net.minecraft.client.renderer.LevelRenderer|setSectionDirty|setBlocksDirty|getLightCoords|getLightColor
-g:net.minecraft.client.renderer.chunk.SectionCompiler|AdditionalSectionRenderer|getOrCreateChunkBuffer|translate|AddSectionGeometryEvent
+net.minecraft.client.resources.model.geometry.BakedQuad$MaterialInfo
+net.minecraft.client.renderer.block.dispatch.BlockStateModel
+net.minecraft.util.LightCoordsUtil
+net.minecraft.client.color.block.BlockTintSource
+g:net.minecraft.client.renderer.LevelRenderer|Dirty
+net.minecraft.client.resources.model.ModelManager
+m:net.minecraft.client.renderer.chunk.SectionCompiler|compile
