@@ -1,2 +1,15 @@
+net.minecraft.server.level.ServerChunkCache
+net.minecraft.server.level.ServerEntity
+net.minecraft.server.level.ChunkMap
+net.minecraft.server.MinecraftServer
+net.minecraft.server.network.ServerGamePacketListenerImpl
+net.minecraft.world.level.Level
 net.minecraft.world.level.block.state.BlockBehaviour
+net.minecraft.world.entity.item.PrimedTnt
+net.minecraft.world.entity.Entity
+net.minecraft.client.multiplayer.MultiPlayerGameMode
+net.minecraft.client.multiplayer.ClientChunkCache
+net.minecraft.client.multiplayer.prediction.BlockStatePredictionHandler$ServerVerifiedState
+net.minecraft.client.multiplayer.ClientPacketListener
+net.minecraft.client.particle.ParticleEngine
 net.minecraft.client.particle.ParticleResources
