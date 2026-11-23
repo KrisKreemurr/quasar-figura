@@ -1,1 +1,9 @@
-BlockAndLightGetter$
+\.BakedQuad$
+BlockStateModel$
+BlockModelPart$
+ItemBlockRenderTypes$
+BlockRenderDispatcher$|\.BlockRenderer$|BlockModelShaper$
+SectionCompiler$
+LightCoords|LightTexture$
+BlockColors$
+QuadInstance|BakedQuad\$
