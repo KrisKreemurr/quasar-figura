@@ -1,2 +1,0 @@
-net.neoforged.neoforge.client.CustomBlockOutlineRenderer
-net.neoforged.neoforge.client.event.ExtractBlockOutlineRenderStateEvent

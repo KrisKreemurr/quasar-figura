@@ -1,1 +1,1 @@
-net.neoforged.neoforge.client.(event.*Outline|CustomBlockOutline)
+net.neoforged.neoforge.(event.entity.player.*(Sleep|Bed)|common.extensions.IBlockStateExtension)
