@@ -1,6 +1,2 @@
-net.minecraft.client.renderer.block.dispatch.BlockStateModelPart
-net.minecraft.client.model.geom.builders.UVPair
-net.minecraft.client.renderer.block.BlockStateModelSet
-g:net.minecraft.client.multiplayer.ClientLevel|Dirty|blockChanged
-g:net.minecraft.client.renderer.LevelRenderer|blockChanged|Changed\(|setSection
-g:net.minecraft.client.Minecraft|getModelManager|getBlockColors
+g:net.minecraft.client.Options|[Hh]ide|[Hh]idden
+g:net.minecraft.client.gui.Gui|[Hh]ide|[Hh]idden
