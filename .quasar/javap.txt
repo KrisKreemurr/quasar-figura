@@ -1,0 +1,13 @@
+m:net.minecraft.client.gui.render.pip.PictureInPictureRenderer|prepare
+m:net.minecraft.client.gui.render.pip.PictureInPictureRenderer|prepareTexturesAndProjection
+m:net.minecraft.client.gui.render.pip.PictureInPictureRenderer|blitTexture
+m:net.minecraft.client.gui.render.pip.PictureInPictureRenderer|getTranslateY
+m:net.minecraft.client.gui.render.pip.GuiEntityRenderer|renderToTexture
+m:net.minecraft.client.gui.GuiGraphicsExtractor|entity
+net.minecraft.client.renderer.Projection
+net.minecraft.client.renderer.ProjectionMatrixBuffer
+net.minecraft.client.renderer.state.gui.pip.GuiEntityRenderState
+net.minecraft.client.renderer.Lighting
+net.minecraft.client.renderer.Lighting$Entry
+net.minecraft.client.renderer.Sheets
+net.minecraft.client.renderer.rendertype.RenderTypes
