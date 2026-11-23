@@ -1,2 +1,7 @@
-g:net.minecraft.client.renderer.GameRenderer|end_of_frame|PostChain|getPostChain|processPostEffect|END_OF_FRAME
-net.minecraft.client.renderer.PostChain
+net.minecraft.client.renderer.PostChainConfig$TextureInput
+net.minecraft.client.renderer.PostChainConfig$Input
+g:net.minecraft.client.renderer.PostChainConfig$TextureInput|CODEC|fieldOf|location
+net.minecraft.client.renderer.texture.DynamicTexture
+g:net.minecraft.client.renderer.texture.TextureManager|public .*register|getTexture
+g:com.mojang.blaze3d.platform.NativeImage|public .*NativeImage\(|setPixel
+net.minecraft.client.gui.components.AbstractSliderButton
