@@ -1,0 +1,2 @@
+post_effect/
+shaders/post/color_convolve|shaders/post/blit\.|shaders/post/invert

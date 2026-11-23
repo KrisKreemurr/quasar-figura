@@ -1,2 +1,2 @@
-com.mojang.renderpearl.api.pipeline.PrimitiveTopology
-com.mojang.renderpearl.api.vertex.VertexFormat
+g:net.minecraft.client.renderer.GameRenderer|end_of_frame|PostChain|getPostChain|processPostEffect|END_OF_FRAME
+net.minecraft.client.renderer.PostChain
