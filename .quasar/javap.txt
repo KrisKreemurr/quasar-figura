@@ -1,6 +1,1 @@
-net.minecraft.client.renderer.item.properties.select.SelectItemModelProperty
-net.minecraft.client.renderer.item.properties.select.SelectItemModelProperty$Type
-net.minecraft.client.renderer.item.properties.select.ItemBlockState
-net.minecraft.client.color.item.ItemTintSource
-net.minecraft.client.color.item.Dye
-net.minecraft.client.renderer.item.CompositeModel$Unbaked
+net.minecraft.client.renderer.state.level.BlockOutlineRenderState

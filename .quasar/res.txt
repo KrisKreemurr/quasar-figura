@@ -1,1 +1,0 @@
-assets/minecraft/items/leather_helmet.json

@@ -1,2 +1,2 @@
-net.neoforged.neoforge.client.event.RegisterSelectItemModelPropertyEvent
-net.neoforged.neoforge.client.event.RegisterColorHandlersEvent$ItemTintSources
+net.neoforged.neoforge.client.CustomBlockOutlineRenderer
+net.neoforged.neoforge.client.event.ExtractBlockOutlineRenderStateEvent
