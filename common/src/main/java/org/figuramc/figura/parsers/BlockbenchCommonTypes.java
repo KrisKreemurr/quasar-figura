@@ -339,9 +339,6 @@ public class BlockbenchCommonTypes {
         }
     }
 
-    /// Up to this many bones influence one vertex (same limit as Blockbench's preview).
-    public static final int SKIN_INFLUENCES = 4;
-
     public static class CubeFace implements NBTRepresentation<CompoundTag> {
         static final String[] FACES = new String[]{"north", "south", "west", "east", "up", "down"};
 
