@@ -1,1 +1,2 @@
-g:net.minecraft.world.level.BlockCollisions|BlockCollisions\(
+net.minecraft.world.level.dimension.DimensionType
+c:net.minecraft.world.level.dimension.DimensionType

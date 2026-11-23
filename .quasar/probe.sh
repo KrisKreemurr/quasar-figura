@@ -36,6 +36,13 @@ if [ -f .quasar/audit.txt ]; then
     javap -s -p -cp "$J" "$cls" 2>&1 | awk '/^(public |protected |private |final |abstract |sealed |non-sealed )*(class|interface|enum|record) / && !hdr {print "H " $0; hdr=1} /descriptor:/ {d=$2; n=prev; sub(/\(.*/,"",n); k=split(n,a," "); nm=a[k]; if (index(prev,"(")) print "M " nm d; else print "F " nm " " d; next} {prev=$0}'
   done < .quasar/audit.txt
 fi
+if [ -f .quasar/res.txt ]; then
+  while IFS= read -r pat; do
+    [ -z "$pat" ] && continue
+    echo "=== RES $pat"
+    for e in $(unzip -Z1 "$J" | grep -E "$pat" | head -8); do echo "--- $e"; unzip -p "$J" "$e" | head -120; echo; done
+  done < .quasar/res.txt
+fi
 NEOJAR=$(find ~/.gradle/caches -name "neoforge-*-universal.jar" 2>/dev/null | head -1)
 # r:<class> lines in .quasar/hier.txt -> public/protected members of the class and every superclass/interface (MC + NeoForge)
 if [ -f .quasar/hier.txt ]; then
