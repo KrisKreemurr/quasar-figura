@@ -1,7 +1,4 @@
-net.minecraft.client.renderer.PostChainConfig$TextureInput
-net.minecraft.client.renderer.PostChainConfig$Input
-g:net.minecraft.client.renderer.PostChainConfig$TextureInput|CODEC|fieldOf|location
-net.minecraft.client.renderer.texture.DynamicTexture
-g:net.minecraft.client.renderer.texture.TextureManager|public .*register|getTexture
-g:com.mojang.blaze3d.platform.NativeImage|public .*NativeImage\(|setPixel
-net.minecraft.client.gui.components.AbstractSliderButton
+m:net.minecraft.client.renderer.LevelRenderer|collectPerFrameRenderThreadGizmos
+g:net.minecraft.client.renderer.LevelRenderer|[Gg]izmo
+m:net.minecraft.gizmos.Gizmos|addGizmo
+m:net.minecraft.gizmos.Gizmos|withCollector
