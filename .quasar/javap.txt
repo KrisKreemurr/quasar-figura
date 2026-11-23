@@ -1,6 +1,6 @@
-m:net.minecraft.client.renderer.LevelRenderer|submitFeatures
-m:net.minecraft.client.renderer.LevelRenderer|finalizeGizmoCollection
-m:net.minecraft.gizmos.SimpleGizmoCollector$GizmoInstance|getAlphaMultiplier
-m:net.minecraft.gizmos.SimpleGizmoCollector|add
-m:net.minecraft.gizmos.Gizmos|line
-m:net.minecraft.gizmos.Gizmos|rect
+net.minecraft.client.renderer.item.properties.select.SelectItemModelProperty
+net.minecraft.client.renderer.item.properties.select.SelectItemModelProperty$Type
+net.minecraft.client.renderer.item.properties.select.ItemBlockState
+net.minecraft.client.color.item.ItemTintSource
+net.minecraft.client.color.item.Dye
+net.minecraft.client.renderer.item.CompositeModel$Unbaked
