@@ -1,3 +1,0 @@
-shaders/include/light\.glsl
-shaders/core/entity\.vsh
-shaders/include/sample_lightmap
