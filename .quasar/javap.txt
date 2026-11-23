@@ -1,11 +1,6 @@
-net.minecraft.client.renderer.special.SpecialModelRenderer
-net.minecraft.client.renderer.special.SpecialModelRenderer$Unbaked
-net.minecraft.client.renderer.special.SpecialModelRenderer$BakingContext
-net.minecraft.client.renderer.special.ShieldSpecialRenderer
-net.minecraft.client.renderer.special.ShieldSpecialRenderer$Unbaked
-net.minecraft.client.renderer.SubmitNodeCollector
-net.minecraft.client.renderer.OrderedSubmitNodeCollector
-net.minecraft.client.renderer.SubmitNodeCollector$CustomGeometryRenderer
-net.minecraft.client.renderer.Sheets
-g:net.minecraft.client.renderer.rendertype.RenderTypes|public static .*(item|Item|ntity|utout|ranslucent|solid|Solid)\w*\(
-m:net.minecraft.client.renderer.special.ShieldSpecialRenderer|submit
+m:net.minecraft.client.renderer.LevelRenderer|submitFeatures
+m:net.minecraft.client.renderer.LevelRenderer|finalizeGizmoCollection
+m:net.minecraft.gizmos.SimpleGizmoCollector$GizmoInstance|getAlphaMultiplier
+m:net.minecraft.gizmos.SimpleGizmoCollector|add
+m:net.minecraft.gizmos.Gizmos|line
+m:net.minecraft.gizmos.Gizmos|rect
