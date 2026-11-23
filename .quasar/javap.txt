@@ -1,3 +1,8 @@
-g:net.minecraft.client.Minecraft|Gizmo|withCollector|ClientTickEvent|EventHooks|ClientHooks
-g:net.minecraft.client.renderer.LevelRenderer|Gizmo
-g:net.minecraft.client.renderer.GameRenderer|Gizmo|withCollector
+com.mojang.blaze3d.vertex.BufferBuilder
+com.mojang.blaze3d.vertex.Tesselator
+com.mojang.blaze3d.vertex.MeshData
+com.mojang.blaze3d.vertex.MeshData$DrawState
+com.mojang.blaze3d.vertex.DefaultVertexFormat
+com.mojang.blaze3d.vertex.VertexFormat
+com.mojang.blaze3d.vertex.VertexFormat$Mode
+com.mojang.blaze3d.vertex.ByteBufferBuilder
