@@ -1,1 +1,3 @@
-net.neoforged.neoforge.client.event.RegisterRangeSelectItemModelPropertyEvent
+net.neoforged.neoforge.client.event.AddSectionGeometryEvent
+net.neoforged.neoforge.client.event.AddSectionGeometryEvent$SectionRenderingContext
+net.neoforged.neoforge.client.event.AddSectionGeometryEvent$AdditionalSectionRenderer
