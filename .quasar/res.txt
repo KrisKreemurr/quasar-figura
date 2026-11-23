@@ -1,0 +1,2 @@
+assets/minecraft/items/shield.json
+assets/minecraft/items/chest.json

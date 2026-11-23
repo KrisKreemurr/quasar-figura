@@ -1,3 +1,11 @@
-g:net.minecraft.client.Minecraft|Gizmo|RenderFrame|ClientHooks|EventHooks|GameRenderer.render|TemporaryCollection
-g:net.minecraft.client.renderer.GameRenderer|Gizmo|RenderFrame|ClientHooks|TemporaryCollection|LevelRenderer.render|renderLevel
-g:net.minecraft.client.renderer.LevelRenderer|Gizmo|TemporaryCollection|ClientHooks|hitResult|renderHitOutline|BlockOutline|Highlight
+net.minecraft.client.renderer.special.SpecialModelRenderer
+net.minecraft.client.renderer.special.SpecialModelRenderer$Unbaked
+net.minecraft.client.renderer.special.SpecialModelRenderer$BakingContext
+net.minecraft.client.renderer.special.ShieldSpecialRenderer
+net.minecraft.client.renderer.special.ShieldSpecialRenderer$Unbaked
+net.minecraft.client.renderer.SubmitNodeCollector
+net.minecraft.client.renderer.OrderedSubmitNodeCollector
+net.minecraft.client.renderer.SubmitNodeCollector$CustomGeometryRenderer
+net.minecraft.client.renderer.Sheets
+g:net.minecraft.client.renderer.rendertype.RenderTypes|public static .*(item|Item|ntity|utout|ranslucent|solid|Solid)\w*\(
+m:net.minecraft.client.renderer.special.ShieldSpecialRenderer|submit
