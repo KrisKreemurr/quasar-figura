@@ -1,4 +1,0 @@
-g:net.minecraft.world.entity.LivingEntity|Bed|isSleeping
-g:net.minecraft.world.entity.player.Player|Bed
-net.minecraft.client.renderer.entity.TntRenderer
-net.minecraft.client.renderer.entity.state.TntRenderState
