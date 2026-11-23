@@ -1,1 +1,2 @@
-m:net.minecraft.client.renderer.LevelRenderer|submitFeatures
+net.minecraft.gizmos.TextGizmo$Style
+g:net.minecraft.client.gui.GuiGraphicsExtractor|public .* (fill|text|drawString|textWithBackdrop)\(
