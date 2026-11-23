@@ -1,2 +1,3 @@
-net.minecraft.gizmos.TextGizmo$Style
-g:net.minecraft.client.gui.GuiGraphicsExtractor|public .* (fill|text|drawString|textWithBackdrop)\(
+g:net.minecraft.client.Minecraft|Gizmo|RenderFrame|ClientHooks|EventHooks|GameRenderer.render|TemporaryCollection
+g:net.minecraft.client.renderer.GameRenderer|Gizmo|RenderFrame|ClientHooks|TemporaryCollection|LevelRenderer.render|renderLevel
+g:net.minecraft.client.renderer.LevelRenderer|Gizmo|TemporaryCollection|ClientHooks|hitResult|renderHitOutline|BlockOutline|Highlight
