@@ -1,2 +1,0 @@
-net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty
-net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties
