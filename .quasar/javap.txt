@@ -1,7 +1,6 @@
-net.minecraft.client.resources.model.geometry.BakedQuad$MaterialInfo
-net.minecraft.client.renderer.block.dispatch.BlockStateModel
-net.minecraft.util.LightCoordsUtil
-net.minecraft.client.color.block.BlockTintSource
-g:net.minecraft.client.renderer.LevelRenderer|Dirty
-net.minecraft.client.resources.model.ModelManager
-m:net.minecraft.client.renderer.chunk.SectionCompiler|compile
+net.minecraft.client.renderer.block.dispatch.BlockStateModelPart
+net.minecraft.client.model.geom.builders.UVPair
+net.minecraft.client.renderer.block.BlockStateModelSet
+g:net.minecraft.client.multiplayer.ClientLevel|Dirty|blockChanged
+g:net.minecraft.client.renderer.LevelRenderer|blockChanged|Changed\(|setSection
+g:net.minecraft.client.Minecraft|getModelManager|getBlockColors

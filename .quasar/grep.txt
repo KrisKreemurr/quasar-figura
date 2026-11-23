@@ -1,5 +1,0 @@
-block\.dispatch\.
-UVPair$
-ChunkSectionLayer
-client\.renderer\.block\.[A-Z]
-ModelManager$
