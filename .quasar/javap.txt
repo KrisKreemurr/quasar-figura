@@ -1,2 +1,2 @@
-net.minecraft.world.level.dimension.DimensionType
-c:net.minecraft.world.level.dimension.DimensionType
+net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty
+net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties
