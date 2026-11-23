@@ -93,6 +93,10 @@ public class FiguraModelPartReader {
             readMesh(facesByTexture, partCompound, vertices);
             customization.partType = PartCustomization.PartType.MESH;
         }
+        // Quasar MC: bone weights of meshes inside an armature
+        SkinnedMesh skin = customization.partType == PartCustomization.PartType.MESH
+                ? SkinnedMesh.read(partCompound.getCompoundOrEmpty("mesh_data"))
+                : null;
 
         // smooth normals
         if (partCompound.contains("smo"))
@@ -116,6 +120,13 @@ public class FiguraModelPartReader {
 
         for (FiguraModelPart child : children)
             child.parent = result;
+
+        // Quasar MC: armature skinning
+        result.skin = skin;
+        if (partCompound.contains("bidx"))
+            result.boneIndex = partCompound.getIntOr("bidx", -1);
+        if (partCompound.getBooleanOr("arm", false))
+            SkinnedMesh.bindArmature(result);
 
         result.facesByTexture = facesByTexture;
         storeTextures(result, textureSets);
@@ -486,6 +497,7 @@ public class FiguraModelPartReader {
         // Create arrays to store temporary vertex and UV data
         float[] posArr = new float[12];
         float[] uvArr = new float[8];
+        int[] vidArr = new int[4];
 
         // Iterate through the texture list
         for (int ti = 0; ti < tex.size(); ti++) {
@@ -505,6 +517,7 @@ public class FiguraModelPartReader {
                     case 1 -> fac.getShortOr(vi + j, (short) 0) & 0xffff;
                     default -> fac.getIntOr(vi + j, 0);
                 };
+                vidArr[j] = vid;
                 // Get the vertex position and UV data from the lists
                 posArr[3 * j] = verts.getFloatOr(3 * vid, 0.0f);
                 posArr[3 * j + 1] = verts.getFloatOr(3 * vid + 1, 0.0f);
@@ -527,21 +540,25 @@ public class FiguraModelPartReader {
             // Add the vertex data to the appropriate builder
             for (int j = 0; j < numVerts; j++) {
                 List<Vertex> list = vertices.getOrDefault(texId, new ArrayList<>());
-                list.add(new Vertex(
+                Vertex vertex = new Vertex(
                         posArr[3 * j], posArr[3 * j + 1], posArr[3 * j + 2],
                         uvArr[2 * j], uvArr[2 * j + 1],
                         (float) p3.x, (float) p3.y, (float) p3.z
-                ));
+                );
+                vertex.sourceIndex = vidArr[j];
+                list.add(vertex);
                 vertices.put(texId, list);
             }
             // Add a vertex if necessary
             if (numVerts == 3) {
                 List<Vertex> list = vertices.getOrDefault(texId, new ArrayList<>());
-                list.add(new Vertex(
+                Vertex vertex = new Vertex(
                         posArr[6], posArr[7], posArr[8],
                         uvArr[4], uvArr[5],
                         (float) p3.x, (float) p3.y, (float) p3.z
-                ));
+                );
+                vertex.sourceIndex = vidArr[2];
+                list.add(vertex);
                 vertices.put(texId, list);
             }
 

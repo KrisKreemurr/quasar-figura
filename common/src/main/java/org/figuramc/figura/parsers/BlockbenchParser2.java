@@ -95,6 +95,8 @@ public class BlockbenchParser2 {
         private final HashMap<String, Map<String, TextureRepresentation>> textureNames = new HashMap<>();
         public final Map<String, BlockbenchCommonTypes.Element> elements = new HashMap<>();
         public final Map<String, BlockbenchCommonTypes.UUIDReferable> referents = new HashMap<>();
+        /// mesh UUID -> bones of the armature that mesh sits in (index in the list = bone index)
+        public final Map<String, List<BlockbenchCommonTypes.ArmatureBoneElement>> armatureBonesByMesh = new HashMap<>();
         public final List<AnimationRepresentation> animations = new ArrayList<>();
         public final Map<String, Set<AnimationRepresentation>> animationsByElement = new HashMap<>();
         public final List<CollectionRepresentation> collections = new ArrayList<>();

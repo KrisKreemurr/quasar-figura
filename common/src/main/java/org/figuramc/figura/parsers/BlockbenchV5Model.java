@@ -143,7 +143,7 @@ public class BlockbenchV5Model extends ModelFormat {
 
         // armature bones (and elements inside armatures) use parent-relative positions; make them absolute
         for (OutlinerItem item : outliner)
-            resolveArmatureOffsets(item, ZERO, null, target);
+            resolveArmatureOffsets(item, ZERO, null, null, target);
 
         CompoundTag tag = new CompoundTag();
 
@@ -182,11 +182,15 @@ public class BlockbenchV5Model extends ModelFormat {
      */
     private static void resolveArmatureOffsets(OutlinerItem item, FiguraVec3 groupOrigin,
                                                @Nullable FiguraVec3 attachOffset,
+                                               @Nullable List<ArmatureBoneElement> armatureBones,
                                                BlockbenchParser2.Intermediary context) {
         if (item instanceof OutlinerItem.Element el) {
             if (attachOffset == null) return;
             BlockbenchCommonTypes.Element element = context.elements.get(el.uuid);
             if (element == null) return;
+            // meshes inside an armature are skinned by its bones
+            if (element instanceof MeshElement && armatureBones != null)
+                context.armatureBonesByMesh.put(el.uuid, armatureBones);
             if (element instanceof PointElement point && point.origin == null && point.position != null) {
                 // locators and null objects store their location in 'position'
                 point.position = point.position.copy().add(attachOffset);
@@ -202,16 +206,21 @@ public class BlockbenchV5Model extends ModelFormat {
         if (ref instanceof Group group) {
             FiguraVec3 origin = group.origin != null ? group.origin : ZERO;
             for (OutlinerItem child : container.children)
-                resolveArmatureOffsets(child, origin, null, context);
+                resolveArmatureOffsets(child, origin, null, null, context);
         } else if (ref instanceof ArmatureElement) {
             // the armature itself sits at its parent group's pivot
+            List<ArmatureBoneElement> bones = new ArrayList<>();
             for (OutlinerItem child : container.children)
-                resolveArmatureOffsets(child, groupOrigin, groupOrigin.copy(), context);
+                resolveArmatureOffsets(child, groupOrigin, groupOrigin.copy(), bones, context);
         } else if (ref instanceof ArmatureBoneElement bone) {
             FiguraVec3 base = attachOffset != null ? attachOffset : groupOrigin;
             bone.absoluteOrigin = base.copy().add(bone.origin != null ? bone.origin : ZERO);
+            if (armatureBones != null) {
+                bone.boneIndex = armatureBones.size();
+                armatureBones.add(bone);
+            }
             for (OutlinerItem child : container.children)
-                resolveArmatureOffsets(child, groupOrigin, bone.absoluteOrigin.copy(), context);
+                resolveArmatureOffsets(child, groupOrigin, bone.absoluteOrigin.copy(), armatureBones, context);
         }
     }
 
@@ -280,11 +289,20 @@ public class BlockbenchV5Model extends ModelFormat {
                 UUIDReferable referent = context.referents.get(uuid);
                 if (referent instanceof Group group)
                     return nodeToNBT(context, group.name, group.visibility, group.export, group.origin, group.rotation);
-                // Blockbench 5 armatures and bones become plain groups (no skinning yet, meshes stay in rest pose)
-                if (referent instanceof ArmatureElement armature)
-                    return nodeToNBT(context, armature.name, armature.visibility, armature.export, null, null);
-                if (referent instanceof ArmatureBoneElement bone)
-                    return nodeToNBT(context, bone.name, bone.visibility, bone.export, bone.absoluteOrigin, bone.rotation);
+                // Blockbench 5 armatures and bones become groups; the model reader binds skinned meshes to the bones
+                if (referent instanceof ArmatureElement armature) {
+                    CompoundTag tag = nodeToNBT(context, armature.name, armature.visibility, armature.export, null, null);
+                    // tells the model reader to bind the skinned meshes inside to these bones
+                    if (tag != null) tag.putBoolean("arm", true);
+                    return tag;
+                }
+                if (referent instanceof ArmatureBoneElement bone) {
+                    // bones have no geometry; hiding one in Blockbench only hides the bone gizmo, so never export it hidden
+                    // (a hidden part is skipped while rendering, which would freeze the bone's pose)
+                    CompoundTag tag = nodeToNBT(context, bone.name, null, bone.export, bone.absoluteOrigin, bone.rotation);
+                    if (tag != null && bone.boneIndex >= 0) tag.putInt("bidx", bone.boneIndex);
+                    return tag;
+                }
 
                 FiguraMod.LOGGER.warn(
                         "Broken reference (in model '{}'): expected a group or armature at UUID {} but found {} instead",

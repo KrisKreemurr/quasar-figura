@@ -18,6 +18,8 @@ public class Vertex {
     public float x, y, z;
     public float u, v;
     public float nx, ny, nz;
+    /// Quasar MC: index of the mesh vertex this face corner came from (-1 for cubes); used by skinning
+    public int sourceIndex = -1;
 
     public Vertex(float x, float y, float z, float u, float v, float nx, float ny, float nz) {
         this.x = x; this.y = y; this.z = z;
@@ -26,7 +28,9 @@ public class Vertex {
     }
 
     public Vertex copy() {
-        return new Vertex(x, y, z, u, v, nx, ny, nz);
+        Vertex copy = new Vertex(x, y, z, u, v, nx, ny, nz);
+        copy.sourceIndex = sourceIndex;
+        return copy;
     }
 
     @LuaWhitelist

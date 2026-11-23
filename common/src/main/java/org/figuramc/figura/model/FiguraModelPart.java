@@ -40,6 +40,10 @@ public class FiguraModelPart implements Comparable<FiguraModelPart> {
 
     public final String name;
     public FiguraModelPart parent;
+    /// Quasar MC: index of this part as an armature bone (-1 if it isn't one)
+    public int boneIndex = -1;
+    /// Quasar MC: bone weights, if this is a mesh inside an armature
+    public SkinnedMesh skin;
 
     public final PartCustomization customization;
     public PartCustomization savedCustomization;
@@ -102,11 +106,13 @@ public class FiguraModelPart implements Comparable<FiguraModelPart> {
     }
 
     public boolean pushVerticesImmediate(ImmediateFiguraRenderer avatarRenderer, int[] remainingComplexity) {
+        // Quasar MC: skinned meshes are bent by their armature's bones every frame
+        Map<Integer, List<Vertex>> verts = skin != null ? skin.deform(vertices) : vertices;
         for (int i = 0; i < facesByTexture.size(); i++) {
             if (remainingComplexity[0] <= 0)
                 return false;
             remainingComplexity[0] -= facesByTexture.get(i);
-            avatarRenderer.pushFaces(facesByTexture.get(i) + Math.min(remainingComplexity[0], 0), remainingComplexity, textures.get(i), vertices.get(i));
+            avatarRenderer.pushFaces(facesByTexture.get(i) + Math.min(remainingComplexity[0], 0), remainingComplexity, textures.get(i), verts.get(i));
         }
         return true;
     }

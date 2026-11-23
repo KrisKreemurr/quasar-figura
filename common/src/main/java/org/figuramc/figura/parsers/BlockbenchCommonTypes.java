@@ -264,7 +264,7 @@ public class BlockbenchCommonTypes {
 
     /// Blockbench 5 armature. Armatures and their bones are outliner containers,
     /// so the v5 parser turns them into plain groups (see BlockbenchV5Model.OutlinerItem.Container).
-    /// Skinning is not applied yet: meshes inside an armature render in their rest pose.
+    /// Meshes inside the armature are skinned to its bones (see FiguraModelPartReader / SkinnedMesh).
     public static class ArmatureElement extends Element {
         @Override
         public @Nullable CompoundTag toNBT(BlockbenchParser2.Intermediary context) {
@@ -282,6 +282,17 @@ public class BlockbenchCommonTypes {
 
         /// absolute pivot, resolved by BlockbenchV5Model before conversion
         transient FiguraVec3 absoluteOrigin;
+        /// index of this bone within its armature, resolved by BlockbenchV5Model before conversion
+        transient int boneIndex = -1;
+
+        /// weight of this bone on a mesh vertex; Blockbench keys weights by "first 6 chars of mesh uuid:vertex key",
+        /// older files used the bare vertex key
+        float getVertexWeight(String meshUuid, String vertexKey) {
+            if (vertex_weights == null) return 0f;
+            Float w = vertex_weights.get(meshUuid.substring(0, Math.min(6, meshUuid.length())) + ":" + vertexKey);
+            if (w == null) w = vertex_weights.get(vertexKey);
+            return w == null ? 0f : w;
+        }
 
         @Override
         public @Nullable CompoundTag toNBT(BlockbenchParser2.Intermediary context) {
@@ -289,6 +300,9 @@ public class BlockbenchCommonTypes {
             return null;
         }
     }
+
+    /// Up to this many bones influence one vertex (same limit as Blockbench's preview).
+    public static final int SKIN_INFLUENCES = 4;
 
     public static class CubeElement extends Element {
         // type = "cube"
@@ -324,6 +338,9 @@ public class BlockbenchCommonTypes {
             return tag;
         }
     }
+
+    /// Up to this many bones influence one vertex (same limit as Blockbench's preview).
+    public static final int SKIN_INFLUENCES = 4;
 
     public static class CubeFace implements NBTRepresentation<CompoundTag> {
         static final String[] FACES = new String[]{"north", "south", "west", "east", "up", "down"};
@@ -377,9 +394,11 @@ public class BlockbenchCommonTypes {
             HashMap<String, FiguraVec3> vert2pos = new HashMap<>();
             ListTag vtx = new ListTag();
 
+            List<String> vertexKeys = new ArrayList<>(vertices.size());
             int i = 0;
             for (Map.Entry<String, FiguraVec3> entry : vertices.entrySet()) {
                 FiguraVec3 combined = entry.getValue().copy().add(origin);
+                vertexKeys.add(entry.getKey());
                 vert2idx.put(entry.getKey(), i++);
                 vert2pos.put(entry.getKey(), combined);
 
@@ -430,12 +449,69 @@ public class BlockbenchCommonTypes {
             }
 
             meshData.put("vtx", vtx);
+            writeSkinWeights(context, vertexKeys, meshData);
             meshData.put("tex", tex);
             meshData.put("fac", fac);
             meshData.put("uvs", uvs);
 
             tag.put("mesh_data", meshData);
             return tag;
+        }
+
+        /**
+         * Skinned meshes (meshes inside a Blockbench armature) get two lists in their mesh data, both
+         * {@link #SKIN_INFLUENCES} entries per vertex, in the same vertex order as "vtx":
+         * "ski" (bone index within the armature, -1 = unused) and "skw" (weight).
+         * Only the strongest {@link #SKIN_INFLUENCES} bones are kept, and weights are normalized so they add up to 1.
+         * Vertices without any weight stay rigid with the armature, like in Blockbench.
+         */
+        private void writeSkinWeights(BlockbenchParser2.Intermediary context, List<String> vertexKeys, CompoundTag meshData) {
+            List<ArmatureBoneElement> bones = context.armatureBonesByMesh.get(uuid);
+            if (bones == null || bones.isEmpty()) return;
+
+            int n = vertexKeys.size();
+            int[] boneIdx = new int[n * SKIN_INFLUENCES];
+            float[] weights = new float[n * SKIN_INFLUENCES];
+            Arrays.fill(boneIdx, -1);
+            boolean anyWeight = false;
+
+            float[] bestW = new float[SKIN_INFLUENCES];
+            int[] bestB = new int[SKIN_INFLUENCES];
+            for (int v = 0; v < n; v++) {
+                Arrays.fill(bestW, 0f);
+                Arrays.fill(bestB, -1);
+                String key = vertexKeys.get(v);
+                for (ArmatureBoneElement bone : bones) {
+                    float w = bone.getVertexWeight(uuid, key);
+                    if (!(w > 0f)) continue;
+                    // insert into the sorted top-N list
+                    for (int k = 0; k < SKIN_INFLUENCES; k++) {
+                        if (w > bestW[k]) {
+                            for (int m = SKIN_INFLUENCES - 1; m > k; m--) {
+                                bestW[m] = bestW[m - 1];
+                                bestB[m] = bestB[m - 1];
+                            }
+                            bestW[k] = w;
+                            bestB[k] = bone.boneIndex;
+                            break;
+                        }
+                    }
+                }
+                float sum = 0f;
+                for (float w : bestW) sum += w;
+                if (sum <= 0f) continue;
+                anyWeight = true;
+                for (int k = 0; k < SKIN_INFLUENCES; k++) {
+                    boneIdx[v * SKIN_INFLUENCES + k] = bestB[k];
+                    weights[v * SKIN_INFLUENCES + k] = bestW[k] / sum;
+                }
+            }
+            if (!anyWeight) return;
+
+            ListTag skw = new ListTag();
+            for (float w : weights) skw.add(FloatTag.valueOf(w));
+            meshData.put("ski", new IntArrayTag(boneIdx));
+            meshData.put("skw", skw);
         }
     }
 
