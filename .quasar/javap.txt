@@ -1,2 +1,0 @@
-g:net.neoforged.neoforge.network.filters.GenericPacketSplitter|codec|ProtocolInfo|IdDispatch|getField|attr
-g:net.minecraft.network.Connection|configureInMemoryPipeline|addLast|addFirst|\"

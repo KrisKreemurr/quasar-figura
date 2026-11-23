@@ -72,6 +72,6 @@ if [ -n "$NEOJAR" ] && [ -f .quasar/neogrep.txt ]; then
   while IFS= read -r pat; do [ -z "$pat" ] && continue; echo "=== NEOGREP $pat"; grep -E "$pat" /tmp/neoclasses.txt | head -40; done < .quasar/neogrep.txt
 fi
 if [ -n "$NEOJAR" ] && [ -f .quasar/neojavap.txt ]; then
-  while IFS= read -r cls; do [ -z "$cls" ] && continue; echo "=== NEOJAVAP $cls"; javap -protected -cp "$NEOJAR:$J" "$cls" 2>&1 | head -80; done < .quasar/neojavap.txt
+  while IFS= read -r cls; do [ -z "$cls" ] && continue; echo "=== NEOJAVAP $cls"; javap -p -c -cp "$NEOJAR:$J" "$cls" 2>&1 | grep -E "^  [a-z].*|Field|codec|Protocol" | head -150; done < .quasar/neojavap.txt
 fi
 echo "=== PROBE END"
