@@ -247,7 +247,7 @@ public class BlockStateAPI {
     @LuaWhitelist
     @LuaMethodDoc("blockstate.has_collision")
     public boolean hasCollision() {
-        return ((BlockBehaviourAccessor) blockState.getBlock()).hasCollision();
+        return ((BlockBehaviourAccessor) blockState.getBlock()).figura$hasCollision();
     }
 
     @LuaWhitelist
