@@ -1,0 +1,8 @@
+m:net.minecraft.client.renderer.entity.EntityRenderer|getPackedLightCoords
+m:net.minecraft.client.renderer.entity.EntityRenderer|getBlockLightLevel
+m:net.minecraft.client.renderer.entity.EntityRenderer|getSkyLightLevel
+m:net.minecraft.client.renderer.entity.EntityRenderDispatcher|getPackedLightCoords
+m:net.minecraft.client.renderer.entity.EntityRenderer|createRenderState
+m:net.minecraft.client.renderer.entity.EntityRenderer|extractRenderState
+net.minecraft.util.LightCoordsUtil
+g:net.minecraft.client.renderer.LightmapRenderStateExtractor|Filter|filter|Sampler|create
