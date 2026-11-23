@@ -202,6 +202,8 @@ public class BlockbenchCommonTypes {
                         .bind("mesh", MeshElement.class)
                         .bind("locator", PointElement.class)
                         .bind("null_object", PointElement.class)
+                        .bind("armature", ArmatureElement.class)
+                        .bind("armature_bone", ArmatureBoneElement.class)
                         .withFallback(UnknownElement.class);
 
         String name;
@@ -256,6 +258,34 @@ public class BlockbenchCommonTypes {
         @Override
         public @Nullable CompoundTag toNBT(BlockbenchParser2.Intermediary context) {
             // Never export.
+            return null;
+        }
+    }
+
+    /// Blockbench 5 armature. Armatures and their bones are outliner containers,
+    /// so the v5 parser turns them into plain groups (see BlockbenchV5Model.OutlinerItem.Container).
+    /// Skinning is not applied yet: meshes inside an armature render in their rest pose.
+    public static class ArmatureElement extends Element {
+        @Override
+        public @Nullable CompoundTag toNBT(BlockbenchParser2.Intermediary context) {
+            // exported through the outliner as a group, never as a standalone element
+            return null;
+        }
+    }
+
+    /// Blockbench 5 armature bone. {@code origin} is relative to the parent bone (or armature),
+    /// unlike groups, whose origin is absolute.
+    public static class ArmatureBoneElement extends Element {
+        @Nullable Float length;
+        /// key "meshUuidPrefix:vertexKey" (or a bare vertex key in older files) to weight; kept for future skinning
+        @Nullable Map<String, Float> vertex_weights;
+
+        /// absolute pivot, resolved by BlockbenchV5Model before conversion
+        transient FiguraVec3 absoluteOrigin;
+
+        @Override
+        public @Nullable CompoundTag toNBT(BlockbenchParser2.Intermediary context) {
+            // exported through the outliner as a group, never as a standalone element
             return null;
         }
     }

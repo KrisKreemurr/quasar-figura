@@ -141,6 +141,10 @@ public class BlockbenchV5Model extends ModelFormat {
         target.referents.putAll(getAllReferences());
         target.loadCollections(collections);
 
+        // armature bones (and elements inside armatures) use parent-relative positions; make them absolute
+        for (OutlinerItem item : outliner)
+            resolveArmatureOffsets(item, ZERO, null, target);
+
         CompoundTag tag = new CompoundTag();
 
         tag.putString("name", target.name);
@@ -165,6 +169,50 @@ public class BlockbenchV5Model extends ModelFormat {
         tag.put("_v", ByteTag.valueOf(FORMAT_V5));
 
         return tag;
+    }
+
+    /**
+     * Blockbench positions an armature at its parent group's pivot, and everything inside it relative to that:
+     * root bones and meshes are offset by the armature's position, child bones by their parent bone.
+     * Figura parts use absolute positions, so this converts bone origins (into {@code absoluteOrigin})
+     * and shifts elements that sit inside armatures or bones.
+     *
+     * @param groupOrigin  absolute pivot of the nearest enclosing group (where an armature would be placed)
+     * @param attachOffset offset applied to children of an armature/bone, or null outside armatures
+     */
+    private static void resolveArmatureOffsets(OutlinerItem item, FiguraVec3 groupOrigin,
+                                               @Nullable FiguraVec3 attachOffset,
+                                               BlockbenchParser2.Intermediary context) {
+        if (item instanceof OutlinerItem.Element el) {
+            if (attachOffset == null) return;
+            BlockbenchCommonTypes.Element element = context.elements.get(el.uuid);
+            if (element == null) return;
+            if (element instanceof PointElement point && point.origin == null && point.position != null) {
+                // locators and null objects store their location in 'position'
+                point.position = point.position.copy().add(attachOffset);
+                return;
+            }
+            element.origin = element.origin == null ? attachOffset.copy() : element.origin.copy().add(attachOffset);
+            return;
+        }
+
+        OutlinerItem.Container container = (OutlinerItem.Container) item;
+        UUIDReferable ref = context.referents.get(container.uuid);
+
+        if (ref instanceof Group group) {
+            FiguraVec3 origin = group.origin != null ? group.origin : ZERO;
+            for (OutlinerItem child : container.children)
+                resolveArmatureOffsets(child, origin, null, context);
+        } else if (ref instanceof ArmatureElement) {
+            // the armature itself sits at its parent group's pivot
+            for (OutlinerItem child : container.children)
+                resolveArmatureOffsets(child, groupOrigin, groupOrigin.copy(), context);
+        } else if (ref instanceof ArmatureBoneElement bone) {
+            FiguraVec3 base = attachOffset != null ? attachOffset : groupOrigin;
+            bone.absoluteOrigin = base.copy().add(bone.origin != null ? bone.origin : ZERO);
+            for (OutlinerItem child : container.children)
+                resolveArmatureOffsets(child, groupOrigin, bone.absoluteOrigin.copy(), context);
+        }
     }
 
     public static class Group implements UUIDReferable {
@@ -229,37 +277,47 @@ public class BlockbenchV5Model extends ModelFormat {
 
             @Override
             public @Nullable CompoundTag toNBT(BlockbenchParser2.Intermediary context) {
-                UUIDReferable groupProbably = context.referents.get(uuid);
-                if (!(groupProbably instanceof Group group)) {
-                    FiguraMod.LOGGER.warn(
-                            "Broken reference (in model '{}'): expected a group at UUID {} but found {} instead",
-                            context.name,
-                            uuid,
-                            groupProbably == null ? "(nothing with that UUID!)" : groupProbably.getClass()
-                                    .getSimpleName()
-                    );
-                    return null;
-                }
-                if (Boolean.FALSE.equals(group.export)) return null;
+                UUIDReferable referent = context.referents.get(uuid);
+                if (referent instanceof Group group)
+                    return nodeToNBT(context, group.name, group.visibility, group.export, group.origin, group.rotation);
+                // Blockbench 5 armatures and bones become plain groups (no skinning yet, meshes stay in rest pose)
+                if (referent instanceof ArmatureElement armature)
+                    return nodeToNBT(context, armature.name, armature.visibility, armature.export, null, null);
+                if (referent instanceof ArmatureBoneElement bone)
+                    return nodeToNBT(context, bone.name, bone.visibility, bone.export, bone.absoluteOrigin, bone.rotation);
+
+                FiguraMod.LOGGER.warn(
+                        "Broken reference (in model '{}'): expected a group or armature at UUID {} but found {} instead",
+                        context.name,
+                        uuid,
+                        referent == null ? "(nothing with that UUID!)" : referent.getClass().getSimpleName()
+                );
+                return null;
+            }
+
+            private @Nullable CompoundTag nodeToNBT(BlockbenchParser2.Intermediary context, String name,
+                                                    @Nullable Boolean visibility, @Nullable Boolean export,
+                                                    @Nullable FiguraVec3 pivot, @Nullable FiguraVec3 rotation) {
+                if (Boolean.FALSE.equals(export)) return null;
 
                 CompoundTag tag = new CompoundTag();
-                tag.putString("name", group.name);
+                tag.putString("name", name);
 
-                if (Boolean.FALSE.equals(group.visibility))
+                if (Boolean.FALSE.equals(visibility))
                     tag.putBoolean("vsb", false);
 
-                if (group.origin != null && !group.origin.equals(ZERO))
-                    tag.put("piv", BlockbenchCommonTypes.vecToList(group.origin));
-                if (group.rotation != null && !group.rotation.equals(ZERO))
-                    tag.put("rot", BlockbenchCommonTypes.vecToList(group.rotation));
+                if (pivot != null && !pivot.equals(ZERO))
+                    tag.put("piv", BlockbenchCommonTypes.vecToList(pivot));
+                if (rotation != null && !rotation.equals(ZERO))
+                    tag.put("rot", BlockbenchCommonTypes.vecToList(rotation));
 
-                BlockbenchCommonTypes.parseParent(group.name, tag);
+                BlockbenchCommonTypes.parseParent(name, tag);
 
                 ListTag chld = new ListTag();
                 for (OutlinerItem child : children) {
                     CompoundTag childTag = child.toNBT(context);
                     if (childTag != null) {
-                        if (childTag.contains("vsb") && Objects.equals(group.visibility, childTag.getBoolean("vsb")))
+                        if (childTag.contains("vsb") && Objects.equals(visibility, childTag.getBoolean("vsb")))
                             childTag.remove("vsb");
                         chld.add(childTag);
                     }
@@ -280,7 +338,7 @@ public class BlockbenchV5Model extends ModelFormat {
                     tag.put("anim", anim);
                 }
 
-                BlockbenchCommonTypes.attachCollections(context, group.uuid, tag);
+                BlockbenchCommonTypes.attachCollections(context, uuid, tag);
 
                 return tag;
             }
