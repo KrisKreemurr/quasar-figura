@@ -1,4 +1,0 @@
-net.minecraft.world.level.BlockCollisions
-net.minecraft.world.entity.player.Player
-net.minecraft.client.multiplayer.ClientLevel
-net.minecraft.client.multiplayer.prediction.BlockStatePredictionHandler
