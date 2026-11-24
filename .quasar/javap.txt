@@ -1,8 +1,3 @@
-c:net.minecraft.client.renderer.chunk.SectionCopy
-g:net.minecraft.client.renderer.block.ModelBlockRenderer|getLightCoords|BrightnessGetter|packedBrightness|getBrightness
-g:net.minecraft.client.renderer.block.FluidRenderer|getLightCoords|BrightnessGetter|getBrightness
-g:net.minecraft.world.level.lighting.LightEngine|shapeOccludes|faceShapeOccludes|getFaceOcclusionShape|useShapeForLightOcclusion
-g:net.minecraft.world.phys.shapes.Shapes|faceShapeOccludes
-g:net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase|getFaceOcclusionShape|useShapeForLightOcclusion|getLightEmission|emissiveRendering
-g:net.minecraft.world.level.chunk.PalettedContainerRO|maybeHas
-g:net.minecraft.client.renderer.chunk.RenderSectionRegion|RADIUS|SIZE|static
+c:net.minecraft.client.renderer.block.BlockModelLighter
+m:net.minecraft.world.level.lighting.LightEngine|shapeOccludes
+m:net.minecraft.world.level.lighting.LightEngine|getOcclusionShape
