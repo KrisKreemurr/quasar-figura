@@ -1,1 +1,12 @@
-c:net.minecraft.client.multiplayer.ClientChunkCache$Storage
+net.minecraft.client.renderer.state.level.CameraRenderState
+net.minecraft.client.renderer.culling.Frustum
+com.mojang.renderpearl.api.commands.RenderPass
+com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder
+com.mojang.renderpearl.api.pipeline.DepthStencilState
+com.mojang.renderpearl.api.pipeline.ColorTargetState
+com.mojang.renderpearl.api.pipeline.BindGroupLayout$Builder
+com.mojang.renderpearl.api.vertex.VertexFormat$Builder
+com.mojang.renderpearl.api.buffers.TransientMemory
+com.mojang.renderpearl.api.buffers.GpuBufferSlice
+com.mojang.blaze3d.systems.RenderSystem
+com.mojang.blaze3d.pipeline.RenderTarget

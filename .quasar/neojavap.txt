@@ -1,0 +1,2 @@
+net.neoforged.neoforge.client.event.RenderLevelStageEvent
+net.neoforged.neoforge.client.event.RenderLevelStageEvent$AfterOpaqueBlocks
