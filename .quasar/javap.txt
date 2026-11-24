@@ -1,4 +1,5 @@
-net.minecraft.client.particle.ParticleEngine
-net.minecraft.client.renderer.state.level.ParticlesRenderState
-g:net.minecraft.client.renderer.LevelRenderer|[Pp]article
-g:net.minecraft.client.renderer.LevelExtractor|[Pp]article
+m:net.minecraft.client.particle.ParticleEngine|extract
+m:net.minecraft.client.renderer.state.level.ParticlesRenderState|submit
+c:net.minecraft.client.particle.SingleQuadParticle
+g:net.minecraft.client.renderer.state.level.LevelRenderState|[Pp]article
+net.minecraft.client.Camera
