@@ -1,7 +1,9 @@
-net.minecraft.world.entity.Entity
-net.minecraft.world.entity.EntityType$Builder
 net.minecraft.client.gui.Gui
-net.minecraft.world.level.block.state.BlockBehaviour$Properties
-net.minecraft.nbt.StringTag
-net.minecraft.nbt.Tag
-net.minecraft.world.level.LevelHeightAccessor
+net.minecraft.util.Util$OS
+net.minecraft.commands.arguments.ComponentArgument
+net.minecraft.world.InteractionResult$Success
+net.minecraft.client.renderer.LevelRenderer
+net.minecraft.client.Camera
+net.minecraft.server.level.ChunkMap$TrackedEntity
+net.minecraft.network.protocol.game.ServerboundUseItemOnPacket
+net.minecraft.nbt.ListTag
