@@ -1,6 +1,2 @@
-net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher
-net.minecraft.client.renderer.block.MovingBlockRenderState
-net.minecraft.client.renderer.feature.MovingBlockFeatureRenderer
-c:net.minecraft.client.renderer.feature.MovingBlockFeatureRenderer
-net.minecraft.client.renderer.entity.FallingBlockRenderer
-m:net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher|submit
+com.mojang.blaze3d.vertex.QuadInstance
+m:net.minecraft.client.renderer.feature.MovingBlockFeatureRenderer|putBakedQuad
