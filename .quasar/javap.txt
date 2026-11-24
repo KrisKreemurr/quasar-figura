@@ -1,1 +1,6 @@
-m:net.minecraft.client.renderer.LevelRenderer|prepareTranslucents
+net.minecraft.client.renderer.feature.FeatureRenderDispatcher
+net.minecraft.client.renderer.feature.FeatureRenderDispatcher$PreparedFrame
+net.minecraft.client.renderer.SubmitNodeStorage
+net.minecraft.client.renderer.SubmitNodeCollector
+g:net.minecraft.client.renderer.LevelRenderer|[Ss]ubmit|[Ff]eature|EntityRenderState|PreparedFrame|prepareFrame|renderAll|execute
+m:net.minecraft.client.renderer.LevelRenderer|lambda$addMainPass$0
