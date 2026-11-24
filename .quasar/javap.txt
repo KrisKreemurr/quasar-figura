@@ -1,5 +1,1 @@
-m:net.minecraft.client.multiplayer.ClientChunkCache|replaceWithPacketData
-m:net.minecraft.client.multiplayer.ClientChunkCache|drop
-m:net.minecraft.client.multiplayer.ClientChunkCache|onSectionEmptinessChanged
-m:net.minecraft.client.multiplayer.ClientChunkCache|flipUpdateTrackingSets
-m:net.minecraft.client.multiplayer.ClientChunkCache|addedLoadedChunks
+c:net.minecraft.client.multiplayer.ClientChunkCache$Storage
