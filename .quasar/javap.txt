@@ -1,3 +1,2 @@
-m:net.minecraft.client.renderer.fog.FogRenderer|updateBuffer
-m:net.minecraft.client.renderer.fog.FogRenderer|getBuffer
-c:net.minecraft.client.renderer.fog.FogRenderer
+c:net.minecraft.client.renderer.CloudRenderer
+g:net.minecraft.client.renderer.LevelRenderer|[Cc]loud
