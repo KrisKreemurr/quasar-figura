@@ -1,4 +1,2 @@
-m:net.minecraft.world.entity.Entity|move
-m:net.minecraft.server.network.ServerGamePacketListenerImpl|handlePlayerCommand
-m:net.minecraft.server.players.PlayerList|placeNewPlayer
-g:net.minecraft.client.Minecraft|fps|^  [a-z].*\(
+c:net.minecraft.network.protocol.game.ServerboundMovePlayerPacket$Pos
+c:net.minecraft.network.protocol.game.ServerboundMovePlayerPacket
