@@ -1,4 +1,1 @@
-net.minecraft.client.renderer.ProjectionMatrixBuffer
-c:net.minecraft.client.renderer.ProjectionMatrixBuffer
-net.minecraft.client.renderer.CloudRenderer$TextureData
-com.mojang.blaze3d.ProjectionType
+m:net.minecraft.client.renderer.LevelRenderer|prepareTranslucents
