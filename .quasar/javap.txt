@@ -1,7 +1,4 @@
-c:net.minecraft.client.renderer.SkyRenderer
-net.minecraft.client.renderer.state.level.SkyRenderState
-net.minecraft.client.renderer.fog.FogRenderer
-net.minecraft.client.renderer.fog.FogData
-g:net.minecraft.client.renderer.LevelRenderer|[Ss]ky|[Ff]og
-g:net.minecraft.client.renderer.GameRenderer|[Ss]ky|[Ff]og
-net.minecraft.client.renderer.state.level.LevelRenderState
+com.mojang.blaze3d.systems.RenderSystem
+g:net.minecraft.client.renderer.LevelRenderer|LevelRenderState;$|levelRenderState
+g:net.minecraft.client.renderer.GameRenderer|LevelRenderState;$|levelRenderState|getModelViewStack|ModelView
+m:net.minecraft.client.renderer.SkyRenderer|extractRenderState
