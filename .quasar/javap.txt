@@ -1,2 +1,7 @@
-com.mojang.blaze3d.vertex.QuadInstance
-m:net.minecraft.client.renderer.feature.MovingBlockFeatureRenderer|putBakedQuad
+net.minecraft.world.level.ChunkPos
+net.minecraft.core.Direction
+net.minecraft.server.level.Ticket
+net.minecraft.server.level.TicketType
+net.minecraft.server.level.DistanceManager
+net.minecraft.world.level.TicketStorage
+net.minecraft.core.BlockPos
