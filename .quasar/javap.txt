@@ -1,4 +1,3 @@
-com.mojang.blaze3d.systems.RenderSystem
-g:net.minecraft.client.renderer.LevelRenderer|LevelRenderState;$|levelRenderState
-g:net.minecraft.client.renderer.GameRenderer|LevelRenderState;$|levelRenderState|getModelViewStack|ModelView
-m:net.minecraft.client.renderer.SkyRenderer|extractRenderState
+m:net.minecraft.client.renderer.fog.FogRenderer|updateBuffer
+m:net.minecraft.client.renderer.fog.FogRenderer|getBuffer
+c:net.minecraft.client.renderer.fog.FogRenderer
