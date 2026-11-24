@@ -1,8 +1,6 @@
-g:net.minecraft.world.entity.monster.Monster|isDarkEnoughToSpawn|checkMonsterSpawnRules
-g:net.minecraft.client.renderer.LevelRenderer|setSectionDirty|setBlocksDirty|setSectionRangeDirty|SectionDirty
-g:net.minecraft.client.renderer.extract.LevelExtractor|setSectionDirty|setBlocksDirty|setSectionRangeDirty|SectionDirty|public
-g:net.minecraft.client.multiplayer.ClientLevel|setSectionDirty|setSectionRangeDirty|entitiesForRendering|setLightReady
-g:net.minecraft.world.level.ClipContext|<init>|public
-g:net.minecraft.world.level.BlockGetter|clip
-net.minecraft.world.entity.item.ItemEntity
-g:net.minecraft.world.entity.LivingEntity|getMainHandItem|getOffhandItem|getItemBySlot
+net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher
+net.minecraft.client.renderer.block.MovingBlockRenderState
+net.minecraft.client.renderer.feature.MovingBlockFeatureRenderer
+c:net.minecraft.client.renderer.feature.MovingBlockFeatureRenderer
+net.minecraft.client.renderer.entity.FallingBlockRenderer
+m:net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher|submit
