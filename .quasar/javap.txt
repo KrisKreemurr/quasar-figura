@@ -1,7 +1,7 @@
-net.minecraft.world.level.ChunkPos
-net.minecraft.core.Direction
-net.minecraft.server.level.Ticket
-net.minecraft.server.level.TicketType
-net.minecraft.server.level.DistanceManager
-net.minecraft.world.level.TicketStorage
-net.minecraft.core.BlockPos
+net.minecraft.world.entity.Entity
+net.minecraft.world.entity.EntityType$Builder
+net.minecraft.client.gui.Gui
+net.minecraft.world.level.block.state.BlockBehaviour$Properties
+net.minecraft.nbt.StringTag
+net.minecraft.nbt.Tag
+net.minecraft.world.level.LevelHeightAccessor

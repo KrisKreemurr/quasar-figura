@@ -1,1 +1,1 @@
-event\.tick\.|ClientTickEvent|LevelTickEvent
+DataPackRegistr|NewRegistryEvent|RegisterEvent$
