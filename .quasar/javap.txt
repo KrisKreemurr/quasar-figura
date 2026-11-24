@@ -1,2 +1,4 @@
-c:net.minecraft.client.renderer.CloudRenderer
-g:net.minecraft.client.renderer.LevelRenderer|[Cc]loud
+net.minecraft.client.renderer.ProjectionMatrixBuffer
+c:net.minecraft.client.renderer.ProjectionMatrixBuffer
+net.minecraft.client.renderer.CloudRenderer$TextureData
+com.mojang.blaze3d.ProjectionType
