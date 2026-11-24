@@ -1,3 +1,5 @@
-m:net.minecraft.util.LightCoordsUtil|smoothPack
-m:net.minecraft.util.LightCoordsUtil|pack
-g:net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase|isSolidRender|getLightDampening|getLightBlock|canOcclude|propagatesSkylightDown
+m:net.minecraft.util.LightCoordsUtil|getLightCoords
+net.minecraft.util.LightCoordsUtil$BrightnessGetter
+c:net.minecraft.client.renderer.chunk.RenderSectionRegion
+m:net.minecraft.world.level.BlockAndLightGetter|getBrightness
+m:net.minecraft.world.level.BlockAndLightGetter|getRawBrightness
