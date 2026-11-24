@@ -1,5 +1,8 @@
-m:net.minecraft.util.LightCoordsUtil|getLightCoords
-net.minecraft.util.LightCoordsUtil$BrightnessGetter
-c:net.minecraft.client.renderer.chunk.RenderSectionRegion
-m:net.minecraft.world.level.BlockAndLightGetter|getBrightness
-m:net.minecraft.world.level.BlockAndLightGetter|getRawBrightness
+c:net.minecraft.client.renderer.chunk.SectionCopy
+g:net.minecraft.client.renderer.block.ModelBlockRenderer|getLightCoords|BrightnessGetter|packedBrightness|getBrightness
+g:net.minecraft.client.renderer.block.FluidRenderer|getLightCoords|BrightnessGetter|getBrightness
+g:net.minecraft.world.level.lighting.LightEngine|shapeOccludes|faceShapeOccludes|getFaceOcclusionShape|useShapeForLightOcclusion
+g:net.minecraft.world.phys.shapes.Shapes|faceShapeOccludes
+g:net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase|getFaceOcclusionShape|useShapeForLightOcclusion|getLightEmission|emissiveRendering
+g:net.minecraft.world.level.chunk.PalettedContainerRO|maybeHas
+g:net.minecraft.client.renderer.chunk.RenderSectionRegion|RADIUS|SIZE|static
