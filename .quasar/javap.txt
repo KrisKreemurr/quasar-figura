@@ -1,4 +1,4 @@
-g:net.minecraft.client.gui.Hud|canHurtPlayer|hasExperience|^  private .*lambda\$registerVanillaLayers|^  private .*(Health|Food|Armor|Air|ExperienceLevel|nextContextual|shouldRender).*\(
-net.minecraft.client.multiplayer.MultiPlayerGameMode
-g:net.minecraft.world.level.Level|getSkyDarken|isBrightOutside|isDarkOutside|isDay\(|canSeeSky|getMaxLocalRawBrightness|getBrightness
-g:net.minecraft.client.player.LocalPlayer|getJumpRidingScale|jumpableVehicle
+m:net.minecraft.world.level.Level|isBrightOutside
+m:net.minecraft.world.level.Level|isDarkOutside
+g:net.minecraft.world.level.Level|^  public .*([Tt]ime|[Cc]lock|[Dd]ay|SkyDarken|SunAngle).*\(
+g:net.minecraft.server.level.ServerLevel|^  public .*([Tt]ime|[Cc]lock|[Dd]ay).*\(

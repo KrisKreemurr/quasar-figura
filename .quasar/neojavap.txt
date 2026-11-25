@@ -1,5 +1,0 @@
-net.neoforged.neoforge.attachment.AttachmentType$Builder
-net.neoforged.neoforge.network.registration.PayloadRegistrar
-net.neoforged.neoforge.network.PacketDistributor
-net.neoforged.neoforge.registries.NeoForgeRegistries
-net.neoforged.neoforge.event.tick.PlayerTickEvent$Post
