@@ -1,4 +1,5 @@
-net.minecraft.client.renderer.extract.LevelExtractor
-g:net.minecraft.client.multiplayer.ClientLevel|LevelExtractor|levelExtractor
-m:net.minecraft.client.multiplayer.ClientPacketListener|handleLogin
-g:net.minecraft.client.Minecraft|LevelExtractor|levelExtractor|^  public .*LevelRenderer
+m:net.minecraft.client.renderer.extract.LevelExtractor|net.minecraft.client.renderer.extract.LevelExtractor
+g:net.minecraft.client.renderer.state.level.LevelRenderState|^  public net.minecraft.client.renderer.state.level.LevelRenderState\(
+g:net.minecraft.world.level.biome.BiomeManager|biomeZoomSeed|^  public
+g:net.minecraft.client.multiplayer.ClientLevel|getServerSimulationDistance|getSeaLevel|^  public .*isDebug
+g:net.minecraft.client.multiplayer.ClientPacketListener|serverChunkRadius|^  public int
