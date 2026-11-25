@@ -1,5 +1,3 @@
-m:net.minecraft.client.particle.ParticleEngine|extract
-m:net.minecraft.client.renderer.state.level.ParticlesRenderState|submit
-c:net.minecraft.client.particle.SingleQuadParticle
-g:net.minecraft.client.renderer.state.level.LevelRenderState|[Pp]article
-net.minecraft.client.Camera
+net.minecraft.client.gui.Gui
+g:net.minecraft.client.gui.Gui|HOTBAR|hotbar|Hotbar|OFFHAND|Experience|EXPERIENCE|rightHeight|leftHeight|guiHeight|getGuiHeight
+g:net.minecraft.client.gui.GuiGraphicsExtractor|blitSprite|[Ii]tem\(|itemDecorations
