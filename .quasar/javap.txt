@@ -1,5 +1,1 @@
-com.mojang.blaze3d.platform.InputConstants
-com.mojang.blaze3d.platform.InputConstants$Type
-net.minecraft.client.gui.components.debug.DebugScreenEntryStatus
-g:net.minecraft.client.gui.Gui|DebugScreenOverlay
-g:net.minecraft.client.Minecraft|DebugScreenOverlay
+net.minecraft.client.renderer.GameRenderer
