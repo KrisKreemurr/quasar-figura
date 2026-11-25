@@ -1,8 +1,4 @@
-net.minecraft.world.clock.ServerClockManager
-net.minecraft.world.clock.ClockManager
-net.minecraft.world.clock.WorldClocks
-net.minecraft.world.clock.WorldClock
-g:net.minecraft.world.level.Level|ClockManager|clockManager|WorldClock|skyDarken
-g:net.minecraft.server.level.ServerLevel|ClockManager|clockManager|WorldClock|updateSkyBrightness|skyDarken
-g:net.minecraft.world.level.dimension.DimensionType|^  public|defaultClock|clock
-m:net.minecraft.world.level.Level|updateSkyBrightness
+g:net.minecraft.client.multiplayer.ClientLevel|^  public net.minecraft.client.multiplayer.ClientLevel\(|mapData|tickRateManager|levelRenderer|LevelRenderer
+net.minecraft.client.multiplayer.ClientLevel$ClientLevelData
+g:net.minecraft.client.renderer.LevelRenderer|^  public net.minecraft.client.renderer.LevelRenderer\(|public void setLevel|onResourceManagerReload
+g:net.minecraft.client.multiplayer.ClientPacketListener|new +#[0-9]+ +// class net/minecraft/client/multiplayer/ClientLevel$|ClientLevel."<init>"|LevelRenderer.setLevel|^  public void handleLogin|^  public void handleRespawn
