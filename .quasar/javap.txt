@@ -1,3 +1,1 @@
-c:net.minecraft.client.gui.contextualbar.ExperienceBarRenderer
-net.minecraft.client.gui.contextualbar.ContextualBarRenderer
-g:net.minecraft.client.gui.Hud|[Cc]ontextual|nextContextual|experienceLevel|ExperienceLevel
+g:net.minecraft.client.gui.Hud|^  private .*(Heart|Health|Food|Armor|Air|Vehicle).*\(|blitSprite|guiWidth
