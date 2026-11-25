@@ -1,7 +1,4 @@
-renderer\.chunk\.
-Lightmap
-renderer\.fog\.
-world\.attribute\.EnvironmentAttribute
-SectionBufferBuilder|ByteBufferBuilder$|MeshData
-renderer\.RenderPipelines$|RenderPipelines
-blaze3d\.systems\.RenderSystem
+DynamicGpuData
+LevelRenderer\$
+SkyRenderer
+renderpearl\.api\.commands\.RenderPass
