@@ -1,3 +1,2 @@
-net.neoforged.neoforge.client.gui.VanillaGuiLayers
-net.neoforged.neoforge.client.event.RenderGuiLayerEvent
-net.neoforged.neoforge.client.event.RenderGuiLayerEvent$Pre
+net.neoforged.neoforge.client.event.RegisterGuiLayersEvent
+net.neoforged.neoforge.client.gui.GuiLayer
