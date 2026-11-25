@@ -1,2 +1,1 @@
-shaders/core/terrain\.
-shaders/include/(globals|chunk|fog|light|sample_lightmap)
+shaders/include/(terrainglobals|projection)

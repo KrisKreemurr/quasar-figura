@@ -1,5 +1,12 @@
-com.mojang.renderpearl.api.commands.RenderPass$UniformUploader
-net.minecraft.client.renderer.GlobalSettingsUniform
-c:net.minecraft.client.renderer.GlobalSettingsUniform
-m:net.minecraft.client.renderer.GameRenderer|renderLevel
-g:net.minecraft.client.renderer.LevelRenderer|GlobalSettings|globalSettings|CameraBlockPos
+com.mojang.renderpearl.api.device.GpuDevice
+com.mojang.renderpearl.api.buffers.GpuBuffer
+com.mojang.renderpearl.api.buffers.GpuBufferSlice
+com.mojang.blaze3d.systems.SamplerCache
+com.mojang.renderpearl.api.commands.CommandEncoder
+net.minecraft.client.renderer.DynamicGpuData$TerrainTransform
+m:net.minecraft.client.renderer.DynamicGpuData$TerrainTransform|write
+net.minecraft.client.renderer.texture.TextureAtlas
+net.minecraft.client.renderer.texture.AbstractTexture
+g:net.minecraft.client.renderer.chunk.SectionRenderDispatcher|sectionCompiler|SectionCompiler
+m:net.minecraft.client.renderer.chunk.RenderRegionCache|createRegion
+m:net.minecraft.client.renderer.LevelRenderer|addMainPass

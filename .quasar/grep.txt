@@ -1,1 +1,1 @@
-Global
+TransientMemory|renderpearl\.api\.buffers\.
