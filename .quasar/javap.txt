@@ -1,4 +1,8 @@
-m:net.minecraft.world.level.Level|isBrightOutside
-m:net.minecraft.world.level.Level|isDarkOutside
-g:net.minecraft.world.level.Level|^  public .*([Tt]ime|[Cc]lock|[Dd]ay|SkyDarken|SunAngle).*\(
-g:net.minecraft.server.level.ServerLevel|^  public .*([Tt]ime|[Cc]lock|[Dd]ay).*\(
+net.minecraft.world.clock.ServerClockManager
+net.minecraft.world.clock.ClockManager
+net.minecraft.world.clock.WorldClocks
+net.minecraft.world.clock.WorldClock
+g:net.minecraft.world.level.Level|ClockManager|clockManager|WorldClock|skyDarken
+g:net.minecraft.server.level.ServerLevel|ClockManager|clockManager|WorldClock|updateSkyBrightness|skyDarken
+g:net.minecraft.world.level.dimension.DimensionType|^  public|defaultClock|clock
+m:net.minecraft.world.level.Level|updateSkyBrightness
