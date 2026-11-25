@@ -1,8 +1,2 @@
-net.neoforged.neoforge.event.AnvilUpdateEvent
-net.neoforged.neoforge.event.GrindstoneEvent
-net.neoforged.neoforge.event.GrindstoneEvent$OnPlaceItem
-net.minecraft.world.item.crafting.RepairItemRecipe
-m:net.minecraft.world.entity.ExperienceOrb|repairPlayerItems
-m:net.minecraft.world.inventory.AnvilMenu|createResult
-g:net.minecraft.world.inventory.GrindstoneMenu|isDamageableItem|getMaxDamage|mergeItems
-net.minecraft.world.inventory.GrindstoneMenu
+g:net.minecraft.client.renderer.chunk.RenderSectionRegion|Level|level
+g:net.minecraft.client.renderer.chunk.RenderRegionCache|RenderSectionRegion\.<init>|new

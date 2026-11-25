@@ -1,2 +1,0 @@
-neoforged\.neoforge\.event\..*(Anvil|Grindstone|Repair)
-RepairItemRecipe
