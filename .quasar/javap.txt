@@ -1,1 +1,10 @@
-c:net.minecraft.client.gui.components.debug.DebugScreenEntries
+net.minecraft.client.gui.components.debug.DebugScreenDisplayer
+net.minecraft.client.gui.components.debug.DebugScreenEntries
+net.minecraft.client.gui.components.debug.DebugScreenEntry
+net.minecraft.client.gui.components.debug.DebugScreenEntryList
+net.minecraft.client.gui.components.DebugScreenOverlay
+net.minecraft.client.KeyboardHandler
+net.minecraft.client.KeyMapping
+net.minecraft.client.KeyMapping$Category
+m:net.minecraft.client.gui.components.DebugScreenOverlay|extractRenderState
+m:net.minecraft.client.gui.components.DebugScreenOverlay|render
