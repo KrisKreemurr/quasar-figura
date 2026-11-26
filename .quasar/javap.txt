@@ -1,2 +1,5 @@
-net.minecraft.client.renderer.extract.LevelExtractor
-g:net.minecraft.client.renderer.LevelRenderer|ViewArea|SectionRenderDispatcher|viewArea|sectionRenderDispatcher|LevelExtractor
+net.minecraft.world.entity.projectile.Projectile
+g:net.minecraft.world.entity.EntityType$Builder|public
+g:net.minecraft.world.entity.projectile.arrow.ThrownTrident|public|protected
+net.minecraft.client.renderer.entity.ThrownItemRenderer
+g:net.minecraft.world.entity.Entity|defineSynchedData|addAdditionalSaveData|readAdditionalSaveData|lerpTo|public void tick
