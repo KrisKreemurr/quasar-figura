@@ -1,3 +1,4 @@
-m:net.minecraft.world.entity.LivingEntity|aiStep
-m:net.minecraft.world.entity.LivingEntity|tickHeadTurn
-g:net.minecraft.world.entity.LivingEntity|lerpYHeadRot|lerpHeadRotationStep|tickHeadTurn
+g:net.minecraft.client.multiplayer.ClientLevel|LevelExtractor
+g:net.minecraft.client.Minecraft|LevelExtractor|levelExtractor|updateLevelInEngines|setLevel
+m:net.minecraft.client.Minecraft|updateLevelInEngines
+g:net.minecraft.client.renderer.extract.LevelExtractor|setLevel|ClientLevel level|levelRenderer
