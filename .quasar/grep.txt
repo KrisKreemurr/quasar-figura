@@ -1,1 +1,0 @@
-blockentity\.state\.BlockEntityRenderState$|LevelRenderer|BlockEntityRenderDispatcher

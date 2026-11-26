@@ -1,6 +1,3 @@
-c:net.minecraft.server.level.ChunkMap$TrackedEntity
-g:net.minecraft.server.level.ServerEntity|send|broadcast|Consumer|connection
-net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher
-g:net.minecraft.client.renderer.LevelRenderer|lockEntity|BlockEntityRender
-m:net.minecraft.client.renderer.LevelRenderer|extractBlockEntities
-net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState
+m:net.minecraft.client.renderer.LevelRenderer|submitBlockEntities
+g:net.minecraft.client.renderer.LevelRenderer|tryExtractRenderState|BlockEntityRenderDispatcher.prepare|getRenderableBlockEntities|globalBlockEntities
+m:net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher|tryExtractRenderState
