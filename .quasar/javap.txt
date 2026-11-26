@@ -1,1 +1,3 @@
-m:net.minecraft.world.level.block.TntBlock|useItemOn
+g:net.minecraft.client.renderer.LevelRenderer|getLight
+g:net.minecraft.client.renderer.entity.state.EntityRenderState|light
+g:net.minecraft.client.renderer.entity.EntityRenderer|getPackedLightCoords|getBlockLightLevel|getSkyLightLevel
