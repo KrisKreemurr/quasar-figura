@@ -1,1 +1,1 @@
-g:com.mojang.renderpearl.api.commands.CommandEncoder|copyTexture
+m:net.minecraft.world.level.block.TntBlock|useItemOn
