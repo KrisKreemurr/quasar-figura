@@ -1,3 +1,3 @@
-g:net.minecraft.world.entity.Entity|setOldPosAndRot|getInterpolation|setOldPos|setOldRot
-net.minecraft.world.entity.InterpolationHandler
-g:net.minecraft.world.entity.LivingEntity|yHeadRotO|yBodyRotO|lerpHeadSteps|tickHeadTurn
+g:net.minecraft.world.entity.Mob|checkDespawn|NoActionTime|noActionTime
+g:net.minecraft.world.entity.LivingEntity|NoActionTime|noActionTime
+g:net.minecraft.world.entity.ai.goal.RandomStrollGoal|NoActionTime
