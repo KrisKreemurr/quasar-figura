@@ -1,1 +1,1 @@
-g:net.minecraft.client.Camera|Zoom|zoom|collision|move\(|setup|getMax|clip
+g:net.minecraft.client.Camera|position\(|rotation\(|forward|Vec3 pos|entity\(
