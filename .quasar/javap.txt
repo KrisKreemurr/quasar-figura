@@ -1,4 +1,3 @@
-g:net.minecraft.client.multiplayer.ClientLevel|[Tt]ime|[Cc]lock
-g:net.minecraft.client.multiplayer.ClientLevel$ClientLevelData|[Tt]ime
-m:net.minecraft.client.multiplayer.ClientPacketListener|handleSetTime
-g:net.minecraft.world.level.Level|[Gg]ameTime|[Dd]ayTime|[Cc]lock
+g:net.minecraft.client.renderer.extract.LevelExtractor|[Cc]hunk|[Rr]eady
+g:net.minecraft.client.multiplayer.ClientLevel|levelExtractor
+g:net.minecraft.client.renderer.SectionOcclusionGraph|[Rr]eady|public
