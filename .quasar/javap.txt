@@ -1,2 +1,3 @@
-m:net.minecraft.client.Minecraft|updateLevelInEngines
-g:net.minecraft.client.Camera|public .*(reset|probe|Probe|attribute)
+m:net.minecraft.client.Camera|reset
+net.minecraft.world.attribute.EnvironmentAttributeProbe
+g:net.minecraft.client.Camera|attributeProbe|EnvironmentAttributeProbe\.
