@@ -1,1 +1,3 @@
-g:net.minecraft.world.entity.LivingEntity|calculateEntityAnimation|updateWalkAnimation|walkAnimation
+m:net.minecraft.world.entity.LivingEntity|aiStep
+m:net.minecraft.world.entity.LivingEntity|tickHeadTurn
+g:net.minecraft.world.entity.LivingEntity|lerpYHeadRot|lerpHeadRotationStep|tickHeadTurn
