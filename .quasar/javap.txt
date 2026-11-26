@@ -1,2 +1,6 @@
-g:net.minecraft.client.renderer.chunk.RenderSectionRegion|Level|level
-g:net.minecraft.client.renderer.chunk.RenderRegionCache|RenderSectionRegion\.<init>|new
+c:net.minecraft.server.level.ChunkMap$TrackedEntity
+g:net.minecraft.server.level.ServerEntity|send|broadcast|Consumer|connection
+net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher
+g:net.minecraft.client.renderer.LevelRenderer|lockEntity|BlockEntityRender
+m:net.minecraft.client.renderer.LevelRenderer|extractBlockEntities
+net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState
