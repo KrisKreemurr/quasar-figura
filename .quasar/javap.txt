@@ -1,5 +1,3 @@
-m:net.minecraft.client.multiplayer.ClientLevel|tickEntities
-m:net.minecraft.client.multiplayer.ClientLevel|tickNonPassenger
-g:net.minecraft.client.multiplayer.ClientLevel|addParticle|particleEngine|ParticleEngine|getCameraEntity|mainCamera|animateTick
-m:net.minecraft.client.multiplayer.ClientLevel|tick
-net.minecraft.client.particle.ParticleEngine
+g:net.minecraft.client.Minecraft|ParticleResources|ParticleEngine
+m:net.minecraft.client.multiplayer.ClientLevel|doAddParticle
+m:net.minecraft.client.multiplayer.ClientLevel|animateTick
