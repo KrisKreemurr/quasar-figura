@@ -1,2 +1,4 @@
-m:net.minecraft.client.renderer.entity.EntityRenderDispatcher|shouldRender
-g:net.minecraft.client.renderer.entity.EntityRenderer| shouldRender|affectedByCulling
+g:net.minecraft.client.renderer.feature.FeatureRenderDispatcher|ightmap|ightTexture|Sampler2|setShaderTexture
+g:com.mojang.blaze3d.systems.RenderSystem|ShaderTexture|ightmap
+g:net.minecraft.client.renderer.rendertype.RenderType|ightmap|ightTexture
+g:net.minecraft.client.renderer.GameRenderer|ightmap|ightTexture
