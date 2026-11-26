@@ -1,3 +1,5 @@
-m:net.minecraft.client.renderer.LevelRenderer|submitBlockEntities
-g:net.minecraft.client.renderer.LevelRenderer|tryExtractRenderState|BlockEntityRenderDispatcher.prepare|getRenderableBlockEntities|globalBlockEntities
-m:net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher|tryExtractRenderState
+m:net.minecraft.client.multiplayer.ClientLevel|tickEntities
+m:net.minecraft.client.multiplayer.ClientLevel|tickNonPassenger
+g:net.minecraft.client.multiplayer.ClientLevel|addParticle|particleEngine|ParticleEngine|getCameraEntity|mainCamera|animateTick
+m:net.minecraft.client.multiplayer.ClientLevel|tick
+net.minecraft.client.particle.ParticleEngine
