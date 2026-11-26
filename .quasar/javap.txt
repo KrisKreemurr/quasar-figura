@@ -1,4 +1,4 @@
-g:net.minecraft.client.multiplayer.ClientLevel|LevelExtractor
-g:net.minecraft.client.Minecraft|LevelExtractor|levelExtractor|updateLevelInEngines|setLevel
-m:net.minecraft.client.Minecraft|updateLevelInEngines
-g:net.minecraft.client.renderer.extract.LevelExtractor|setLevel|ClientLevel level|levelRenderer
+g:net.minecraft.client.multiplayer.ClientLevel|[Tt]ime|[Cc]lock
+g:net.minecraft.client.multiplayer.ClientLevel$ClientLevelData|[Tt]ime
+m:net.minecraft.client.multiplayer.ClientPacketListener|handleSetTime
+g:net.minecraft.world.level.Level|[Gg]ameTime|[Dd]ayTime|[Cc]lock
