@@ -1,3 +1,2 @@
-g:net.minecraft.client.Minecraft|ParticleResources|ParticleEngine
-m:net.minecraft.client.multiplayer.ClientLevel|doAddParticle
-m:net.minecraft.client.multiplayer.ClientLevel|animateTick
+m:net.minecraft.client.renderer.entity.EntityRenderDispatcher|shouldRender
+g:net.minecraft.client.renderer.entity.EntityRenderer| shouldRender|affectedByCulling
