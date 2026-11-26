@@ -1,4 +1,2 @@
-net.minecraft.client.renderer.ViewArea
-net.minecraft.client.renderer.chunk.SectionRenderDispatcher$RenderSection
-net.minecraft.client.renderer.chunk.CompiledSectionMesh
-g:net.minecraft.client.renderer.LevelRenderer|viewArea;|ViewArea [a-z]
+m:net.minecraft.client.Minecraft|updateLevelInEngines
+g:net.minecraft.client.Camera|public .*(reset|probe|Probe|attribute)
