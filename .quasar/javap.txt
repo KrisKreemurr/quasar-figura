@@ -1,1 +1,2 @@
-g:net.minecraft.client.Camera|position\(|rotation\(|forward|Vec3 pos|entity\(
+net.minecraft.client.renderer.extract.LevelExtractor
+g:net.minecraft.client.renderer.LevelRenderer|ViewArea|SectionRenderDispatcher|viewArea|sectionRenderDispatcher|LevelExtractor
