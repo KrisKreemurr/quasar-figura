@@ -1,5 +1,4 @@
-g:net.minecraft.client.renderer.LevelRenderer|ViewArea|viewArea
-g:net.minecraft.client.renderer.ViewArea|public
-g:net.minecraft.client.renderer.chunk.SectionRenderDispatcher$RenderSection|public .*(getSectionMesh|getSectionNode|isDirty|hasAllNeighbors|getRenderOrigin)
-g:net.minecraft.client.renderer.chunk.CompiledSectionMesh|UNCOMPILED|EMPTY
-g:net.minecraft.client.renderer.chunk.SectionMesh|UNCOMPILED|EMPTY|interface
+net.minecraft.client.renderer.ViewArea
+net.minecraft.client.renderer.chunk.SectionRenderDispatcher$RenderSection
+net.minecraft.client.renderer.chunk.CompiledSectionMesh
+g:net.minecraft.client.renderer.LevelRenderer|viewArea;|ViewArea [a-z]
