@@ -1,3 +1,2 @@
-m:net.minecraft.client.Camera|reset
-net.minecraft.world.attribute.EnvironmentAttributeProbe
-g:net.minecraft.client.Camera|attributeProbe|EnvironmentAttributeProbe\.
+g:net.minecraft.client.renderer.LevelRenderer|public .* render\(
+g:net.minecraft.client.renderer.GameRenderer|renderItemInHand|LevelRenderer.render:|private void renderLevel|public void renderLevel
