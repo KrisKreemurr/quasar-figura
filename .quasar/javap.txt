@@ -1,4 +1,5 @@
-g:net.minecraft.client.multiplayer.ClientChunkCache|added|removed|flipUpdate|EmptySection|LoadedChunk
-g:net.minecraft.client.renderer.LevelRenderer|addedLoadedChunks|removedLoadedChunks|EmptySections|expectedChunks|loadedChunks|allChanged|setLevel
-m:net.minecraft.client.renderer.extract.LevelExtractor|setLevel
-m:net.minecraft.client.renderer.extract.LevelExtractor|allChanged
+g:net.minecraft.client.renderer.LevelRenderer|ViewArea|viewArea
+g:net.minecraft.client.renderer.ViewArea|public
+g:net.minecraft.client.renderer.chunk.SectionRenderDispatcher$RenderSection|public .*(getSectionMesh|getSectionNode|isDirty|hasAllNeighbors|getRenderOrigin)
+g:net.minecraft.client.renderer.chunk.CompiledSectionMesh|UNCOMPILED|EMPTY
+g:net.minecraft.client.renderer.chunk.SectionMesh|UNCOMPILED|EMPTY|interface
