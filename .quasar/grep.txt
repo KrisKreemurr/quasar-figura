@@ -1,0 +1,1 @@
+ClientPacketDistributor|InputEvent\$Interaction|EntityRenderersEvent\$RegisterRenderers
