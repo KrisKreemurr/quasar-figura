@@ -1,2 +1,1 @@
-g:net.minecraft.client.renderer.LevelRenderer|public .* render\(
-g:net.minecraft.client.renderer.GameRenderer|renderItemInHand|LevelRenderer.render:|private void renderLevel|public void renderLevel
+g:com.mojang.renderpearl.api.commands.CommandEncoder|copyTexture
