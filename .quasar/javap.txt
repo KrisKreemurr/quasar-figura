@@ -1,3 +1,4 @@
-g:net.minecraft.client.renderer.extract.LevelExtractor|[Cc]hunk|[Rr]eady
-g:net.minecraft.client.multiplayer.ClientLevel|levelExtractor
-g:net.minecraft.client.renderer.SectionOcclusionGraph|[Rr]eady|public
+g:net.minecraft.client.multiplayer.ClientChunkCache|added|removed|flipUpdate|EmptySection|LoadedChunk
+g:net.minecraft.client.renderer.LevelRenderer|addedLoadedChunks|removedLoadedChunks|EmptySections|expectedChunks|loadedChunks|allChanged|setLevel
+m:net.minecraft.client.renderer.extract.LevelExtractor|setLevel
+m:net.minecraft.client.renderer.extract.LevelExtractor|allChanged
