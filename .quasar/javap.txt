@@ -1,3 +1,2 @@
-g:net.minecraft.client.renderer.LevelRenderer|getLight
-g:net.minecraft.client.renderer.entity.state.EntityRenderState|light
-g:net.minecraft.client.renderer.entity.EntityRenderer|getPackedLightCoords|getBlockLightLevel|getSkyLightLevel
+g:net.minecraft.client.renderer.entity.EntityRenderer|shouldRender
+g:net.minecraft.client.renderer.entity.EntityRenderDispatcher|shouldRender
