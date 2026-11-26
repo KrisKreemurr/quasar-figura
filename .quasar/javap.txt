@@ -1,3 +1,1 @@
-g:net.minecraft.world.entity.Mob|checkDespawn|NoActionTime|noActionTime
-g:net.minecraft.world.entity.LivingEntity|NoActionTime|noActionTime
-g:net.minecraft.world.entity.ai.goal.RandomStrollGoal|NoActionTime
+g:net.minecraft.world.entity.LivingEntity|calculateEntityAnimation|updateWalkAnimation|walkAnimation
