@@ -1,5 +1,9 @@
-net.minecraft.world.entity.projectile.Projectile
-g:net.minecraft.world.entity.EntityType$Builder|public
-g:net.minecraft.world.entity.projectile.arrow.ThrownTrident|public|protected
-net.minecraft.client.renderer.entity.ThrownItemRenderer
-g:net.minecraft.world.entity.Entity|defineSynchedData|addAdditionalSaveData|readAdditionalSaveData|lerpTo|public void tick
+m:net.minecraft.client.renderer.entity.ThrownItemRenderer|submit
+m:net.minecraft.client.renderer.entity.ThrownItemRenderer|extractRenderState
+net.minecraft.client.renderer.entity.state.ThrownItemRenderState
+g:net.minecraft.world.entity.projectile.ProjectileUtil|public static
+g:net.minecraft.world.damagesource.DamageSources|thrown|playerAttack
+g:net.minecraft.sounds.SoundEvents|TRIDENT_THROW|NOTE_BLOCK_BELL|ITEM_PICKUP |TRIDENT_RETURN|TRIDENT_HIT 
+g:net.minecraft.world.item.Item|InteractionResult use\(
+net.minecraft.world.entity.projectile.ItemSupplier
+g:net.minecraft.client.renderer.item.ItemStackRenderState|public void submit
