@@ -1,6 +1,3 @@
-g:net.minecraft.client.gui.GuiGraphicsExtractor|String|Component|text
-g:net.minecraft.client.renderer.entity.EntityRendererProvider$Context|public
-g:net.minecraft.client.renderer.item.ItemModelResolver|public void update
-g:net.minecraft.network.syncher.SynchedEntityData$Builder|public
-g:net.minecraft.network.syncher.EntityDataSerializers|ITEM_STACK|BYTE|BOOLEAN
-g:net.minecraft.client.renderer.entity.EntityRenderer|protected net|EntityRenderer\(
+net.minecraft.world.item.ItemUseAnimation
+g:net.minecraft.world.item.Item|getUseDuration|getUseAnimation|releaseUsing|onUseTick
+g:net.minecraft.world.item.TridentItem|public
