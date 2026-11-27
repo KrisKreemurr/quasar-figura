@@ -1,0 +1,3 @@
+g:net.minecraft.sounds.SoundEvents|SHIELD
+g:net.minecraft.world.item.ItemCooldowns|addCooldown
+g:net.minecraft.world.entity.LivingEntity|isBlocking|getItemBlockingWith|stopUsingItem
