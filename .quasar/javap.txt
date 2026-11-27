@@ -1,4 +1,5 @@
-g:net.minecraft.world.entity.item.ItemEntity|hasPickUpDelay|getTarget|getOwner
-g:net.minecraft.world.entity.ExperienceOrb|getValue|public static void award
-g:net.minecraft.world.entity.player.Inventory|placeItemBackInInventory|public boolean add
-g:net.minecraft.world.entity.player.Player|giveExperiencePoints
+g:net.minecraft.world.entity.Mob|goalSelector|targetSelector
+g:net.minecraft.world.entity.ai.goal.GoalSelector|removeAllGoals|public void addGoal
+g:net.minecraft.world.entity.ai.goal.MeleeAttackGoal|public net|canContinueToUse
+g:net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal|public net
+g:net.minecraft.world.entity.LivingEntity|getLastHurtByMobTimestamp

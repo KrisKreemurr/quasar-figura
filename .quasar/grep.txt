@@ -1,0 +1,1 @@
+\.PanicGoal$|ai\.goal\.MeleeAttackGoal$
