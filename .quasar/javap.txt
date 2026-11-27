@@ -1,1 +1,0 @@
-g:net.minecraft.world.item.enchantment.EnchantmentHelper|modifyDamage|modifyKnockback|doPostAttackEffects

@@ -1,0 +1,3 @@
+r:net.minecraft.client.model.HumanoidModel$ArmPose
+r:net.neoforged.neoforge.client.IArmPoseTransformer
+r:net.neoforged.neoforge.client.extensions.common.IClientItemExtensions
