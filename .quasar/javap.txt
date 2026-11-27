@@ -1,8 +1,2 @@
-g:net.minecraft.world.entity.ai.attributes.Attributes|WATER_MOVEMENT|MOVEMENT_EFFICIENCY
-g:net.neoforged.neoforge.common.NeoForgeMod|SWIM_SPEED
-g:net.minecraft.world.entity.ai.attributes.AttributeModifier|public net
-g:net.minecraft.world.entity.ai.attributes.AttributeInstance|Transient|removeModifier|hasModifier
-g:net.minecraft.world.effect.MobEffects|DOLPHIN
-g:net.minecraft.core.particles.ParticleTypes| BUBBLE
-g:net.minecraft.sounds.SoundEvents|LAVA_EXTINGUISH|GENERIC_SPLASH
-g:net.minecraft.world.phys.BlockHitResult|public net.minecraft.world.phys.BlockHitResult\(
+g:net.minecraft.world.entity.ai.attributes.Attributes|public static final
+g:net.neoforged.neoforge.common.NeoForgeMod|Holder<net.minecraft.world.entity.ai.attributes
