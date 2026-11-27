@@ -1,3 +1,0 @@
-g:net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent|insert|accept
-g:net.minecraft.world.item.Items|_SPEAR;
-g:net.neoforged.neoforge.event.entity.player.ItemTooltipEvent|public
