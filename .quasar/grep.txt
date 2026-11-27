@@ -1,1 +1,0 @@
-\.Enemy$|\.AbstractVillager$|\.IronGolem$|\.TamableAnimal$|\.NeutralMob$|\.animal\.Animal$|\.WaterAnimal$|\.AmbientCreature$|\.OwnableEntity$

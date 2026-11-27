@@ -1,3 +1,4 @@
-g:net.minecraft.world.entity.TamableAnimal|getOwner|isTame
-g:net.minecraft.world.entity.NeutralMob|isAngry
-g:net.minecraft.world.entity.OwnableEntity|getOwner
+g:net.minecraft.world.entity.item.ItemEntity|hasPickUpDelay|getTarget|getOwner
+g:net.minecraft.world.entity.ExperienceOrb|getValue|public static void award
+g:net.minecraft.world.entity.player.Inventory|placeItemBackInInventory|public boolean add
+g:net.minecraft.world.entity.player.Player|giveExperiencePoints
