@@ -1,5 +1,2 @@
-g:net.minecraft.world.entity.Mob|goalSelector|targetSelector
-g:net.minecraft.world.entity.ai.goal.GoalSelector|removeAllGoals|public void addGoal
-g:net.minecraft.world.entity.ai.goal.MeleeAttackGoal|public net|canContinueToUse
-g:net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal|public net
-g:net.minecraft.world.entity.LivingEntity|getLastHurtByMobTimestamp
+g:net.minecraft.world.entity.EntityTypes|CHICKEN|SHEEP|PIG;|COW;|MOOSHROOM
+g:net.minecraft.world.entity.Entity|hurtMarked|markHurt|needsSync
