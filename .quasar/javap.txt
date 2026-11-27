@@ -1,3 +1,1 @@
-net.minecraft.world.item.ItemUseAnimation
-g:net.minecraft.world.item.Item|getUseDuration|getUseAnimation|releaseUsing|onUseTick
-g:net.minecraft.world.item.TridentItem|public
+g:net.minecraft.world.item.enchantment.EnchantmentHelper|modifyDamage|modifyKnockback|doPostAttackEffects

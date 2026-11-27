@@ -1,0 +1,2 @@
+data/minecraft/enchantment/(power|punch|unbreaking)\.json
+data/minecraft/tags/item/enchantable/(bow|durability)\.json
