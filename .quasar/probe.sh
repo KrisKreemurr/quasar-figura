@@ -62,6 +62,11 @@ if [ -f .quasar/hier.txt ]; then
     queue="$next"
   done
 fi
+if [ -f .quasar/res64.txt ]; then
+  while IFS= read -r pat; do [ -z "$pat" ] && continue; echo "=== RES64 $pat"
+    for e in $(unzip -Z1 "$J" | grep -E "$pat" | head -4); do echo "--- $e"; unzip -p "$J" "$e" | base64 -w0; echo; done
+  done < .quasar/res64.txt
+fi
 echo "=== PROBE: neoforge jar $NEOJAR"
 if [ -n "$NEOJAR" ] && [ -f .quasar/neogrep.txt ]; then
   unzip -Z1 "$NEOJAR" | grep '\.class$' | grep -v '\$[0-9]' | sed 's/\.class$//; s#/#.#g' > /tmp/neoclasses.txt

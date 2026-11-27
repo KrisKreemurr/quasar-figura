@@ -1,2 +1,0 @@
-m:net.minecraft.client.model.animal.equine.AbstractEquineModel|createBodyMesh
-m:net.minecraft.client.model.animal.equine.HorseModel|createBodyLayer
