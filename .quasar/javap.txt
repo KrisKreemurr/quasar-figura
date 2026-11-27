@@ -1,3 +1,2 @@
-g:net.minecraft.client.model.animal.equine.AbstractEquineModel|static
-g:net.minecraft.client.model.animal.equine.HorseModel|static
-g:net.minecraft.client.model.animal.equine.DonkeyModel|static
+m:net.minecraft.client.model.animal.equine.AbstractEquineModel|createBodyMesh
+m:net.minecraft.client.model.animal.equine.HorseModel|createBodyLayer
