@@ -1,0 +1,3 @@
+g:net.minecraft.server.level.ServerPlayer|getLastClientInput
+g:net.minecraft.world.entity.Entity|resetFallDistance|fallDistance
+net.minecraft.world.entity.player.Input
