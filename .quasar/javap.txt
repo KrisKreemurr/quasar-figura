@@ -1,2 +1,1 @@
-m:net.minecraft.world.entity.projectile.FireworkRocketEntity|handleEntityEvent
-m:net.minecraft.client.multiplayer.ClientLevel|createFireworks
+g:net.minecraft.world.entity.animal.equine.AbstractHorse|[Ss]tand|Mad|getStandAnim|isStanding
