@@ -1,2 +1,3 @@
-g:net.minecraft.world.entity.ai.attributes.Attributes|public static final
-g:net.neoforged.neoforge.common.NeoForgeMod|Holder<net.minecraft.world.entity.ai.attributes
+g:net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent|insert|accept
+g:net.minecraft.world.item.Items|_SPEAR;
+g:net.neoforged.neoforge.event.entity.player.ItemTooltipEvent|public
