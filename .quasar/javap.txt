@@ -1,6 +1,2 @@
-g:net.minecraft.world.level.Level|createFireworks
-g:net.minecraft.world.item.component.FireworkExplosion|public
-g:net.minecraft.world.damagesource.DamageSources|explosion|fireworks
-g:net.minecraft.core.particles.ParticleTypes|FIREWORK
-g:net.minecraft.world.item.DyeColor|getFireworkColor
-g:net.minecraft.world.item.Items|GUNPOWDER;|FIREWORK_ROCKET;
+m:net.minecraft.world.entity.projectile.FireworkRocketEntity|handleEntityEvent
+m:net.minecraft.client.multiplayer.ClientLevel|createFireworks
