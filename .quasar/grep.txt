@@ -1,1 +1,1 @@
-world\.entity\.EntityTypes?$
+\.AbstractHorse$

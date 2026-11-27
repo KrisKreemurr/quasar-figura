@@ -1,2 +1,2 @@
-g:net.minecraft.world.entity.EntityTypes|CHICKEN|SHEEP|PIG;|COW;|MOOSHROOM
-g:net.minecraft.world.entity.Entity|hurtMarked|markHurt|needsSync
+g:net.minecraft.world.entity.EntityTypes|HORSE;|DONKEY;|MULE;
+g:net.minecraft.world.entity.animal.equine.AbstractHorse|isTamed|getOwner
