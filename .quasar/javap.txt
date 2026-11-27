@@ -1,1 +1,4 @@
-g:net.minecraft.world.entity.animal.equine.AbstractHorse|[Ss]tand|Mad|getStandAnim|isStanding
+m:net.minecraft.world.entity.animal.equine.AbstractHorse|standIfPossible
+m:net.minecraft.world.entity.animal.equine.AbstractHorse|setStanding
+m:net.minecraft.world.entity.animal.equine.AbstractHorse|makeMad
+m:net.minecraft.world.entity.animal.equine.AbstractHorse|getStandAnim
